@@ -1,0 +1,23 @@
+.pagination {
+  float: right;
+  color: var(--mdc-theme-on-surface);
+  opacity: 0.8;
+}
+
+.pagination>div {
+  padding: 0;
+}
+
+.pages {
+  padding-top: 12px;
+}
+
+.pages>span {
+  display: block;
+  width: 150px;
+  text-align: center;
+}
+
+.navigate {
+  text-align: center;
+}

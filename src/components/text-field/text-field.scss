@@ -1,0 +1,79 @@
+@import "@material/textfield/mdc-text-field";
+@import "@material/floating-label/mdc-floating-label";
+@import "@material/line-ripple/mdc-line-ripple";
+@import "@material/textfield/helper-text/mdc-text-field-helper-text";
+@import "@material/textfield/icon/mdc-text-field-icon";
+@import "material-design-icons/iconfont/material-icons";
+@import "@material/shape/mixins";
+
+:host {
+  display: block;
+}
+
+
+// Fix for label color (cf. https://github.com/material-components/material-components-web/issues/3066#issuecomment-436264530)
+.mdc-text-field--focused {
+  &:not(.mdc-text-field--disabled):not(.mdc-text-field--invalid) {
+    .mdc-floating-label {
+      color: $mdc-theme-primary;
+      color: var(--mdc-theme-primary, $mdc-theme-primary);
+    }
+  }
+}
+
+.datepicker::-webkit-datetime-edit-text {
+  padding: 0 0.3em;
+}
+
+.datepicker::-webkit-inner-spin-button {
+  display: none;
+}
+
+.datepicker::-webkit-clear-button,
+.datepicker::-ms-clear {
+  display: none !important;
+}
+
+.datepicker::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.date-picker {
+  padding: 16px;
+}
+
+.mdc-text-field {
+  @include mdc-shape-radius(var(--mdc-theme-text-field-filled-radius, 4px) var(--mdc-theme-text-field-filled-radius, 4px) 0 0, false);
+}
+
+.mdc-text-field.mdc-text-field--outlined {
+  .mdc-notched-outline__leading {
+    @include mdc-shape-radius(var(--mdc-theme-text-field-outlined-radius, 4px) 0 0 var(--mdc-theme-text-field-outlined-radius, 4px), false);
+  }
+
+  .mdc-notched-outline__trailing {
+    @include mdc-shape-radius(0 var(--mdc-theme-text-field-outlined-radius, 4px) var(--mdc-theme-text-field-outlined-radius, 4px) 0, false);
+  }
+}
+
+:host(.materials-text-field--dense) {
+
+  .mdc-text-field {
+    transform: scale(0.8);
+    transform-origin: 0% 0;
+
+    .mdc-floating-label {
+      font-size: 1.25rem;
+    }
+
+    .mdc-select__native-control {
+      font-size: 1.25rem;
+    }
+
+  }
+
+  .mdc-text-field-helper-line {
+    transform: translateY(-50%);
+  }
+}

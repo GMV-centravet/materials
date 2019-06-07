@@ -1,0 +1,6 @@
+  @import "@material/icon-button/mdc-icon-button";
+  @import "material-design-icons/iconfont/material-icons";
+
+  .mdc-icon-button.materials-dense {
+    @include mdc-icon-button-size(24px, 24px, 6px);
+  }

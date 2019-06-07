@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.container {
+  overflow-y: scroll;
+  scrollbar-width:thin;
+  flex: 1;
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background: #ddd;
+  min-height: 40px;
+}

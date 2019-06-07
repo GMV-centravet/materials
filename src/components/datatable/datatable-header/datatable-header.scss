@@ -1,0 +1,17 @@
+:host {
+  display: block;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: var(--mdc-theme-datatable-header, #fff);
+    color: var(--mdc-theme-on-datatable-header, #212121);
+    padding: 0 8px;
+  }
+
+  materials-checkbox {
+    align-self: center;
+  }
+}

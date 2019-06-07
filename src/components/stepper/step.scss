@@ -1,0 +1,122 @@
+:host {
+
+  @import "@material/ripple/mdc-ripple.scss";
+  @import "@material/typography/mdc-typography";
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+
+  .step-header {
+    @include mdc-ripple-surface;
+    @include mdc-ripple-radius-bounded;
+    @include mdc-states;
+    display: flex;
+    flex-direction: row;
+    height: 24px;
+    padding: 24px;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+
+    .step-icon {
+      background-color: #ccc;
+      color: #fff;
+      border-radius: 50%;
+      width: 24px;
+      text-align: center;
+      line-height: 24px;
+    }
+
+    .step-title {
+      margin-left: 6px;
+      font-size: 14px;
+      font-weight: 400;
+      vertical-align: middle;
+
+      .step-summary,
+      .step-optional {
+        font-weight: 400;
+        color: #999;
+      }
+    }
+  }
+
+  .step-body {
+    position: relative;
+    margin-left: 36px;
+    padding: 0 24px 0 24px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+
+    .step-buttons {
+      padding-top: 16px;
+      margin-left: -8px;
+      max-height: 36px;
+    }
+  }
+
+  .step-body.no-padding {
+    padding: 0 !important;
+
+    .step-buttons {
+      padding-left: 24px;
+    }
+  }
+
+
+
+  .previous-button {
+    margin-right: 16px;
+  }
+
+  .step-active {
+
+    .step-icon {
+      background-color: var(--mdc-theme-primary, #6200ee)
+    }
+
+    .step-title {
+      font-weight: 600;
+    }
+  }
+
+  .step-valid {
+    .step-icon {
+      background-color: var(--mdc-theme-primary, #6200ee)
+    }
+  }
+
+  .step-invalid {
+    .step-icon-invalid {
+      background-color: #ff0000;
+    }
+
+    .step-title {
+      color: #ff0000;
+    }
+  }
+
+  .step-empty:not(.step-active) {
+    .step-title {
+      color: #ccc;
+    }
+  }
+
+  .step-last {
+    padding-bottom: 8px;
+  }
+}
+
+
+:host(:not(.step-last))::before {
+  content: '';
+  position: absolute;
+  top: 56px;
+  bottom: -16px;
+  left: 36px;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: #CCC;
+}

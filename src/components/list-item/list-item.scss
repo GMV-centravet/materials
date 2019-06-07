@@ -1,0 +1,27 @@
+@import "@material/list/mdc-list";
+@import "@material/ripple/mdc-ripple";
+
+:host {
+  display: block;
+
+  .materials-list-item {
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, .08);
+    }
+  }
+
+  .no-padding {
+    padding: 0px !important;
+  }
+
+  .mdc-list-item__graphic {
+    display: inline-flex;
+  }
+
+  .gmv-label-nowrap{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

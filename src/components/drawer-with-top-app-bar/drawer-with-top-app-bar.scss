@@ -1,0 +1,31 @@
+@import "@material/list/mdc-list";
+@import "@material/drawer/mdc-drawer";
+@import "@material/top-app-bar/mdc-top-app-bar";
+@import "material-design-icons/iconfont/material-icons";
+
+// Note: these styles do not account for any paddings/margins that you may need.
+
+:host {
+  display: flex;
+  height: 100vh;
+}
+
+.mdc-drawer-app-content {
+  flex: auto;
+  overflow: auto;
+  position: relative;
+}
+
+.main-content {
+  overflow: auto;
+  height: 100%;
+}
+
+.mdc-top-app-bar {
+  position: absolute;
+}
+
+// only apply this style if below top app bar
+.mdc-top-app-bar {
+  z-index: 7;
+}

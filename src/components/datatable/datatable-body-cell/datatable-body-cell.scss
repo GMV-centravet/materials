@@ -1,0 +1,36 @@
+:host {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+}
+
+:host(.align-start) {
+  justify-content: flex-start;
+
+  .row-cell {
+    width: calc(100% - 8px);
+
+    .cell-content {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+  }
+}
+
+:host(.align-end) {
+  justify-content: flex-end;
+
+  .row-cell {
+    padding-right: 24px;
+  }
+}
+
+:host(.align-center) {
+  justify-content: center;
+}

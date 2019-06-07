@@ -1,0 +1,51 @@
+@import "@material/ripple/mdc-ripple";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  text-transform: capitalize;
+  font-family: Roboto, sans-serif;
+  border-bottom: 1px solid #e0e0e0;
+  padding-left: 8px;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+}
+
+:host(:hover) {
+  background-color: #f9f9f9;
+}
+
+
+:host(.odd) {
+  background-color: var(--mdc-theme-datatable-even-color, #FCFCFC);
+}
+
+:host(.selectable) {
+  cursor: pointer;
+}
+
+:host(.selected) {
+  background-color: var(--mdc-theme-primary-50, #d2c2fd);
+  border-bottom: 1px solid var(--mdc-theme-primary-100, #d2c2fd);
+}
+
+:host(.dense) {
+  .container {
+    height: 42px;
+  }
+}
+
+.expendable-content {
+  display: none;
+  border-top: 1px solid #ececec
+}
+
+:host(.expended) {
+  .expendable-content {
+    display: block;
+  }
+}

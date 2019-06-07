@@ -1,0 +1,38 @@
+@import "@material/button/mdc-button.scss";
+@import "@material/typography/mdc-typography";
+
+@import "material-design-icons/iconfont/material-icons";
+
+:host(.materials-button-block) {
+  width: 100%;
+
+  .mdc-button {
+    width: 100%;
+  }
+}
+
+.mdc-button.mdc-theme--secondary {
+  --mdc-theme-primary: var(--mdc-theme-secondary);
+  --mdc-theme-on-primary: var(--mdc-theme-on-secondary);
+}
+
+.mdc-button.mdc-theme--error {
+  --mdc-theme-primary: var(--mdc-theme-error);
+  --mdc-theme-on-primary: var(--mdc-theme-on-error);
+}
+
+:not(:disabled).mdc-button--raised,
+:not(:disabled).mdc-button--unelevated {
+  background-color: var(--mdc-theme-primary, #6200ee);
+}
+
+
+.mdc-button::before,
+.mdc-button::after {
+  background-color: var(--mdc-theme-primary, #6200ee);
+
+}
+
+.materials-button-block {
+  width: 100%;
+}

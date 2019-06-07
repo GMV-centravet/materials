@@ -1,0 +1,65 @@
+:host {
+  display: block;
+
+  @import "@material/select/mdc-select";
+  @import "@material/shape/mixins";
+  @import "material-design-icons/iconfont/material-icons";
+  @import "@material/select/helper-text/mdc-select-helper-text";
+
+
+  // Fix label color (cf. https://github.com/material-components/material-components-web/issues/3066#issuecomment-436264530)
+  .mdc-select.mdc-select--focused {
+    &:not(.mdc-select--disabled) {
+      .mdc-floating-label {
+        color: $mdc-theme-primary;
+        color: var(--mdc-theme-primary, $mdc-theme-primary);
+      }
+
+      .mdc-line-ripple {
+        background-color: $mdc-theme-primary;
+        background-color: var(--mdc-theme-primary, $mdc-theme-primary);
+      }
+    }
+  }
+
+  // Fix before https://github.com/material-components/material-components-web/issues/4057
+  .mdc-select.mdc-select--outlined {
+
+    &:before,
+    &:after {
+      content: none;
+    }
+  }
+
+  .mdc-select.materials-select--dense {
+    transform: scale(0.8);
+    transform-origin: 0% 0;
+
+    .mdc-floating-label {
+      font-size: 1.25rem;
+    }
+
+    .mdc-select__native-control {
+      font-size: 1.25rem;
+    }
+
+    option {
+      font-size: initial;
+    }
+
+  }
+
+  .mdc-select {
+    @include mdc-shape-radius(var(--mdc-theme-select-filled-radius, 4px) var(--mdc-theme-select-filled-radius, 4px) 0 0, false);
+  }
+
+  .mdc-select.mdc-select--outlined {
+    .mdc-notched-outline__leading {
+      @include mdc-shape-radius(var(--mdc-theme-select-outlined-radius, 4px) 0 0 var(--mdc-theme-select-outlined-radius, 4px), false);
+    }
+
+    .mdc-notched-outline__trailing {
+      @include mdc-shape-radius(0 var(--mdc-theme-select-outlined-radius, 4px) var(--mdc-theme-select-outlined-radius, 4px) 0, false);
+    }
+  }
+}

@@ -1,0 +1,83 @@
+@import "@material/ripple/mdc-ripple.scss";
+@import "@material/typography/mdc-typography";
+
+:host {
+  background-color: var(--mdc-theme-background, #fff);
+}
+
+.month-navigator {
+  // width: 250px;
+  font: normal normal 500 normal 14px / normal Roboto, Helvetica, Arial, sans-serif;
+}
+
+.year-picker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.month-picker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.today-picker {
+  margin-top: 8px;
+}
+
+.week-overview {
+  display: flex;
+  flex-direction: row;
+}
+
+.day-overview {
+  display: grid;
+  text-align: center;
+  width: 32px;
+  height: 32px;
+  align-content: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.day-in-month .day-detail {
+  opacity: 0.50;
+}
+
+.week-overview .day-name {
+  align-content: center;
+  border: 2px solid transparent;
+  line-height: 25px;
+  display: grid;
+  text-align: center;
+  width: 32px;
+  height: 32px;
+  padding: 3px;
+  font-weight: 700;
+}
+
+.day-detail {
+  width: 24px;
+  height: 24px;
+  line-height: 25px;
+}
+
+.day-current {
+  color: white;
+  background-color: var(--mdc-theme-primary, #4285f4) !important;
+}
+
+.day-selected {
+  background-color: var(--mdc-theme-primary-100, #73a1eb) !important;
+  border-radius: 20px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.in-selected-range {
+  background-color: var(--mdc-theme-datepicker-selection-range, #e0e0e0);
+}

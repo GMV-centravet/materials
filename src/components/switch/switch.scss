@@ -1,0 +1,9 @@
+:host {
+  @import "@material/switch/mdc-switch";
+  @import "@material/typography/mdc-typography";
+
+  label {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,26 @@
+:host {
+  @import "@material/checkbox/mdc-checkbox.scss";
+  @import "@material/form-field/mdc-form-field.scss";
+
+  display: block;
+
+
+  .mdc-checkbox.mdc-theme--secondary {
+    --mdc-theme-secondary: var(--mdc-theme-secondary);
+  }
+
+  .mdc-checkbox.mdc-theme--primary {
+    --mdc-theme-secondary: var(--mdc-theme-primary);
+  }
+
+  .mdc-checkbox.mdc-theme--error {
+    --mdc-theme-secondary: var(--mdc-theme-error);
+  }
+
+  .mdc-form-field {
+    label {
+      cursor: pointer;
+      line-height: 40px;
+    }
+  }
+}

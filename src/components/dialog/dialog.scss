@@ -1,0 +1,52 @@
+:host {
+  @import "@material/dialog/mdc-dialog";
+
+  @import "@material/typography/mdc-typography";
+  @import "@material/button/mdc-button.scss";
+
+
+  ::-webkit-scrollbar {
+    background: transparent;
+    height: 8px;
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background: #ddd;
+    min-height: 40px;
+  }
+
+  .mdc-dialog {
+    .mdc-dialog__title {
+      background-color: var(--mdc-theme-dialog-title-fill-color, --mdc-theme-background);
+      color: var(--mdc-theme-dialog-title-ink-color, --mdc-theme-on-background);
+    }
+
+    .mdc-dialog__content {
+      scrollbar-width: thin;
+    }
+
+    .close-btn {
+      margin: 6px;
+      right: 0;
+      position: absolute;
+    }
+  }
+
+
+
+  .mdc-dialog__footer {
+    slot[name="third-button"] {
+      margin-right: auto;
+      display: block;
+    }
+  }
+
+  .mdc-dialog__title+.mdc-dialog__content {
+    padding-top: var(--mdc-theme-dialog-content-padding-top, 0px);
+  }
+
+}

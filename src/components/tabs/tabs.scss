@@ -1,0 +1,50 @@
+@import "@material/tab-indicator/mdc-tab-indicator";
+@import "@material/tab-scroller/mdc-tab-scroller";
+@import "@material/tab-bar/mdc-tab-bar";
+@import "@material/tab/mdc-tab";
+@import "material-design-icons/iconfont/material-icons";
+
+
+:host {
+  display: block;
+
+  .mdc-tab-scroller__scroll-area--scroll {
+    overflow-x: hidden;
+  }
+}
+
+:host(.materials-tab-background) {
+  .mdc-tab-bar {
+    background-color: var(--mdc-theme-background);
+
+    .mdc-tab {
+      @include mdc-tab-active-text-label-color(primary);
+    }
+  }
+}
+
+:host(.materials-tab-primary) {
+  .mdc-tab-bar {
+    background-color: var(--mdc-theme-primary);
+    @include mdc-tab-ink-color(on-primary);
+  }
+
+  .mdc-tab-indicator {
+    @include mdc-tab-indicator-underline-color(on-primary);
+  }
+}
+
+:host(.materials-tab-secondary) {
+  .mdc-tab-bar {
+    background-color: var(--mdc-theme-secondary);
+    @include mdc-tab-text-label-color(on-secondary);
+  }
+}
+
+:host(.materials-tab-surface) {
+  .mdc-tab-bar {
+    background-color: var(--mdc-theme-surface);
+    @include mdc-tab-text-label-color(on-surface);
+    @include mdc-tab-active-states-color(on-surface);
+  }
+}

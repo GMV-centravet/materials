@@ -1,0 +1,24 @@
+:host{
+  @import "@material/elevation/mdc-elevation";
+  @import "@material/typography/mdc-typography";
+
+
+  .materials-expansion-panel {
+    .materials-expansion-panel-header{
+      cursor: pointer;
+    }
+    .materials-expansion-panel-body.collapsed {
+      display: none;
+    }
+    .materials-expansion-panel-body {
+      display: block;
+      .collapsible-body {
+        display: block;
+        box-sizing: border-box;
+      }
+
+    }
+  }
+
+
+}

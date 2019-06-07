@@ -1,0 +1,14 @@
+:host {
+  @import "@material/textfield/mdc-text-field";
+  @import "@material/floating-label/mdc-floating-label";
+
+  // Fix for label color (cf. https://github.com/material-components/material-components-web/issues/3066#issuecomment-436264530)
+  .mdc-text-field--focused {
+    &:not(.mdc-text-field--disabled) {
+      .mdc-floating-label {
+        color: $mdc-theme-primary;
+        color: var(--mdc-theme-primary, $mdc-theme-primary);
+      }
+    }
+  }
+}

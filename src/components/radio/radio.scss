@@ -1,0 +1,10 @@
+@import "@material/radio/mdc-radio";
+@import "@material/form-field/mdc-form-field";
+
+:host {
+  display: inline-block;
+}
+
+.mdc-radio:not(.mdc-radio--disabled)+label {
+  cursor: pointer;
+}
