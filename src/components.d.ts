@@ -302,7 +302,7 @@ export namespace Components {
   }
   interface MaterialsSnackbarController {
     'create': (options: SnackBarOptions) => Promise<void>;
-    'pushToQueue': (snack: any) => Promise<void>;
+    'pushToQueue': (snack: HTMLMaterialsSnackbarElement) => Promise<void>;
     'sliceQueue': () => Promise<void>;
   }
   interface MaterialsStep {
