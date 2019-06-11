@@ -1,6 +1,10 @@
 language: node_js
 node_js:
 - stable
+before_deploy:
+  if ! [[ $TRAVIS_BRANCH == 'develop' ]]; then
+    npm version --no-git-tag-version version prerelease --preid $TRAVIS_COMMIT
+  fi
 deploy:
   - provider: npm
     email: dev@gmvet.fr
@@ -8,13 +12,6 @@ deploy:
       secure: sQiSiJlk4QcpBZ6krkECOd7hw4UxJfKk/+26XuFU+mSKzzxh2ECq0twTrZNCzFlCy9skFGOq5t5Dwd/dFwf3VZkvSZNN0ssZNl6LYVft8IO6GLJIlyEugvm2A79gEHwZHN+OLCH4HxUyhoVSpBsqmOhUxBJ5x1coXrGFZur4NkObdU0C6163unJXk2wKjpXOqu7szTCgeJx3SJ/i0TBS+yCcXmahf8CFyFIuF5LHSV6y0nEdeHIeARWLd7seuPaGNPqyRdfOvSwHDhBualquUXqAmwzQ3jaFY5At868u8pwFlgnZcw91064uDYLSzYpjJMOFJ8oEsIO2ygojTtxEpvCWhukYfamh9kbce/4psFsi0MYRVHXihohydXJ2qhqpOWlb9MIbl3OmobtWMKZfQg1q+JHyf/TRPbDuFQt/NH55pTvEN+PGVQeqQe0nUYpQa1ny4xTXC3izUvgIWyJCtj1TY/wYYX57U5XO4f5cI48lnnsJ8xWixqnaAjd475qvaNcu8QkkEsoFWSm/JLZ46njcv62gM3WrlUI5614pRz8xyAbEc6ApPMoFeNQXcZV/DVNo9VwQihNfxAnOFd44aOlDmUTkHZkK6jjDQHKLvu71nqEjBnqRXgmpsPmBD5r8qsCpjz7vhhCVIQx1TRnBfwEyl92MA3NlW+mB5zq5ZRU=
     on:
       tags: true
-  - provider: npm
-    email: dev@gmvet.fr
-    tag: latest
-    api_key:
-      secure: sQiSiJlk4QcpBZ6krkECOd7hw4UxJfKk/+26XuFU+mSKzzxh2ECq0twTrZNCzFlCy9skFGOq5t5Dwd/dFwf3VZkvSZNN0ssZNl6LYVft8IO6GLJIlyEugvm2A79gEHwZHN+OLCH4HxUyhoVSpBsqmOhUxBJ5x1coXrGFZur4NkObdU0C6163unJXk2wKjpXOqu7szTCgeJx3SJ/i0TBS+yCcXmahf8CFyFIuF5LHSV6y0nEdeHIeARWLd7seuPaGNPqyRdfOvSwHDhBualquUXqAmwzQ3jaFY5At868u8pwFlgnZcw91064uDYLSzYpjJMOFJ8oEsIO2ygojTtxEpvCWhukYfamh9kbce/4psFsi0MYRVHXihohydXJ2qhqpOWlb9MIbl3OmobtWMKZfQg1q+JHyf/TRPbDuFQt/NH55pTvEN+PGVQeqQe0nUYpQa1ny4xTXC3izUvgIWyJCtj1TY/wYYX57U5XO4f5cI48lnnsJ8xWixqnaAjd475qvaNcu8QkkEsoFWSm/JLZ46njcv62gM3WrlUI5614pRz8xyAbEc6ApPMoFeNQXcZV/DVNo9VwQihNfxAnOFd44aOlDmUTkHZkK6jjDQHKLvu71nqEjBnqRXgmpsPmBD5r8qsCpjz7vhhCVIQx1TRnBfwEyl92MA3NlW+mB5zq5ZRU=
-    on:
-      branch: master
   - provider: npm
     email: dev@gmvet.fr
     tag: next
