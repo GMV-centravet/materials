@@ -1,10 +1,11 @@
 language: node_js
 node_js:
 - stable
-before_deploy:
-  if ! [[ $TRAVIS_BRANCH == 'develop' ]]; then
-    npm version --no-git-tag-version version prerelease --preid $TRAVIS_COMMIT
-  fi
+stages:
+  - name: before_deploy
+    # require the branch name to be master (note for PRs this is the base branch name)
+    if: branch = develop
+before_deploy: "npm version --no-git-tag-version version prerelease --preid $TRAVIS_COMMIT"
 deploy:
   - provider: npm
     email: dev@gmvet.fr
