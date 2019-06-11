@@ -1,5 +1,5 @@
 {
-  "name": "materials",
+  "name": "@gmvdev/materials",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.js",
@@ -61,5 +61,17 @@
     "jest-cli": "24.8.0",
     "puppeteer": "1.17.0"
   },
+  "publishConfig": {
+    "access": "public",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/gmvdev/materials.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GMV-centravet/materials/issues"
+  },
+  "homepage": "https://github.com/GMV-centravet/materials",
+  "author": "GMV-Centravet",
   "license": "MIT"
 }
