@@ -1,7 +1,7 @@
-import { MaterialsTopAppBar } from './top-app-bar';
+import { TopAppBar } from './top-app-bar';
 
 describe('materials-top-app-bar', () => {
   it('should build', () => {
-    expect(new MaterialsTopAppBar()).toBeTruthy();
+    expect(new TopAppBar()).toBeTruthy();
   });
 });

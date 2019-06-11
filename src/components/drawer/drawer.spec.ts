@@ -1,7 +1,8 @@
-import { MaterialsDrawer } from './materials-drawer.spec';
+import { Drawer } from './drawer';
+
 
 describe('materials-drawer', () => {
   it('should build', () => {
-    expect(new MaterialsDrawer()).toBeTruthy();
+    expect(new Drawer()).toBeTruthy();
   });
 });
