@@ -30,6 +30,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [materials-multiple-select](..\multiple-select)
+
 ### Depends on
 
 - [materials-list-item](..\list-item)
@@ -40,6 +44,7 @@
 graph TD;
   materials-list-item-checkbox --> materials-list-item
   materials-list-item-checkbox --> materials-checkbox
+  materials-multiple-select --> materials-list-item-checkbox
   style materials-list-item-checkbox fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

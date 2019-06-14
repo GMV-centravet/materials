@@ -37,7 +37,7 @@ export class MaterialsMultipleSelect {
   openMultiSelectDialog(event: any) {
     event.stopPropagation();
     event.preventDefault();
-    this.multiSelectDialog.title = this.dialogTitle;
+    this.multiSelectDialog.dialogTitle = this.dialogTitle;
     this.multiSelectDialog.toggle();
   }
 
