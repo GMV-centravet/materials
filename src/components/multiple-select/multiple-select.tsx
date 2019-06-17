@@ -9,7 +9,7 @@ export class MaterialsMultipleSelect {
   @Prop() options: Map<string, string>;
   @Prop() label: string;
   @Prop() dialogTitle: string;
-  @Prop({ mutable: true }) value: string;
+  @Prop({ mutable: true }) value: string[] = [];
   @Element() host: HTMLElement;
 
   @Event() change: EventEmitter;
@@ -19,58 +19,44 @@ export class MaterialsMultipleSelect {
   private selectedOptions: string[] = [];
 
   componentDidLoad() {
-    this.initSelectedOptions();
     this.displayValue();
   }
 
   componentDidUpdate() {
-    this.initSelectedOptions();
     this.displayValue();
-  }
-
-  initSelectedOptions() {
-    if (this.value) {
-      this.selectedOptions = this.value.split(',');
-    }
   }
 
   openMultiSelectDialog(event: any) {
     event.stopPropagation();
     event.preventDefault();
-    this.multiSelectDialog.dialogTitle = this.dialogTitle;
+    this.multiSelectDialog.title = this.dialogTitle;
     this.multiSelectDialog.toggle();
   }
 
   fillMultiSelectInput() {
     this.displayValue();
-    this.value = this.selectedOptions.join(',');
     this.change.emit();
   }
 
 
   displayValue() {
-    const selectedValue = this.selectedOptions.map(val => this.options.get(val)).join(', ');
-    if (selectedValue.length > 22) {
-      this.multiSelectInput.value = selectedValue.substring(0, 22) + '...';
-      this.multiSelectInput.title = selectedValue;
-    } else {
-      this.multiSelectInput.value = selectedValue;
-      this.multiSelectInput.title = '';
-    }
+    const selectedValue = this.value.map(val => this.options.get(val)).join(', ');
+    this.multiSelectInput.value = selectedValue;
+    this.multiSelectInput.title = selectedValue;
   }
 
-  toggleOption(event: CustomEvent, value: string) {
+  toggleOption(event: CustomEvent, option: string) {
     event.stopPropagation();
     event.preventDefault();
     if (event.detail) {
-      this.selectedOptions.push(value);
+        this.value.push(option);
     } else {
-      this.selectedOptions.splice(this.selectedOptions.indexOf(value), 1);
+        this.value.splice(this.value.indexOf(option), 1);
     }
   }
 
-  private isChecked(value: string): boolean {
-    return this.value ? this.value.indexOf(value) > -1 : false;
+  private isChecked(option: string): boolean {
+    return this.value.find(val => option === val) !== undefined;
   }
 
   render() {
