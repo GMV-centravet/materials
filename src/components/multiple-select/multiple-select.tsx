@@ -16,7 +16,6 @@ export class MaterialsMultipleSelect {
 
   private multiSelectInput: HTMLMaterialsTextFieldElement;
   private multiSelectDialog: HTMLMaterialsDialogElement;
-  private selectedOptions: string[] = [];
 
   componentDidLoad() {
     this.displayValue();
@@ -63,6 +62,7 @@ export class MaterialsMultipleSelect {
     return ([
       <materials-text-field disabled
         label={this.label}
+        overflow
         ref={el => this.multiSelectInput = el as HTMLMaterialsTextFieldElement}
         onClick={(event: any) => this.openMultiSelectDialog(event)}></materials-text-field>,
       <materials-dialog
