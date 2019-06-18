@@ -9,13 +9,21 @@ export class MaterialsMultipleSelect {
   @Prop() options: Map<string, string>;
   @Prop() label: string;
   @Prop() dialogTitle: string;
-  @Prop({ mutable: true }) value: string[] = [];
+  @Prop({ mutable: true, reflectToAttr: true }) value: string[] = [];
   @Element() host: HTMLElement;
 
   @Event() change: EventEmitter;
 
   private multiSelectInput: HTMLMaterialsTextFieldElement;
   private multiSelectDialog: HTMLMaterialsDialogElement;
+
+  componentWillLoad() {
+    if(!this.value) this.value = [];
+  }
+
+  componentWillUpdate() {
+    if(!this.value) this.value = [];
+  }
 
   componentDidLoad() {
     this.displayValue();
@@ -28,7 +36,7 @@ export class MaterialsMultipleSelect {
   openMultiSelectDialog(event: any) {
     event.stopPropagation();
     event.preventDefault();
-    this.multiSelectDialog.title = this.dialogTitle;
+    this.multiSelectDialog.dialogTitle = this.dialogTitle;
     this.multiSelectDialog.toggle();
   }
 
@@ -39,9 +47,15 @@ export class MaterialsMultipleSelect {
 
 
   displayValue() {
-    const selectedValue = this.value.map(val => this.options.get(val)).join(', ');
-    this.multiSelectInput.value = selectedValue;
-    this.multiSelectInput.title = selectedValue;
+    if (this.value) {
+      const selectedValue = this.value.map(val => {
+        return this.options.get(val);
+      }).join(', ');
+      this.multiSelectInput.componentOnReady().then(()=>{
+        this.multiSelectInput.value = selectedValue;
+        this.multiSelectInput.title = selectedValue;
+      })
+    }
   }
 
   toggleOption(event: CustomEvent, option: string) {
@@ -52,10 +66,6 @@ export class MaterialsMultipleSelect {
     } else {
         this.value.splice(this.value.indexOf(option), 1);
     }
-  }
-
-  private isChecked(option: string): boolean {
-    return this.value.find(val => option === val) !== undefined;
   }
 
   render() {
@@ -72,8 +82,8 @@ export class MaterialsMultipleSelect {
         onAccept={() => this.fillMultiSelectInput()}
         ref={el => this.multiSelectDialog = el as HTMLMaterialsDialogElement}>
         <materials-list slot="body">
-          {this.options && Array.from(this.options.keys()).map(val => {
-            return <materials-list-item-checkbox onChange={(event: CustomEvent) => this.toggleOption(event, val)} checked={this.isChecked(val)} label={this.options.get(val)} value={val as string | number}></materials-list-item-checkbox>;
+          {this.options && Array.from(this.options.keys()).map(opt => {
+            return <materials-list-item-checkbox onChange={(event: CustomEvent) => this.toggleOption(event, opt)} checked={this.value && this.value.length > 0 && !!this.value.find(val => opt === val)} label={this.options.get(opt)} value={opt as string | number}></materials-list-item-checkbox>;
           })
           }
         </materials-list>

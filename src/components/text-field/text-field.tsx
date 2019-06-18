@@ -64,8 +64,18 @@ export class TextField {
 
   @State() realHelperText: string;
 
+  componentWillLoad() {
+    if(!this.value){
+      this.value ='';
+    }
+  }
+
   @Watch('value')
   async updateValue() {
+    if(!this.value){
+      this.value ='';
+      return;
+    }
     if (this.mdcTextField) {
       this.mdcTextField.value = this.value;
       await this.forceValidation();
