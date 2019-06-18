@@ -9,29 +9,28 @@ export class MaterialsMultipleSelect {
   @Prop() options: Map<string, string>;
   @Prop() label: string;
   @Prop() dialogTitle: string;
-  @Prop({ mutable: true }) value: string;
+  @Prop({ mutable: true, reflectToAttr: true }) value: string[] = [];
   @Element() host: HTMLElement;
 
   @Event() change: EventEmitter;
 
   private multiSelectInput: HTMLMaterialsTextFieldElement;
   private multiSelectDialog: HTMLMaterialsDialogElement;
-  private selectedOptions: string[] = [];
+
+  componentWillLoad() {
+    if(!this.value) this.value = [];
+  }
+
+  componentWillUpdate() {
+    if(!this.value) this.value = [];
+  }
 
   componentDidLoad() {
-    this.initSelectedOptions();
     this.displayValue();
   }
 
   componentDidUpdate() {
-    this.initSelectedOptions();
     this.displayValue();
-  }
-
-  initSelectedOptions() {
-    if (this.value) {
-      this.selectedOptions = this.value.split(',');
-    }
   }
 
   openMultiSelectDialog(event: any) {
@@ -43,40 +42,37 @@ export class MaterialsMultipleSelect {
 
   fillMultiSelectInput() {
     this.displayValue();
-    this.value = this.selectedOptions.join(',');
     this.change.emit();
   }
 
 
   displayValue() {
-    const selectedValue = this.selectedOptions.map(val => this.options.get(val)).join(', ');
-    if (selectedValue.length > 22) {
-      this.multiSelectInput.value = selectedValue.substring(0, 22) + '...';
-      this.multiSelectInput.title = selectedValue;
-    } else {
-      this.multiSelectInput.value = selectedValue;
-      this.multiSelectInput.title = '';
+    if (this.value) {
+      const selectedValue = this.value.map(val => {
+        return this.options.get(val);
+      }).join(', ');
+      this.multiSelectInput.componentOnReady().then(()=>{
+        this.multiSelectInput.value = selectedValue;
+        this.multiSelectInput.title = selectedValue;
+      })
     }
   }
 
-  toggleOption(event: CustomEvent, value: string) {
+  toggleOption(event: CustomEvent, option: string) {
     event.stopPropagation();
     event.preventDefault();
     if (event.detail) {
-      this.selectedOptions.push(value);
+        this.value.push(option);
     } else {
-      this.selectedOptions.splice(this.selectedOptions.indexOf(value), 1);
+        this.value.splice(this.value.indexOf(option), 1);
     }
-  }
-
-  private isChecked(value: string): boolean {
-    return this.value ? this.value.indexOf(value) > -1 : false;
   }
 
   render() {
     return ([
       <materials-text-field disabled
         label={this.label}
+        overflow
         ref={el => this.multiSelectInput = el as HTMLMaterialsTextFieldElement}
         onClick={(event: any) => this.openMultiSelectDialog(event)}></materials-text-field>,
       <materials-dialog
@@ -86,8 +82,8 @@ export class MaterialsMultipleSelect {
         onAccept={() => this.fillMultiSelectInput()}
         ref={el => this.multiSelectDialog = el as HTMLMaterialsDialogElement}>
         <materials-list slot="body">
-          {this.options && Array.from(this.options.keys()).map(val => {
-            return <materials-list-item-checkbox onChange={(event: CustomEvent) => this.toggleOption(event, val)} checked={this.isChecked(val)} label={this.options.get(val)} value={val as string | number}></materials-list-item-checkbox>;
+          {this.options && Array.from(this.options.keys()).map(opt => {
+            return <materials-list-item-checkbox onChange={(event: CustomEvent) => this.toggleOption(event, opt)} checked={this.value && this.value.length > 0 && !!this.value.find(val => opt === val)} label={this.options.get(opt)} value={opt as string | number}></materials-list-item-checkbox>;
           })
           }
         </materials-list>

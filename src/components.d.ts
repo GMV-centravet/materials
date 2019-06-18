@@ -261,7 +261,7 @@ export namespace Components {
     'dialogTitle': string;
     'label': string;
     'options': Map<string, string>;
-    'value': string;
+    'value': string[];
   }
   interface MaterialsRadio {
     'alignEnd': boolean;
@@ -381,6 +381,7 @@ export namespace Components {
     'leadingIcon': string;
     'name': string;
     'outlined': boolean;
+    'overflow': boolean;
     'pattern': string;
     'persistent': boolean;
     'required': boolean;
@@ -956,7 +957,7 @@ declare namespace LocalJSX {
     'label'?: string;
     'onChange'?: (event: CustomEvent<any>) => void;
     'options'?: Map<string, string>;
-    'value'?: string;
+    'value'?: string[];
   }
   interface MaterialsRadio extends JSXBase.HTMLAttributes<HTMLMaterialsRadioElement> {
     'alignEnd'?: boolean;
@@ -1076,6 +1077,7 @@ declare namespace LocalJSX {
     'onChange'?: (event: CustomEvent<any>) => void;
     'onInput'?: (event: CustomEvent<any>) => void;
     'outlined'?: boolean;
+    'overflow'?: boolean;
     'pattern'?: string;
     'persistent'?: boolean;
     'required'?: boolean;

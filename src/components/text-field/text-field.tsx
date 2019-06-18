@@ -47,6 +47,7 @@ export class TextField {
   @Prop() pattern: string;
   @Prop({ mutable: true, reflectToAttr: true }) value: any;
   @Prop() width: number;
+  @Prop() overflow: boolean;
   // Helper
   @Prop() helperText: string;
   @Prop() persistent: boolean;
@@ -63,8 +64,18 @@ export class TextField {
 
   @State() realHelperText: string;
 
+  componentWillLoad() {
+    if(!this.value){
+      this.value ='';
+    }
+  }
+
   @Watch('value')
   async updateValue() {
+    if(!this.value){
+      this.value ='';
+      return;
+    }
     if (this.mdcTextField) {
       this.mdcTextField.value = this.value;
       await this.forceValidation();
@@ -211,7 +222,7 @@ export class TextField {
           })()}
           <input
             id="my-text-field"
-            class={{ 'mdc-text-field__input': true, 'datepicker': this.datepicker }}
+            class={{ 'mdc-text-field__input': true, 'datepicker': this.datepicker, 'mdc-text-field--overflow-elipsis': this.overflow }}
             type={this.type}
             pattern={this.pattern}
             value={this.value}
