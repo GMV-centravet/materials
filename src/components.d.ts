@@ -92,6 +92,34 @@ export namespace Components {
     'size': number;
     'total': number;
   }
+  interface MaterialsDateField {
+    'customValidation': () => boolean | Promise<boolean>;
+    'customValidationMessage': string;
+    'datepicker': boolean;
+    'datepickerMonthPicker': boolean;
+    'datepickerTodayPicker': boolean;
+    'datepickerYearPicker': boolean;
+    'dense': boolean;
+    'disabled': boolean;
+    'focused': boolean;
+    'forceValidation': () => Promise<void>;
+    'fullwidth': boolean;
+    'helperText': string;
+    'isValid': () => Promise<boolean>;
+    'label': string;
+    'leadingIcon': string;
+    'name': string;
+    'outlined': boolean;
+    'pattern': string;
+    'persistent': boolean;
+    'required': boolean;
+    'timepicker': boolean;
+    'timepickerClock24': boolean;
+    'timepickerStep': number;
+    'validation': boolean;
+    'value': any;
+    'width': number;
+  }
   interface MaterialsDatepicker {
     /**
     * Utilisé pour mettre en surbrillance une période ex: Lundi au dimanche.
@@ -102,6 +130,7 @@ export namespace Components {
     */
     'dateSelected': Date;
     'monthPicker': boolean;
+    'nullable': boolean;
     'todayPicker': boolean;
     'yearPicker': boolean;
   }
@@ -360,16 +389,16 @@ export namespace Components {
   }
   interface MaterialsTextField {
     'customValidation': () => Promise<string>;
-    'datepicker': boolean;
-    'datepickerMonthPicker': boolean;
-    'datepickerTodayPicker': boolean;
-    'datepickerYearPicker': boolean;
     'dense': boolean;
     'disabled': boolean;
     'focused': boolean;
     'forceValidation': () => Promise<void>;
     'fullwidth': boolean;
     'helperText': string;
+    /**
+    * Hide clear button (webkit + Edge, Moz not supported)
+    */
+    'hideNativeClear': boolean;
     'isValid': () => Promise<boolean>;
     'label': string;
     'leadingIcon': string;
@@ -378,9 +407,6 @@ export namespace Components {
     'pattern': string;
     'persistent': boolean;
     'required': boolean;
-    'timepicker': boolean;
-    'timepickerClock24': boolean;
-    'timepickerStep': number;
     'trailingIcon': string;
     'type': string;
     'value': any;
@@ -479,6 +505,12 @@ declare global {
   var HTMLMaterialsDatatablePaginationElement: {
     prototype: HTMLMaterialsDatatablePaginationElement;
     new (): HTMLMaterialsDatatablePaginationElement;
+  };
+
+  interface HTMLMaterialsDateFieldElement extends Components.MaterialsDateField, HTMLStencilElement {}
+  var HTMLMaterialsDateFieldElement: {
+    prototype: HTMLMaterialsDateFieldElement;
+    new (): HTMLMaterialsDateFieldElement;
   };
 
   interface HTMLMaterialsDatepickerElement extends Components.MaterialsDatepicker, HTMLStencilElement {}
@@ -674,6 +706,7 @@ declare global {
     'materials-datatable-header': HTMLMaterialsDatatableHeaderElement;
     'materials-datatable-header-column': HTMLMaterialsDatatableHeaderColumnElement;
     'materials-datatable-pagination': HTMLMaterialsDatatablePaginationElement;
+    'materials-date-field': HTMLMaterialsDateFieldElement;
     'materials-datepicker': HTMLMaterialsDatepickerElement;
     'materials-dialog': HTMLMaterialsDialogElement;
     'materials-drawer': HTMLMaterialsDrawerElement;
@@ -790,6 +823,34 @@ declare namespace LocalJSX {
     'size'?: number;
     'total'?: number;
   }
+  interface MaterialsDateField extends JSXBase.HTMLAttributes<HTMLMaterialsDateFieldElement> {
+    'customValidation'?: () => boolean | Promise<boolean>;
+    'customValidationMessage'?: string;
+    'datepicker'?: boolean;
+    'datepickerMonthPicker'?: boolean;
+    'datepickerTodayPicker'?: boolean;
+    'datepickerYearPicker'?: boolean;
+    'dense'?: boolean;
+    'disabled'?: boolean;
+    'focused'?: boolean;
+    'fullwidth'?: boolean;
+    'helperText'?: string;
+    'label'?: string;
+    'leadingIcon'?: string;
+    'name'?: string;
+    'onChange'?: (event: CustomEvent<any>) => void;
+    'onInput'?: (event: CustomEvent<any>) => void;
+    'outlined'?: boolean;
+    'pattern'?: string;
+    'persistent'?: boolean;
+    'required'?: boolean;
+    'timepicker'?: boolean;
+    'timepickerClock24'?: boolean;
+    'timepickerStep'?: number;
+    'validation'?: boolean;
+    'value'?: any;
+    'width'?: number;
+  }
   interface MaterialsDatepicker extends JSXBase.HTMLAttributes<HTMLMaterialsDatepickerElement> {
     /**
     * Utilisé pour mettre en surbrillance une période ex: Lundi au dimanche.
@@ -800,6 +861,7 @@ declare namespace LocalJSX {
     */
     'dateSelected'?: Date;
     'monthPicker'?: boolean;
+    'nullable'?: boolean;
     'onDateSelectedUpdate'?: (event: CustomEvent<Date>) => void;
     'todayPicker'?: boolean;
     'yearPicker'?: boolean;
@@ -1041,15 +1103,15 @@ declare namespace LocalJSX {
   }
   interface MaterialsTextField extends JSXBase.HTMLAttributes<HTMLMaterialsTextFieldElement> {
     'customValidation'?: () => Promise<string>;
-    'datepicker'?: boolean;
-    'datepickerMonthPicker'?: boolean;
-    'datepickerTodayPicker'?: boolean;
-    'datepickerYearPicker'?: boolean;
     'dense'?: boolean;
     'disabled'?: boolean;
     'focused'?: boolean;
     'fullwidth'?: boolean;
     'helperText'?: string;
+    /**
+    * Hide clear button (webkit + Edge, Moz not supported)
+    */
+    'hideNativeClear'?: boolean;
     'label'?: string;
     'leadingIcon'?: string;
     'name'?: string;
@@ -1059,9 +1121,6 @@ declare namespace LocalJSX {
     'pattern'?: string;
     'persistent'?: boolean;
     'required'?: boolean;
-    'timepicker'?: boolean;
-    'timepickerClock24'?: boolean;
-    'timepickerStep'?: number;
     'trailingIcon'?: string;
     'type'?: string;
     'value'?: any;
@@ -1096,6 +1155,7 @@ declare namespace LocalJSX {
     'materials-datatable-header': MaterialsDatatableHeader;
     'materials-datatable-header-column': MaterialsDatatableHeaderColumn;
     'materials-datatable-pagination': MaterialsDatatablePagination;
+    'materials-date-field': MaterialsDateField;
     'materials-datepicker': MaterialsDatepicker;
     'materials-dialog': MaterialsDialog;
     'materials-drawer': MaterialsDrawer;

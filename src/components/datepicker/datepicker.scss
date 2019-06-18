@@ -22,10 +22,6 @@
   align-items: center;
 }
 
-.today-picker {
-  margin-top: 8px;
-}
-
 .week-overview {
   display: flex;
   flex-direction: row;
@@ -80,4 +76,18 @@
 
 .in-selected-range {
   background-color: var(--mdc-theme-datepicker-selection-range, #e0e0e0);
+}
+
+.actions {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: row;
+
+  materials-button {
+    margin: 0 5px 0 0;
+  }
+
+  materials-button:last-child {
+    margin: 0 0 0 5px;
+  }
 }

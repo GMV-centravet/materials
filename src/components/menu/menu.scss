@@ -1,8 +1,8 @@
-:host {
-  @import "@material/list/mdc-list";
-  @import "@material/menu-surface/mdc-menu-surface";
-  @import "@material/menu/mdc-menu";
+@import "@material/list/mdc-list";
+@import "@material/menu-surface/mdc-menu-surface";
+@import "@material/menu/mdc-menu";
 
+:host {
   position: absolute;
 
   scrollbar-width: thin;
@@ -28,4 +28,8 @@
 
 .no-padding {
   padding: 0 !important;
+}
+
+.mdc-menu {
+  overflow-x: hidden;
 }
