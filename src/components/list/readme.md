@@ -13,6 +13,19 @@
 | `size`   | `size`    |                                                                          | `"medium" \| "small"` | `undefined` |
 
 
+## Dependencies
+
+### Used by
+
+ - [materials-multiple-select](..\multiple-select)
+
+### Graph
+```mermaid
+graph TD;
+  materials-multiple-select --> materials-list
+  style materials-list fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

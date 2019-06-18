@@ -1,5 +1,5 @@
 import { MDCRipple } from '@material/ripple';
-import { Component, Element, Event, EventEmitter, h, Prop, State } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'materials-list-item-checkbox',
@@ -10,7 +10,7 @@ export class ListItemCheckbox {
 
   @Prop() disabled: boolean = false;
   @Prop() label: string;
-  @State() @Prop({ mutable: true }) checked: boolean;
+  @Prop({ mutable: true }) checked: boolean;
   @Prop() value: string | number;
   @Prop() color: string;
   @Prop() itemStartStyle: any;

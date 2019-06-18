@@ -33,6 +33,8 @@ export class Tabs {
   async componentDidLoad() {
     const tabs = Array.from(this.host.querySelectorAll('materials-tab'));
     for (const tab of tabs) {
+      tab.minWidth = this.shrinkTabs;
+      tab.indicatorType = this.indicatorType;
       await tab.renderHtml().then((content) => this.tabsContent.push(content));
     }
     this.tabsContent = [...this.tabsContent];

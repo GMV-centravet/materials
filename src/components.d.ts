@@ -286,6 +286,12 @@ export namespace Components {
     'setAnchorMargin': (margin: AnchorMargin) => Promise<void>;
     'setPosition': (position: "TOP_LEFT" | "TOP_RIGHT" | "BOTTOM_LEFT" | "BOTTOM_RIGHT" | "TOP_START" | "TOP_END" | "BOTTOM_START" | "BOTTOM_END") => Promise<void>;
   }
+  interface MaterialsMultipleSelect {
+    'dialogTitle': string;
+    'label': string;
+    'options': Map<string, string>;
+    'value': string[];
+  }
   interface MaterialsRadio {
     'alignEnd': boolean;
     'checked': boolean;
@@ -404,6 +410,7 @@ export namespace Components {
     'leadingIcon': string;
     'name': string;
     'outlined': boolean;
+    'overflow': boolean;
     'pattern': string;
     'persistent': boolean;
     'required': boolean;
@@ -609,6 +616,12 @@ declare global {
     new (): HTMLMaterialsMenuElement;
   };
 
+  interface HTMLMaterialsMultipleSelectElement extends Components.MaterialsMultipleSelect, HTMLStencilElement {}
+  var HTMLMaterialsMultipleSelectElement: {
+    prototype: HTMLMaterialsMultipleSelectElement;
+    new (): HTMLMaterialsMultipleSelectElement;
+  };
+
   interface HTMLMaterialsRadioElement extends Components.MaterialsRadio, HTMLStencilElement {}
   var HTMLMaterialsRadioElement: {
     prototype: HTMLMaterialsRadioElement;
@@ -723,6 +736,7 @@ declare global {
     'materials-list-item': HTMLMaterialsListItemElement;
     'materials-list-item-checkbox': HTMLMaterialsListItemCheckboxElement;
     'materials-menu': HTMLMaterialsMenuElement;
+    'materials-multiple-select': HTMLMaterialsMultipleSelectElement;
     'materials-radio': HTMLMaterialsRadioElement;
     'materials-radio-group': HTMLMaterialsRadioGroupElement;
     'materials-select': HTMLMaterialsSelectElement;
@@ -1000,6 +1014,13 @@ declare namespace LocalJSX {
     */
     'noPadding'?: boolean;
   }
+  interface MaterialsMultipleSelect extends JSXBase.HTMLAttributes<HTMLMaterialsMultipleSelectElement> {
+    'dialogTitle'?: string;
+    'label'?: string;
+    'onChange'?: (event: CustomEvent<any>) => void;
+    'options'?: Map<string, string>;
+    'value'?: string[];
+  }
   interface MaterialsRadio extends JSXBase.HTMLAttributes<HTMLMaterialsRadioElement> {
     'alignEnd'?: boolean;
     'checked'?: boolean;
@@ -1118,6 +1139,7 @@ declare namespace LocalJSX {
     'onChange'?: (event: CustomEvent<any>) => void;
     'onInput'?: (event: CustomEvent<any>) => void;
     'outlined'?: boolean;
+    'overflow'?: boolean;
     'pattern'?: string;
     'persistent'?: boolean;
     'required'?: boolean;
@@ -1172,6 +1194,7 @@ declare namespace LocalJSX {
     'materials-list-item': MaterialsListItem;
     'materials-list-item-checkbox': MaterialsListItemCheckbox;
     'materials-menu': MaterialsMenu;
+    'materials-multiple-select': MaterialsMultipleSelect;
     'materials-radio': MaterialsRadio;
     'materials-radio-group': MaterialsRadioGroup;
     'materials-select': MaterialsSelect;

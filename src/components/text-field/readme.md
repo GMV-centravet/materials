@@ -68,6 +68,10 @@ Type: `Promise<boolean>`
 
 ## Dependencies
 
+### Used by
+
+ - [materials-multiple-select](..\multiple-select)
+
 ### Depends on
 
 - [materials-menu](..\menu)
@@ -85,6 +89,7 @@ graph TD;
   materials-datepicker --> materials-icon-button
   materials-datepicker --> materials-button
   materials-timepicker --> materials-list-item
+  materials-multiple-select --> materials-text-field
   style materials-text-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

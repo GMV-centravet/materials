@@ -83,6 +83,10 @@ Type: `Promise<void>`
 
 ## Dependencies
 
+### Used by
+
+ - [materials-multiple-select](..\multiple-select)
+
 ### Depends on
 
 - [materials-icon-button](..\icon-button)
@@ -91,6 +95,7 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   materials-dialog --> materials-icon-button
+  materials-multiple-select --> materials-dialog
   style materials-dialog fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
