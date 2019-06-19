@@ -17,6 +17,11 @@ import {
 } from './components/snackbar/SnackbarOptions';
 
 export namespace Components {
+  interface MaterialsAutocomplete {
+    'autocomplete': (search: string) => Promise<Map<string, string>>;
+    'dense': boolean;
+    'value': {display: string, val: string};
+  }
   interface MaterialsButton {
     'block': boolean;
     'color': 'primary' | 'accent' | 'secondary' | 'error' | string;
@@ -558,6 +563,12 @@ export namespace Components {
 declare global {
 
 
+  interface HTMLMaterialsAutocompleteElement extends Components.MaterialsAutocomplete, HTMLStencilElement {}
+  var HTMLMaterialsAutocompleteElement: {
+    prototype: HTMLMaterialsAutocompleteElement;
+    new (): HTMLMaterialsAutocompleteElement;
+  };
+
   interface HTMLMaterialsButtonElement extends Components.MaterialsButton, HTMLStencilElement {}
   var HTMLMaterialsButtonElement: {
     prototype: HTMLMaterialsButtonElement;
@@ -834,6 +845,7 @@ declare global {
     new (): HTMLMaterialsTopAppBarElement;
   };
   interface HTMLElementTagNameMap {
+    'materials-autocomplete': HTMLMaterialsAutocompleteElement;
     'materials-button': HTMLMaterialsButtonElement;
     'materials-card': HTMLMaterialsCardElement;
     'materials-card-content': HTMLMaterialsCardContentElement;
@@ -884,6 +896,12 @@ declare global {
 }
 
 declare namespace LocalJSX {
+  interface MaterialsAutocomplete extends JSXBase.HTMLAttributes<HTMLMaterialsAutocompleteElement> {
+    'autocomplete'?: (search: string) => Promise<Map<string, string>>;
+    'dense'?: boolean;
+    'onChange'?: (event: CustomEvent<any>) => void;
+    'value'?: {display: string, val: string};
+  }
   interface MaterialsButton extends JSXBase.HTMLAttributes<HTMLMaterialsButtonElement> {
     'block'?: boolean;
     'color'?: 'primary' | 'accent' | 'secondary' | 'error' | string;
@@ -1413,6 +1431,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
+    'materials-autocomplete': MaterialsAutocomplete;
     'materials-button': MaterialsButton;
     'materials-card': MaterialsCard;
     'materials-card-content': MaterialsCardContent;
