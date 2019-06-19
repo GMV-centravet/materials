@@ -13,14 +13,6 @@ export class DatatableHeader {
 
   @Event() selectAll: EventEmitter<boolean>;
 
-  /**
-   * Capturer le change du checkbox du header
-   * @param event
-   */
-  handleChangeCheckBox(event) {
-    this.selectAll.emit(event);
-  }
-
   @Watch('selected')
   watchSelected() {
     this.selectAll.emit(this.selected);

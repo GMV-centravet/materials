@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property     | Attribute    | Description | Type                       | Default     |
-| ------------ | ------------ | ----------- | -------------------------- | ----------- |
-| `color`      | `color`      |             | `"primary" \| "secondary"` | `undefined` |
-| `selectable` | `selectable` |             | `boolean`                  | `undefined` |
-| `selected`   | `selected`   |             | `boolean`                  | `undefined` |
+| Property     | Attribute    | Description | Type                                             | Default                                      |
+| ------------ | ------------ | ----------- | ------------------------------------------------ | -------------------------------------------- |
+| `color`      | `color`      |             | `"primary" \| "secondary"`                       | `undefined`                                  |
+| `selectable` | `selectable` |             | `boolean`                                        | `undefined`                                  |
+| `selected`   | --           |             | `{ selected: boolean; applySelected: boolean; }` | `{ selected : false, applySelected: false }` |
 
 
 ## Events

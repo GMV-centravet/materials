@@ -1,7 +1,12 @@
-.pagination {
+.container{
   float: right;
+  display: inline-flex;
+}
+
+.pagination {
   color: var(--mdc-theme-on-surface);
   opacity: 0.8;
+  display: inline-flex;
 }
 
 .pagination>div {

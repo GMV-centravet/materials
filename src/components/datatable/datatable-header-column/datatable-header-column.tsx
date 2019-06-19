@@ -23,9 +23,6 @@ export class DatatableHeaderColumn {
 
   @State() direction: SortDirection = SortDirection.ASC;
 
-  /**
-   * Déclencher un évenement de trie
-   */
   sortData() {
     if (this.sortable) {
       this.sort.emit(new Sort(this.value, this.direction));

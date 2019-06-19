@@ -16,23 +16,17 @@ export class DatatablePagination {
   @Event() nextPage: EventEmitter;
   @Event() previousPage: EventEmitter;
 
-  /**
-   * Page suivante
-   */
   handleNextClick() {
     this.nextPage.emit();
   }
 
-  /**
-   * Page précédente
-   */
   handlePreviousClick() {
     this.previousPage.emit();
   }
 
   render() {
     return (
-      <div class="pagination">
+      <div class="container">
         <materials-layout-grid class="pagination">
           <materials-layout-cell class="navigate">
             <materials-icon-button icon="navigate_before" onClick={() => this.handlePreviousClick()}></materials-icon-button>
