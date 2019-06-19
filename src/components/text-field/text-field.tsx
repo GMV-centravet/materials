@@ -5,9 +5,6 @@ import { MDCTextField } from '@material/textfield';
 import { MDCTextFieldHelperText } from '@material/textfield/helper-text';
 import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 
-/**
- * Pour utiliser le datepicker il est préférable de mettre la Prop type=text
- */
 @Component({
   tag: 'materials-text-field',
   styleUrl: 'text-field.scss',
@@ -15,8 +12,6 @@ import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State, 
 })
 
 export class TextField {
-  private MWCMenuDatepickerEl: HTMLMaterialsMenuElement;
-  private MWCMenuTimepickerEl: HTMLMaterialsMenuElement;
   private mdcTextField: MDCTextField;
   private mdcTextFieldHelperText: MDCTextFieldHelperText;
   private textFieldEl: HTMLElement;
@@ -27,20 +22,23 @@ export class TextField {
   private inputEl: HTMLInputElement;
 
   @Element() host: HTMLMaterialsTextFieldElement;
+
   @Event() input: EventEmitter;
   @Event() change: EventEmitter;
-  @Prop() fullwidth: boolean;
 
+  @Prop() fullwidth: boolean;
   @Prop() dense: boolean;
   @Prop() outlined: boolean;
   @Prop() focused: boolean;
-
   @Prop() disabled: boolean;
   @Prop() leadingIcon: string;
   @Prop() trailingIcon: string;
-
   @Prop() label: string;
   @Prop() name: string;
+
+  /** Hide clear button (webkit + Edge, Moz not supported) */
+  @Prop() hideNativeClear = false;
+
   // Input
   @Prop() type = 'text';
   @Prop() required: boolean;
@@ -51,16 +49,8 @@ export class TextField {
   // Helper
   @Prop() helperText: string;
   @Prop() persistent: boolean;
-  @Prop() timepicker: boolean;
-  @Prop() timepickerStep = 15;
-  @Prop() timepickerClock24: boolean;
 
   @Prop() customValidation: () => Promise<string>;
-
-  @Prop() datepicker = false;
-  @Prop() datepickerTodayPicker = true;
-  @Prop() datepickerMonthPicker = true;
-  @Prop() datepickerYearPicker = true;
 
   @State() realHelperText: string;
 
@@ -154,75 +144,17 @@ export class TextField {
     this.realHelperText = this.helperText;
   }
 
-  renderDatepicker() {
-    if (!this.datepicker) return;
-    return <materials-menu noPadding ref={el => this.MWCMenuDatepickerEl = el as HTMLMaterialsMenuElement}>
-      <materials-card elevation={4} width="fit-content">
-        <materials-datepicker
-          class="date-picker"
-          dateSelected={this.value ? new Date(this.value + 'T00:00:00') : new Date(new Date().setHours(0, 0, 0, 0))}
-          today-picker={this.datepickerTodayPicker}
-          yearPicker={this.datepickerYearPicker}
-          monthPicker={this.datepickerMonthPicker}
-          onDateSelectedUpdate={ev => {
-            const fullDate = new Date(ev.detail);
-            this.value = `${fullDate.getFullYear().toString().padStart(4, '0')}-${(fullDate.getMonth() + 1).toString().padStart(2, '0')}-${(fullDate.getDate()).toString().padStart(2, '0')}`;
-            this.input.emit(); // pour déclencher la validation en fonction de onInput
-            if (this.MWCMenuDatepickerEl) this.MWCMenuDatepickerEl.close();
-          }}
-          onClick={ev => ev.stopPropagation()}>
-        </materials-datepicker>
-      </materials-card>
-    </materials-menu>;
-  }
-  renderTimePicker() {
-    if (!this.timepicker) return;
-    return <materials-menu noPadding ref={el => this.MWCMenuTimepickerEl = el as HTMLMaterialsMenuElement}>
-      <materials-card elevation={4} width="188px" max-height="200px">
-        <materials-timepicker
-          timeSelected={this.value}
-          clock24={this.timepickerClock24}
-          step={this.timepickerStep}
-          onTimeSelectedChange={ev => {
-            this.value = ev.detail;
-            this.input.emit(); // pour déclencher la validation en fonction de onInput
-            if (this.MWCMenuTimepickerEl) this.MWCMenuTimepickerEl.close();
-          }}
-          onClick={ev => ev.stopPropagation()}>
-        </materials-timepicker>
-      </materials-card>
-    </materials-menu>;
-  }
-  openPicker(ev): void {
-    if (this.datepicker) {
-      ev.stopPropagation();
-      ev.preventDefault();
-      if (this.MWCMenuDatepickerEl) this.MWCMenuDatepickerEl.open();
-    }
-    if (this.timepicker) {
-      ev.stopPropagation();
-      ev.preventDefault();
-      if (this.MWCMenuTimepickerEl) {
-        this.MWCMenuTimepickerEl.open();
-        // timepicker scroll auto
-        const timepicker: HTMLMaterialsTimepickerElement = this.MWCMenuTimepickerEl.querySelector('materials-timepicker');
-        const scrollableContainer = this.MWCMenuTimepickerEl.shadowRoot.querySelector('.mdc-menu');
-        const selectedItem: HTMLMaterialsListItemElement = timepicker.shadowRoot.querySelector('materials-list-item[selected]');
-        // positione l'élément au milieu de la liste deroulante.
-        if (timepicker && scrollableContainer && selectedItem) scrollableContainer.scrollTop = selectedItem.offsetTop - 60;
-      }
-    }
-  }
+
   render() {
     return (
       <Host class={{ 'materials-text-field--dense': this.dense }}>
         <div style={{ 'width': this.width + 'px' }} class={this.getClasses()} ref={mdcTextField => this.textFieldEl = mdcTextField}>
           {(() => {
-            return this.leadingIcon ? (<i class="material-icons mdc-text-field__icon" tabindex="0" role="button" onClick={ev => this.openPicker(ev)}>{this.leadingIcon}</i>) : '';
+            return this.leadingIcon ? (<i class="material-icons mdc-text-field__icon" tabindex="0" role="button">{this.leadingIcon}</i>) : '';
           })()}
           <input
             id="my-text-field"
-            class={{ 'mdc-text-field__input': true, 'datepicker': this.datepicker, 'mdc-text-field--overflow-elipsis': this.overflow }}
+            class={{ 'mdc-text-field__input': true, 'hide-native-clear': this.hideNativeClear, 'mdc-text-field--overflow-elipsis': this.overflow }}
             type={this.type}
             pattern={this.pattern}
             value={this.value}
@@ -235,9 +167,8 @@ export class TextField {
               this.input.emit(ev);
             }}
             onChange={(ev: any) => this.change.emit(ev)}
-            onClick={ev => this.openPicker(ev)}
           />
-          {this.trailingIcon && (<i class="material-icons mdc-text-field__icon" tabindex="0" role="button" onClick={ev => this.openPicker(ev)}>{this.trailingIcon}</i>)}
+          {this.trailingIcon && (<i class="material-icons mdc-text-field__icon" tabindex="0" role="button">{this.trailingIcon}</i>)}
           {this.outlined ?
             <div class="mdc-notched-outline" ref={notchedOutlineEl => this.notchedOutlineEl = notchedOutlineEl}>
               <div class="mdc-notched-outline__leading"></div>
@@ -257,8 +188,6 @@ export class TextField {
             {this.realHelperText}
           </div>
         </div>
-        {this.renderDatepicker()}
-        {this.renderTimePicker()}
       </Host>
     );
   }

@@ -17,6 +17,8 @@ export class Datepicker {
   @Prop() yearPicker = true;
   @Prop() monthPicker = true;
   @Prop() todayPicker = true;
+  @Prop() nullable = false;
+
   /**
    * Utilisé pour mettre en surbrillance une période ex: Lundi au dimanche.
    */
@@ -41,11 +43,13 @@ export class Datepicker {
 
   @Watch('dateSelected')
   dateSelectedClick(date: Date, old?) {
-    this.currentMonth = new Date(date.setHours(0, 0, 0, 0));
-    this.dateSelected = isNaN(Date.parse(date.toString())) ? new Date(new Date().setHours(0, 0, 0, 0)) : date;
-    if (isNaN(Date.parse(date.toString()))) return;
-    if (date !== old && date !== this.dateSelected) {
-      this.dateSelectedUpdate.emit(this.dateSelected);
+    if (date) {
+      this.currentMonth = new Date(date.setHours(0, 0, 0, 0));
+      this.dateSelected = isNaN(Date.parse(date.toString())) ? new Date(new Date().setHours(0, 0, 0, 0)) : date;
+      if (isNaN(Date.parse(date.toString()))) return;
+      if (date !== old && date !== this.dateSelected) {
+        this.dateSelectedUpdate.emit(this.dateSelected);
+      }
     }
   }
 
@@ -70,10 +74,12 @@ export class Datepicker {
     result.setDate(result.getDate() + days);
     return result;
   }
-  setToday() {
-    let d = new Date();
-    d.setHours(0, 0, 0, 0);
-    this.dateSelected = d;
+
+  setDateSelected(date: Date) {
+    if (date) {
+      date.setHours(0, 0, 0, 0);
+    }
+    this.dateSelected = date;
   }
 
   startOfWeek(d: Date) {
@@ -108,7 +114,7 @@ export class Datepicker {
       'pointer': true,
       'day-current': this.isCurrentDay(day),
       'day-in-month': (this.isInMonth(day.getDate(), index)),
-      'day-selected': (day.getTime() === this.dateSelected.getTime() && !this.isCurrentDay(day)),
+      'day-selected': (this.dateSelected && day.getTime() === this.dateSelected.getTime() && !this.isCurrentDay(day)),
       'in-selected-range': isInDateRange(day, this.dateRange.start, this.dateRange.end) && !this.isSameDate(),
     };
     return classes;
@@ -190,14 +196,22 @@ export class Datepicker {
               })}
             </div>
           )}
-        {this.todayPicker &&
-          <materials-button
-            block dense class="today-picker"
-            onClick={() => {
-              this.setToday();
-              this.dateSelectedUpdate.emit(this.dateSelected);
+        <div class="actions">
+
+          {this.nullable &&
+            <materials-button outlined block dense onClick={() => {
+              this.setDateSelected(null);
+              this.dateSelectedUpdate.emit(null);
             }}
-            raised>Aujourd'hui</materials-button>}
+            >Vider</materials-button>}
+          {this.todayPicker &&
+            <materials-button
+              block dense onClick={() => {
+                this.setDateSelected(new Date());
+                this.dateSelectedUpdate.emit(this.dateSelected);
+              }}
+              raised>Aujourd'hui</materials-button>}
+        </div>
       </div>
     );
   }
