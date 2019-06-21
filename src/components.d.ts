@@ -18,8 +18,17 @@ import {
 
 export namespace Components {
   interface MaterialsAutocomplete {
+    /**
+    * Function of autocompletion to pass to the element called during onInput of the text-field
+    */
     'autocomplete': (search: string) => Promise<Map<string, string>>;
+    /**
+    * For the density of the element
+    */
     'dense': boolean;
+    /**
+    * Value of the autocomplete text-field
+    */
     'value': {display: string, val: string};
   }
   interface MaterialsButton {
@@ -340,9 +349,21 @@ export namespace Components {
     'setPosition': (position: "TOP_LEFT" | "TOP_RIGHT" | "BOTTOM_LEFT" | "BOTTOM_RIGHT" | "TOP_START" | "TOP_END" | "BOTTOM_START" | "BOTTOM_END") => Promise<void>;
   }
   interface MaterialsMultipleSelect {
+    /**
+    * Title displayed in the dialog
+    */
     'dialogTitle': string;
+    /**
+    * Label displayed for the multi-select
+    */
     'label': string;
+    /**
+    * Map of options selectable in the dialog
+    */
     'options': Map<string, string>;
+    /**
+    * list of selected elements
+    */
     'value': string[];
   }
   interface MaterialsRadio {
@@ -897,9 +918,21 @@ declare global {
 
 declare namespace LocalJSX {
   interface MaterialsAutocomplete extends JSXBase.HTMLAttributes<HTMLMaterialsAutocompleteElement> {
+    /**
+    * Function of autocompletion to pass to the element called during onInput of the text-field
+    */
     'autocomplete'?: (search: string) => Promise<Map<string, string>>;
+    /**
+    * For the density of the element
+    */
     'dense'?: boolean;
+    /**
+    * Change event emitted when value is selected
+    */
     'onChange'?: (event: CustomEvent<any>) => void;
+    /**
+    * Value of the autocomplete text-field
+    */
     'value'?: {display: string, val: string};
   }
   interface MaterialsButton extends JSXBase.HTMLAttributes<HTMLMaterialsButtonElement> {
@@ -952,6 +985,7 @@ declare namespace LocalJSX {
     'dense'?: boolean;
     'expendable'?: boolean;
     'expended'?: boolean;
+    'onExpand'?: (event: CustomEvent<boolean>) => void;
     'onSelectRow'?: (event: CustomEvent<boolean>) => void;
     'selectable'?: boolean;
     'selected'?: boolean;
@@ -1212,10 +1246,25 @@ declare namespace LocalJSX {
     'noPadding'?: boolean;
   }
   interface MaterialsMultipleSelect extends JSXBase.HTMLAttributes<HTMLMaterialsMultipleSelectElement> {
+    /**
+    * Title displayed in the dialog
+    */
     'dialogTitle'?: string;
+    /**
+    * Label displayed for the multi-select
+    */
     'label'?: string;
+    /**
+    * Event dispatched when multi-select value changes
+    */
     'onChange'?: (event: CustomEvent<any>) => void;
+    /**
+    * Map of options selectable in the dialog
+    */
     'options'?: Map<string, string>;
+    /**
+    * list of selected elements
+    */
     'value'?: string[];
   }
   interface MaterialsRadio extends JSXBase.HTMLAttributes<HTMLMaterialsRadioElement> {

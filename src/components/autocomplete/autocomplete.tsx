@@ -1,5 +1,9 @@
 import { Component, Event, EventEmitter, h, Prop, State, Watch } from '@stencil/core';
-
+/**
+ * Class that represent an autocomplete element
+ * composed by a textfield
+ * and a menu with selectable items for autocompletion
+ */
 @Component({
     tag: 'materials-autocomplete',
     styleUrl: 'autocomplete.scss',
@@ -7,10 +11,23 @@ import { Component, Event, EventEmitter, h, Prop, State, Watch } from '@stencil/
 })
 export class Autocomplete {
 
+    /**
+     * Function of autocompletion to pass to the element
+     * called during onInput of the text-field
+     */
     @Prop() autocomplete: (search: string) => Promise<Map<string, string>>;
+    /**
+     * Value of the autocomplete text-field
+     */
     @Prop({mutable: true, reflectToAttr: true}) value: {display: string, val: string};
+    /**
+     * For the density of the element
+     */
     @Prop() dense: boolean;
 
+    /**
+     * Change event emitted when value is selected
+     */
     @Event() change: EventEmitter;
 
     @State() suggestions: Map<string, string>;
