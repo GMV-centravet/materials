@@ -109,6 +109,7 @@ export class MaterialsMultipleSelect {
       <materials-text-field disabled
         label={this.label}
         overflow
+        trailing-icon="search"
         ref={el => this.multiSelectInput = el as HTMLMaterialsTextFieldElement}
         onClick={(event: any) => this.openMultiSelectDialog(event)}></materials-text-field>,
       <materials-dialog
