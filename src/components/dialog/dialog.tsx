@@ -14,7 +14,7 @@ export class Dialog {
 
   dialogEl: any;
   bodyElement: HTMLElement;
-  MWCDialog: MDCDialog;
+  mdcDialog: MDCDialog;
   @Event() accept: EventEmitter;
   @Event() cancel: EventEmitter;
 
@@ -32,8 +32,8 @@ export class Dialog {
   @Prop() closeButton: boolean;
 
   componentDidLoad() {
-    this.MWCDialog = new MDCDialog(this.dialogEl);
-    this.MWCDialog.listen('MDCDialog:closing', (event: any) => {
+    this.mdcDialog = new MDCDialog(this.dialogEl);
+    this.mdcDialog.listen('MDCDialog:closing', (event: any) => {
       switch (event.detail.action) {
         case 'accept':
           this.accept.emit(true);
@@ -59,22 +59,22 @@ export class Dialog {
 
   @Method()
   async toggle() {
-    this.MWCDialog.isOpen ? this.close() : this.open();
+    this.mdcDialog.isOpen ? this.close() : this.open();
   }
 
   @Method()
   async isOpen(): Promise<boolean> {
-    return this.MWCDialog.isOpen;
+    return this.mdcDialog.isOpen;
   }
 
   @Method()
   async open() {
-    this.MWCDialog.open();
+    this.mdcDialog.open();
   }
 
   @Method()
   async close() {
-    this.MWCDialog.close();
+    this.mdcDialog.close();
     this.cancel.emit(false);
   }
 

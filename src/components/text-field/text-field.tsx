@@ -55,15 +55,15 @@ export class TextField {
   @State() realHelperText: string;
 
   componentWillLoad() {
-    if(!this.value){
-      this.value ='';
+    if (!this.value) {
+      this.value = '';
     }
   }
 
   @Watch('value')
   async updateValue() {
-    if(!this.value){
-      this.value ='';
+    if (!this.value) {
+      this.value = '';
       return;
     }
     if (this.mdcTextField) {
@@ -126,6 +126,7 @@ export class TextField {
       this.mdcTextFieldHelperText.foundation.setContent(this.inputEl.validationMessage);
       this.mdcTextFieldHelperText.foundation.setValidation(true);
       this.realHelperText = this.inputEl.validationMessage;
+      console.log('Text field forceValidation1', this.realHelperText);
       return;
     }
     if (this.customValidation) {
@@ -135,6 +136,7 @@ export class TextField {
         this.mdcTextFieldHelperText.foundation.setContent(validatonMessage);
         this.mdcTextFieldHelperText.foundation.setValidation(true);
         this.realHelperText = validatonMessage;
+        console.log('Text field forceValidation2', this.realHelperText);
         return;
       }
     }
@@ -142,10 +144,12 @@ export class TextField {
     this.mdcTextFieldHelperText.foundation.setContent(this.helperText);
     this.mdcTextFieldHelperText.foundation.setValidation(false);
     this.realHelperText = this.helperText;
+    console.log('Text field forceValidation3', this.realHelperText);
   }
 
 
   render() {
+    console.log('{this.realHelperText}', this.label, this.realHelperText);
     return (
       <Host class={{ 'materials-text-field--dense': this.dense }}>
         <div style={{ 'width': this.width + 'px' }} class={this.getClasses()} ref={mdcTextField => this.textFieldEl = mdcTextField}>
@@ -184,9 +188,7 @@ export class TextField {
           <div id="helper-text"
             class={{ 'mdc-text-field-helper-text': true }}
             aria-hidden="true"
-            ref={el => this.helperTextEl = el}>
-            {this.realHelperText}
-          </div>
+            ref={el => this.helperTextEl = el} />
         </div>
       </Host>
     );

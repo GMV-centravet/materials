@@ -8,7 +8,7 @@ import { Component, Element, Event, EventEmitter, h, Host, Prop } from '@stencil
 })
 
 export class RadioGroup {
-  private MWCRadioNodes: HTMLMaterialsRadioElement[];
+  private materialsRadioNodes: HTMLMaterialsRadioElement[];
   @Element() host: HTMLElement;
   @Event() change: EventEmitter;
   @Prop() name: string;
@@ -19,8 +19,8 @@ export class RadioGroup {
   componentDidLoad() {
     const isRadioChecked: HTMLMaterialsRadioElement = this.host.querySelector('materials-radio[checked]');
     this.value = isRadioChecked ? isRadioChecked.value : null;
-    this.MWCRadioNodes = Array.from(this.host.querySelectorAll('materials-radio'));
-    this.MWCRadioNodes.forEach((radioEl: Node) => {
+    this.materialsRadioNodes = Array.from(this.host.querySelectorAll('materials-radio'));
+    this.materialsRadioNodes.forEach((radioEl: Node) => {
       radioEl.addEventListener('change', (value: CustomEvent) => this.handleEvent(value));
     });
   }
@@ -33,7 +33,7 @@ export class RadioGroup {
   }
 
   private cleanNeighbors(except?) {
-    this.MWCRadioNodes.filter(el => !except || el.value !== except).forEach(el => el.checked = false);
+    this.materialsRadioNodes.filter(el => !except || el.value !== except).forEach(el => el.checked = false);
   }
 
 

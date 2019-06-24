@@ -25,7 +25,7 @@
 
 ### Used by
 
- - [materials-text-field](..\text-field)
+ - [materials-time-field](..\time-field)
 
 ### Depends on
 
@@ -35,7 +35,7 @@
 ```mermaid
 graph TD;
   materials-timepicker --> materials-list-item
-  materials-text-field --> materials-timepicker
+  materials-time-field --> materials-timepicker
   style materials-timepicker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

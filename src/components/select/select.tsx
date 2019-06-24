@@ -195,7 +195,7 @@ export class Select {
           this.outlined ? '' : <div class="mdc-line-ripple"></div>
         }
       </div >,
-      <p class="mdc-select-helper-text" aria-hidden="true">{this.realHelperText}</p>
+      <p class="mdc-select-helper-text" aria-hidden="true"></p>
     ]
     );
   }

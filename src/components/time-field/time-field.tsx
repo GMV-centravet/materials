@@ -1,15 +1,17 @@
 import { Component, Event, EventEmitter, h, Host, Method, Prop, Watch } from '@stencil/core';
 
-import { yyyymmdd } from '../../utils/utils';
-
 @Component({
-  tag: 'materials-date-field',
-  styleUrl: 'date-field.scss',
+  tag: 'materials-time-field',
+  styleUrl: 'time-field.scss',
   shadow: true
 })
 
-export class DateField {
-  private materialsMenuDatepickerEl: HTMLMaterialsMenuElement;
+/**
+ * A simple time field component with an integrated timepicker and custom validation capability.
+ * Basic usage : <materials-time-field value="12:00"></materials-time-field>
+ */
+export class TimeField {
+  private materialsMenuTimepickerEl: HTMLMaterialsMenuElement;
   private materialsTextFieldEl: HTMLMaterialsTextFieldElement;
 
   /** Emitted when the input text change */
@@ -57,6 +59,14 @@ export class DateField {
   /** Set the helper text persistant (appears on focus otherwise) */
   @Prop() persistent: boolean;
 
+  /** Display a timepicker when clicking on the time-field */
+  @Prop() timepicker = true;
+
+  /** The timepicker options interval (in minutes) */
+  @Prop() timepickerStep = 15;
+
+  /** The timepicker format */
+  @Prop() timepickerFormat: '12h' | '24h' = '24h';
 
   /**
    * Provide a custom validation function to this time-field.
@@ -65,17 +75,17 @@ export class DateField {
    */
   @Prop() customValidation: () => Promise<string>;
 
-  /** Display a datepicker when clicking on the date-field */
-  @Prop() datepicker = true;
+  /** Return the time-field current value validity */
+  @Method()
+  async isValid() {
+    return await this.materialsTextFieldEl.isValid();
+  }
 
-  /** The datepicker has a today button */
-  @Prop() datepickerTodayPicker = true;
-
-  /** The datepicker has a month navigation bar */
-  @Prop() datepickerMonthPicker = true;
-
-  /** The datepicker has a year navigation bar */
-  @Prop() datepickerYearPicker = true;
+  /** Force the validation of thid time field (native validation + custom validation) */
+  @Method()
+  async forceValidation() {
+    this.materialsTextFieldEl.forceValidation();
+  }
 
   componentWillLoad() {
     if (this.outlined && this.fullwidth) {
@@ -90,57 +100,48 @@ export class DateField {
     }
   }
 
-  @Method()
-  async isValid() {
-    return await this.materialsTextFieldEl.isValid();
+  private renderTimePicker() {
+    if (!this.timepicker) return;
+    return <materials-menu maxHeight={200}
+      noPadding ref={el => this.materialsMenuTimepickerEl = el}>
+      <materials-timepicker
+        timeSelected={this.value}
+        clock24={this.timepickerFormat === '24h'}
+        step={this.timepickerStep}
+        onTimeSelectedChange={ev => {
+          this.value = ev.detail;
+          this.input.emit(); // pour déclencher la validation en fonction de onInput
+          if (this.materialsMenuTimepickerEl) this.materialsMenuTimepickerEl.close();
+        }}
+        onClick={ev => ev.stopPropagation()}>
+      </materials-timepicker>
+    </materials-menu>;
   }
 
-  @Method()
-  async forceValidation() {
-    this.materialsTextFieldEl.forceValidation();
-  }
-
-
-  renderDatepicker() {
-    if (!this.datepicker) return;
-    return (
-
-      <materials-menu noPadding ref={el => this.materialsMenuDatepickerEl = el as HTMLMaterialsMenuElement}>
-        <materials-card elevation={4} width="fit-content">
-          <materials-datepicker
-            class="date-picker"
-            dateSelected={this.value ? new Date(this.value) : new Date()}
-            today-picker={this.datepickerTodayPicker}
-            yearPicker={this.datepickerYearPicker}
-            monthPicker={this.datepickerMonthPicker}
-            nullable={!this.required}
-            onDateSelectedUpdate={ev => {
-              this.value = ev.detail ? yyyymmdd(ev.detail) : '';
-              this.input.emit(); // pour déclencher la validation en fonction de onInput
-              if (this.materialsMenuDatepickerEl) this.materialsMenuDatepickerEl.close();
-            }}
-            onClick={ev => ev.stopPropagation()}>
-          </materials-datepicker>
-        </materials-card>
-      </materials-menu>
-    );
-  }
-
-  async openPicker(ev): Promise<void> {
+  private async openPicker(ev): Promise<void> {
     if (this.disabled) {
       return;
     }
-    if (this.datepicker) {
+    if (this.timepicker) {
       ev.stopPropagation();
       ev.preventDefault();
-      if (this.materialsMenuDatepickerEl) this.materialsMenuDatepickerEl.open();
+      if (this.materialsMenuTimepickerEl) {
+        await this.materialsMenuTimepickerEl.open();
+        // timepicker scroll auto
+        const timepicker: HTMLMaterialsTimepickerElement = this.materialsMenuTimepickerEl.querySelector('materials-timepicker');
+        const scrollableContainer = this.materialsMenuTimepickerEl.shadowRoot.querySelector('.mdc-menu');
+        const selectedItem: HTMLMaterialsListItemElement = timepicker.shadowRoot.querySelector('materials-list-item[selected]');
+        // positione l'élément au milieu de la liste deroulante.
+        if (timepicker && scrollableContainer && selectedItem) scrollableContainer.scrollTop = selectedItem.offsetTop - 60;
+      }
     }
   }
+
   render() {
     return (
-      <Host class={{ 'materials-date-field--dense': this.dense }}>
-        <materials-text-field class="datepicker-with-value"
-          type="date"
+      <Host class={{ 'materials-time-field--dense': this.dense }}>
+        <materials-text-field class="timepicker-with-value"
+          type="time"
           value={this.value}
           label={this.label}
           fullwidth={this.fullwidth}
@@ -162,7 +163,7 @@ export class DateField {
           }}
           onClick={ev => this.openPicker(ev)}>
         </materials-text-field>
-        {this.renderDatepicker()}
+        {this.renderTimePicker()}
       </Host>
     );
   }

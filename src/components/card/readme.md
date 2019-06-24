@@ -20,12 +20,12 @@
 
 ### Used by
 
- - [materials-text-field](..\text-field)
+ - [materials-date-field](..\date-field)
 
 ### Graph
 ```mermaid
 graph TD;
-  materials-text-field --> materials-card
+  materials-date-field --> materials-card
   style materials-card fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

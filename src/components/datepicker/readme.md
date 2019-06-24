@@ -12,6 +12,7 @@
 | `dateRange`    | --             | Utilisé pour mettre en surbrillance une période ex: Lundi au dimanche. | `{ start: Date; end: Date; }` | `{ start: new Date(), end: new Date() }`    |
 | `dateSelected` | --             | Le curseur de la date sélectionée. Sera positioné grace dateSelected.  | `Date`                        | `new Date(new Date().setHours(0, 0, 0, 0))` |
 | `monthPicker`  | `month-picker` |                                                                        | `boolean`                     | `true`                                      |
+| `nullable`     | `nullable`     |                                                                        | `boolean`                     | `false`                                     |
 | `todayPicker`  | `today-picker` |                                                                        | `boolean`                     | `true`                                      |
 | `yearPicker`   | `year-picker`  |                                                                        | `boolean`                     | `true`                                      |
 
@@ -27,7 +28,7 @@
 
 ### Used by
 
- - [materials-text-field](..\text-field)
+ - [materials-date-field](..\date-field)
 
 ### Depends on
 
@@ -39,7 +40,7 @@
 graph TD;
   materials-datepicker --> materials-icon-button
   materials-datepicker --> materials-button
-  materials-text-field --> materials-datepicker
+  materials-date-field --> materials-datepicker
   style materials-datepicker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

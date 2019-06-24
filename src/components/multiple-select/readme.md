@@ -12,7 +12,7 @@
 | `dialogTitle` | `dialog-title` |             | `string`              | `undefined` |
 | `label`       | `label`        |             | `string`              | `undefined` |
 | `options`     | --             |             | `Map<string, string>` | `undefined` |
-| `value`       | `value`        |             | `string`              | `undefined` |
+| `value`       | --             |             | `string[]`            | `[]`        |
 
 
 ## Events
@@ -38,13 +38,6 @@ graph TD;
   materials-multiple-select --> materials-dialog
   materials-multiple-select --> materials-list
   materials-multiple-select --> materials-list-item-checkbox
-  materials-text-field --> materials-menu
-  materials-text-field --> materials-card
-  materials-text-field --> materials-datepicker
-  materials-text-field --> materials-timepicker
-  materials-datepicker --> materials-icon-button
-  materials-datepicker --> materials-button
-  materials-timepicker --> materials-list-item
   materials-dialog --> materials-icon-button
   materials-list-item-checkbox --> materials-list-item
   materials-list-item-checkbox --> materials-checkbox

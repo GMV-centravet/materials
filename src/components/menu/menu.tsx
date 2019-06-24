@@ -1,5 +1,5 @@
 import { Corner, MDCMenu } from '@material/menu';
-import { Component, Element, h, Method, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 
 import { AnchorMargin } from './anchor-margin';
 
@@ -18,6 +18,9 @@ export class Menu {
    * Override default CSS mdc-list padding-top & bottom.
    */
   @Prop() noPadding: boolean;
+
+  /** Max-height of the menu */
+  @Prop() maxHeight: number;
 
   componentDidLoad() {
     this.mdcMenuEl = new MDCMenu(this.menuEl);
@@ -50,13 +53,22 @@ export class Menu {
 
   render() {
     return (
-      <div class="mdc-menu-surface--anchor">
-        <div class="mdc-menu mdc-menu-surface" ref={el => { this.menuEl = el; }}>
-          <ul class={{ 'mdc-list': true, 'no-padding': this.noPadding }} role="menu" aria-hidden="true" aria-orientation="vertical">
-            <slot />
-          </ul>
+      <Host>
+        <style>
+          {this.maxHeight && `
+            .mdc-menu{
+              max-height: ${this.maxHeight}px!important;
+            }
+          `}
+        </style>
+        <div class="mdc-menu-surface--anchor" >
+          <div class="mdc-menu mdc-menu-surface" ref={el => { this.menuEl = el; }}>
+            <ul class={{ 'mdc-list': true, 'no-padding': this.noPadding }} role="menu" aria-hidden="true" aria-orientation="vertical">
+              <slot />
+            </ul>
+          </div>
         </div>
-      </div>
+      </Host>
     );
   }
 }

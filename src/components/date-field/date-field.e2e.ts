@@ -28,18 +28,5 @@ describe('date-field e2e', () => {
       // expect((await datepicker.getProperty('dateSelected'))).toEqual({})
     });
 
-    it('should render a timepicker when click on date-field with timepicker', async () => {
-      element.setProperty('timepicker', true);
-      element.setProperty('value', '11:00');
-      await page.waitForChanges();
-      await element.click();
-      await page.waitForChanges();
-
-      const timepicker = await page.find('materials-date-field >>> materials-timepicker');
-      expect(timepicker).toBeTruthy();
-      expect((await timepicker.getProperty('timeSelected'))).toEqual('11:00');
-    });
-
-
   });
 });

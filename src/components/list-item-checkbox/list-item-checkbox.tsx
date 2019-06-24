@@ -27,12 +27,12 @@ export class ListItemCheckbox {
   @Element() host: HTMLElement;
 
   listItemElement: MDCRipple;
-  mwcCheckbox: HTMLMaterialsCheckboxElement;
+  materialsCheckbox: HTMLMaterialsCheckboxElement;
   checkboxInput: HTMLInputElement;
 
   componentDidLoad() {
-    this.mwcCheckbox = this.host.shadowRoot.querySelector('materials-checkbox');
-    this.checkboxInput = this.mwcCheckbox.shadowRoot.querySelector('.mdc-checkbox__native-control');
+    this.materialsCheckbox = this.host.shadowRoot.querySelector('materials-checkbox');
+    this.checkboxInput = this.materialsCheckbox.shadowRoot.querySelector('.mdc-checkbox__native-control');
   }
 
   toggleCheckbox() {

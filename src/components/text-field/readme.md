@@ -7,32 +7,27 @@
 
 ## Properties
 
-| Property                | Attribute                 | Description | Type                    | Default     |
-| ----------------------- | ------------------------- | ----------- | ----------------------- | ----------- |
-| `customValidation`      | --                        |             | `() => Promise<string>` | `undefined` |
-| `datepicker`            | `datepicker`              |             | `boolean`               | `false`     |
-| `datepickerMonthPicker` | `datepicker-month-picker` |             | `boolean`               | `true`      |
-| `datepickerTodayPicker` | `datepicker-today-picker` |             | `boolean`               | `true`      |
-| `datepickerYearPicker`  | `datepicker-year-picker`  |             | `boolean`               | `true`      |
-| `dense`                 | `dense`                   |             | `boolean`               | `undefined` |
-| `disabled`              | `disabled`                |             | `boolean`               | `undefined` |
-| `focused`               | `focused`                 |             | `boolean`               | `undefined` |
-| `fullwidth`             | `fullwidth`               |             | `boolean`               | `undefined` |
-| `helperText`            | `helper-text`             |             | `string`                | `undefined` |
-| `label`                 | `label`                   |             | `string`                | `undefined` |
-| `leadingIcon`           | `leading-icon`            |             | `string`                | `undefined` |
-| `name`                  | `name`                    |             | `string`                | `undefined` |
-| `outlined`              | `outlined`                |             | `boolean`               | `undefined` |
-| `pattern`               | `pattern`                 |             | `string`                | `undefined` |
-| `persistent`            | `persistent`              |             | `boolean`               | `undefined` |
-| `required`              | `required`                |             | `boolean`               | `undefined` |
-| `timepicker`            | `timepicker`              |             | `boolean`               | `undefined` |
-| `timepickerClock24`     | `timepicker-clock-2-4`    |             | `boolean`               | `undefined` |
-| `timepickerStep`        | `timepicker-step`         |             | `number`                | `15`        |
-| `trailingIcon`          | `trailing-icon`           |             | `string`                | `undefined` |
-| `type`                  | `type`                    |             | `string`                | `'text'`    |
-| `value`                 | `value`                   |             | `any`                   | `undefined` |
-| `width`                 | `width`                   |             | `number`                | `undefined` |
+| Property           | Attribute           | Description                                          | Type                    | Default     |
+| ------------------ | ------------------- | ---------------------------------------------------- | ----------------------- | ----------- |
+| `customValidation` | --                  |                                                      | `() => Promise<string>` | `undefined` |
+| `dense`            | `dense`             |                                                      | `boolean`               | `undefined` |
+| `disabled`         | `disabled`          |                                                      | `boolean`               | `undefined` |
+| `focused`          | `focused`           |                                                      | `boolean`               | `undefined` |
+| `fullwidth`        | `fullwidth`         |                                                      | `boolean`               | `undefined` |
+| `helperText`       | `helper-text`       |                                                      | `string`                | `undefined` |
+| `hideNativeClear`  | `hide-native-clear` | Hide clear button (webkit + Edge, Moz not supported) | `boolean`               | `false`     |
+| `label`            | `label`             |                                                      | `string`                | `undefined` |
+| `leadingIcon`      | `leading-icon`      |                                                      | `string`                | `undefined` |
+| `name`             | `name`              |                                                      | `string`                | `undefined` |
+| `outlined`         | `outlined`          |                                                      | `boolean`               | `undefined` |
+| `overflow`         | `overflow`          |                                                      | `boolean`               | `undefined` |
+| `pattern`          | `pattern`           |                                                      | `string`                | `undefined` |
+| `persistent`       | `persistent`        |                                                      | `boolean`               | `undefined` |
+| `required`         | `required`          |                                                      | `boolean`               | `undefined` |
+| `trailingIcon`     | `trailing-icon`     |                                                      | `string`                | `undefined` |
+| `type`             | `type`              |                                                      | `string`                | `'text'`    |
+| `value`            | `value`             |                                                      | `any`                   | `undefined` |
+| `width`            | `width`             |                                                      | `number`                | `undefined` |
 
 
 ## Events
@@ -70,26 +65,16 @@ Type: `Promise<boolean>`
 
 ### Used by
 
+ - [materials-date-field](..\date-field)
  - [materials-multiple-select](..\multiple-select)
-
-### Depends on
-
-- [materials-menu](..\menu)
-- [materials-card](..\card)
-- [materials-datepicker](..\datepicker)
-- [materials-timepicker](..\timepicker)
+ - [materials-time-field](..\time-field)
 
 ### Graph
 ```mermaid
 graph TD;
-  materials-text-field --> materials-menu
-  materials-text-field --> materials-card
-  materials-text-field --> materials-datepicker
-  materials-text-field --> materials-timepicker
-  materials-datepicker --> materials-icon-button
-  materials-datepicker --> materials-button
-  materials-timepicker --> materials-list-item
+  materials-date-field --> materials-text-field
   materials-multiple-select --> materials-text-field
+  materials-time-field --> materials-text-field
   style materials-text-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

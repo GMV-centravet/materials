@@ -9,6 +9,7 @@
 
 | Property    | Attribute    | Description                                         | Type      | Default     |
 | ----------- | ------------ | --------------------------------------------------- | --------- | ----------- |
+| `maxHeight` | `max-height` | Max-height of the menu                              | `number`  | `undefined` |
 | `noPadding` | `no-padding` | Override default CSS mdc-list padding-top & bottom. | `boolean` | `undefined` |
 
 
@@ -69,14 +70,16 @@ Type: `Promise<void>`
 
 ### Used by
 
+ - [materials-date-field](..\date-field)
  - [materials-dropdown](..\dropdown)
- - [materials-text-field](..\text-field)
+ - [materials-time-field](..\time-field)
 
 ### Graph
 ```mermaid
 graph TD;
+  materials-date-field --> materials-menu
   materials-dropdown --> materials-menu
-  materials-text-field --> materials-menu
+  materials-time-field --> materials-menu
   style materials-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

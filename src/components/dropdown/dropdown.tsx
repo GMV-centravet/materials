@@ -12,7 +12,7 @@ import { Component, h, Method, Prop } from '@stencil/core';
   shadow: true
 })
 export class Dropdown {
-  private mwcMenuEl: HTMLMaterialsMenuElement;
+  private materialsMenuEl: HTMLMaterialsMenuElement;
   private buttonEl: HTMLMaterialsButtonElement;
 
   @Prop() menuTitle: string;
@@ -24,7 +24,7 @@ export class Dropdown {
   @Prop() iconHelper: string;
 
   componentDidLoad() {
-    this.mwcMenuEl.setPosition(this.menuPosition);
+    this.materialsMenuEl.setPosition(this.menuPosition);
     if (this.buttonType) this.buttonEl[this.buttonType] = true;
   }
 
@@ -34,17 +34,17 @@ export class Dropdown {
 
   @Method()
   async openMenu() {
-    this.mwcMenuEl.open();
+    this.materialsMenuEl.open();
   }
 
   @Method()
   async closeMenu() {
-    this.mwcMenuEl.close();
+    this.materialsMenuEl.close();
   }
 
   @Method()
   async isOpen(): Promise<boolean> {
-    return this.mwcMenuEl.isOpen();
+    return this.materialsMenuEl.isOpen();
   }
 
   renderIconHelper() {
@@ -70,7 +70,7 @@ export class Dropdown {
 
             {this.renderIconHelper()}
           </materials-button>}
-        <materials-menu ref={el => this.mwcMenuEl = el}>
+        <materials-menu ref={el => this.materialsMenuEl = el}>
           <slot />
         </materials-menu>
       </div>

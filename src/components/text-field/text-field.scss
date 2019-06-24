@@ -81,3 +81,23 @@
     transform: translateY(-50%);
   }
 }
+
+
+
+.hide-native-clear::-webkit-datetime-edit-text {
+  padding: 0 0.3em;
+}
+
+.hide-native-clear::-webkit-inner-spin-button {
+  display: none;
+}
+
+.hide-native-clear::-webkit-clear-button,
+.hide-native-clear::-ms-clear {
+  display: none !important;
+}
+
+.hide-native-clear::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
