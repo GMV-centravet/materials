@@ -17,20 +17,6 @@ import {
 } from './components/snackbar/SnackbarOptions';
 
 export namespace Components {
-  interface MaterialsAutocomplete {
-    /**
-    * Function of autocompletion to pass to the element called during onInput of the text-field
-    */
-    'autocomplete': (search: string) => Promise<Map<string, string>>;
-    /**
-    * For the density of the element
-    */
-    'dense': boolean;
-    /**
-    * Value of the autocomplete text-field
-    */
-    'value': {display: string, val: string};
-  }
   interface MaterialsButton {
     'block': boolean;
     'color': 'primary' | 'accent' | 'secondary' | 'error' | string;
@@ -493,80 +479,6 @@ export namespace Components {
     'value': any;
     'width': number;
   }
-  interface MaterialsTimeField {
-    /**
-    * Provide a custom validation function to this time-field. In case of error, the promise should return a message with the error message to display
-    */
-    'customValidation': () => Promise<string>;
-    /**
-    * Styles the date field as a dense text field.
-    */
-    'dense': boolean;
-    /**
-    * Styles the date field as a disabled text field.
-    */
-    'disabled': boolean;
-    /**
-    * Styles the date field as a text field in focus.
-    */
-    'focused': boolean;
-    /**
-    * Force the validation of thid time field (native validation + custom validation)
-    */
-    'forceValidation': () => Promise<void>;
-    /**
-    * Styles the date field as a full width text field. Warning : do not use with outlined
-    */
-    'fullwidth': boolean;
-    /**
-    * Add an helper text to this date field
-    */
-    'helperText': string;
-    /**
-    * Return the time-field current value validity
-    */
-    'isValid': () => Promise<boolean>;
-    /**
-    * The date field label.
-    */
-    'label': string;
-    /**
-    * Add a leading icon to ths date field. You have to pass a material icon name
-    */
-    'leadingIcon': string;
-    /**
-    * Render an outlined date field
-    */
-    'outlined': boolean;
-    /**
-    * Set the helper text persistant (appears on focus otherwise)
-    */
-    'persistent': boolean;
-    /**
-    * Mark this date field as required
-    */
-    'required': boolean;
-    /**
-    * Display a timepicker when clicking on the time-field
-    */
-    'timepicker': boolean;
-    /**
-    * The timepicker format
-    */
-    'timepickerFormat': '12h' | '24h';
-    /**
-    * The timepicker options interval (in minutes)
-    */
-    'timepickerStep': number;
-    /**
-    * The date field value
-    */
-    'value': any;
-    /**
-    * The date field width
-    */
-    'width': number;
-  }
   interface MaterialsTimepicker {
     'clock24': boolean;
     'step': number;
@@ -583,12 +495,6 @@ export namespace Components {
 
 declare global {
 
-
-  interface HTMLMaterialsAutocompleteElement extends Components.MaterialsAutocomplete, HTMLStencilElement {}
-  var HTMLMaterialsAutocompleteElement: {
-    prototype: HTMLMaterialsAutocompleteElement;
-    new (): HTMLMaterialsAutocompleteElement;
-  };
 
   interface HTMLMaterialsButtonElement extends Components.MaterialsButton, HTMLStencilElement {}
   var HTMLMaterialsButtonElement: {
@@ -848,12 +754,6 @@ declare global {
     new (): HTMLMaterialsTextFieldElement;
   };
 
-  interface HTMLMaterialsTimeFieldElement extends Components.MaterialsTimeField, HTMLStencilElement {}
-  var HTMLMaterialsTimeFieldElement: {
-    prototype: HTMLMaterialsTimeFieldElement;
-    new (): HTMLMaterialsTimeFieldElement;
-  };
-
   interface HTMLMaterialsTimepickerElement extends Components.MaterialsTimepicker, HTMLStencilElement {}
   var HTMLMaterialsTimepickerElement: {
     prototype: HTMLMaterialsTimepickerElement;
@@ -866,7 +766,6 @@ declare global {
     new (): HTMLMaterialsTopAppBarElement;
   };
   interface HTMLElementTagNameMap {
-    'materials-autocomplete': HTMLMaterialsAutocompleteElement;
     'materials-button': HTMLMaterialsButtonElement;
     'materials-card': HTMLMaterialsCardElement;
     'materials-card-content': HTMLMaterialsCardContentElement;
@@ -910,31 +809,12 @@ declare global {
     'materials-tabs': HTMLMaterialsTabsElement;
     'materials-text-area': HTMLMaterialsTextAreaElement;
     'materials-text-field': HTMLMaterialsTextFieldElement;
-    'materials-time-field': HTMLMaterialsTimeFieldElement;
     'materials-timepicker': HTMLMaterialsTimepickerElement;
     'materials-top-app-bar': HTMLMaterialsTopAppBarElement;
   }
 }
 
 declare namespace LocalJSX {
-  interface MaterialsAutocomplete extends JSXBase.HTMLAttributes<HTMLMaterialsAutocompleteElement> {
-    /**
-    * Function of autocompletion to pass to the element called during onInput of the text-field
-    */
-    'autocomplete'?: (search: string) => Promise<Map<string, string>>;
-    /**
-    * For the density of the element
-    */
-    'dense'?: boolean;
-    /**
-    * Change event emitted when value is selected
-    */
-    'onChange'?: (event: CustomEvent<any>) => void;
-    /**
-    * Value of the autocomplete text-field
-    */
-    'value'?: {display: string, val: string};
-  }
   interface MaterialsButton extends JSXBase.HTMLAttributes<HTMLMaterialsButtonElement> {
     'block'?: boolean;
     'color'?: 'primary' | 'accent' | 'secondary' | 'error' | string;
@@ -1394,76 +1274,6 @@ declare namespace LocalJSX {
     'value'?: any;
     'width'?: number;
   }
-  interface MaterialsTimeField extends JSXBase.HTMLAttributes<HTMLMaterialsTimeFieldElement> {
-    /**
-    * Provide a custom validation function to this time-field. In case of error, the promise should return a message with the error message to display
-    */
-    'customValidation'?: () => Promise<string>;
-    /**
-    * Styles the date field as a dense text field.
-    */
-    'dense'?: boolean;
-    /**
-    * Styles the date field as a disabled text field.
-    */
-    'disabled'?: boolean;
-    /**
-    * Styles the date field as a text field in focus.
-    */
-    'focused'?: boolean;
-    /**
-    * Styles the date field as a full width text field. Warning : do not use with outlined
-    */
-    'fullwidth'?: boolean;
-    /**
-    * Add an helper text to this date field
-    */
-    'helperText'?: string;
-    /**
-    * The date field label.
-    */
-    'label'?: string;
-    /**
-    * Add a leading icon to ths date field. You have to pass a material icon name
-    */
-    'leadingIcon'?: string;
-    /**
-    * Emitted when the input text change
-    */
-    'onInput'?: (event: CustomEvent<any>) => void;
-    /**
-    * Render an outlined date field
-    */
-    'outlined'?: boolean;
-    /**
-    * Set the helper text persistant (appears on focus otherwise)
-    */
-    'persistent'?: boolean;
-    /**
-    * Mark this date field as required
-    */
-    'required'?: boolean;
-    /**
-    * Display a timepicker when clicking on the time-field
-    */
-    'timepicker'?: boolean;
-    /**
-    * The timepicker format
-    */
-    'timepickerFormat'?: '12h' | '24h';
-    /**
-    * The timepicker options interval (in minutes)
-    */
-    'timepickerStep'?: number;
-    /**
-    * The date field value
-    */
-    'value'?: any;
-    /**
-    * The date field width
-    */
-    'width'?: number;
-  }
   interface MaterialsTimepicker extends JSXBase.HTMLAttributes<HTMLMaterialsTimepickerElement> {
     'clock24'?: boolean;
     'onTimeSelectedChange'?: (event: CustomEvent<string>) => void;
@@ -1480,7 +1290,6 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
-    'materials-autocomplete': MaterialsAutocomplete;
     'materials-button': MaterialsButton;
     'materials-card': MaterialsCard;
     'materials-card-content': MaterialsCardContent;
@@ -1524,7 +1333,6 @@ declare namespace LocalJSX {
     'materials-tabs': MaterialsTabs;
     'materials-text-area': MaterialsTextArea;
     'materials-text-field': MaterialsTextField;
-    'materials-time-field': MaterialsTimeField;
     'materials-timepicker': MaterialsTimepicker;
     'materials-top-app-bar': MaterialsTopAppBar;
   }

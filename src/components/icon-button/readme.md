@@ -29,11 +29,11 @@
 
 ### Used by
 
- - [materials-datatable-body-row](..\datatable\datatable-body-row)
- - [materials-datatable-pagination](..\datatable\datatable-pagination)
- - [materials-datepicker](..\datepicker)
- - [materials-dialog](..\dialog)
- - [materials-dropdown](..\dropdown)
+ - [materials-datatable-body-row](../datatable/datatable-body-row)
+ - [materials-datatable-pagination](../datatable/datatable-pagination)
+ - [materials-datepicker](../datepicker)
+ - [materials-dialog](../dialog)
+ - [materials-dropdown](../dropdown)
 
 ### Graph
 ```mermaid

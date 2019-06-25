@@ -85,11 +85,11 @@ Type: `Promise<void>`
 
 ### Used by
 
- - [materials-multiple-select](..\multiple-select)
+ - [materials-multiple-select](../multiple-select)
 
 ### Depends on
 
-- [materials-icon-button](..\icon-button)
+- [materials-icon-button](../icon-button)
 
 ### Graph
 ```mermaid

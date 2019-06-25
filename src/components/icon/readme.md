@@ -21,11 +21,11 @@
 
 ### Used by
 
- - [materials-datatable-header-column](..\datatable\datatable-header-column)
- - [materials-dropdown](..\dropdown)
- - [materials-expansion-panel](..\expansion-panel)
- - [materials-fab](..\fab)
- - [materials-step](..\stepper)
+ - [materials-datatable-header-column](../datatable/datatable-header-column)
+ - [materials-dropdown](../dropdown)
+ - [materials-expansion-panel](../expansion-panel)
+ - [materials-fab](../fab)
+ - [materials-step](../stepper)
 
 ### Graph
 ```mermaid

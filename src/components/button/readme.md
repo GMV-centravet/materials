@@ -25,9 +25,9 @@
 
 ### Used by
 
- - [materials-datepicker](..\datepicker)
- - [materials-dropdown](..\dropdown)
- - [materials-step](..\stepper)
+ - [materials-datepicker](../datepicker)
+ - [materials-dropdown](../dropdown)
+ - [materials-step](../stepper)
 
 ### Graph
 ```mermaid

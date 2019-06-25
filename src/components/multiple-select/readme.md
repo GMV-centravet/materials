@@ -7,29 +7,29 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type                  | Default     |
-| ------------- | -------------- | ----------- | --------------------- | ----------- |
-| `dialogTitle` | `dialog-title` |             | `string`              | `undefined` |
-| `label`       | `label`        |             | `string`              | `undefined` |
-| `options`     | --             |             | `Map<string, string>` | `undefined` |
-| `value`       | --             |             | `string[]`            | `[]`        |
+| Property      | Attribute      | Description                             | Type                  | Default     |
+| ------------- | -------------- | --------------------------------------- | --------------------- | ----------- |
+| `dialogTitle` | `dialog-title` | Title displayed in the dialog           | `string`              | `undefined` |
+| `label`       | `label`        | Label displayed for the multi-select    | `string`              | `undefined` |
+| `options`     | --             | Map of options selectable in the dialog | `Map<string, string>` | `undefined` |
+| `value`       | --             | list of selected elements               | `string[]`            | `[]`        |
 
 
 ## Events
 
-| Event    | Description | Type               |
-| -------- | ----------- | ------------------ |
-| `change` |             | `CustomEvent<any>` |
+| Event    | Description                                      | Type               |
+| -------- | ------------------------------------------------ | ------------------ |
+| `change` | Event dispatched when multi-select value changes | `CustomEvent<any>` |
 
 
 ## Dependencies
 
 ### Depends on
 
-- [materials-text-field](..\text-field)
-- [materials-dialog](..\dialog)
-- [materials-list](..\list)
-- [materials-list-item-checkbox](..\list-item-checkbox)
+- [materials-text-field](../text-field)
+- [materials-dialog](../dialog)
+- [materials-list](../list)
+- [materials-list-item-checkbox](../list-item-checkbox)
 
 ### Graph
 ```mermaid

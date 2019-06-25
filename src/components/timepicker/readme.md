@@ -25,17 +25,17 @@
 
 ### Used by
 
- - [materials-time-field](..\time-field)
+ - [materials-date-field](../date-field)
 
 ### Depends on
 
-- [materials-list-item](..\list-item)
+- [materials-list-item](../list-item)
 
 ### Graph
 ```mermaid
 graph TD;
   materials-timepicker --> materials-list-item
-  materials-time-field --> materials-timepicker
+  materials-date-field --> materials-timepicker
   style materials-timepicker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

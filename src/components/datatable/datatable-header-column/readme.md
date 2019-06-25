@@ -29,7 +29,7 @@
 
 ### Depends on
 
-- [materials-icon](..\..\icon)
+- [materials-icon](../../icon)
 
 ### Graph
 ```mermaid

@@ -28,12 +28,12 @@
 
 ### Used by
 
- - [materials-date-field](..\date-field)
+ - [materials-date-field](../date-field)
 
 ### Depends on
 
-- [materials-icon-button](..\icon-button)
-- [materials-button](..\button)
+- [materials-icon-button](../icon-button)
+- [materials-button](../button)
 
 ### Graph
 ```mermaid

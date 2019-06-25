@@ -28,7 +28,7 @@
 
 ### Depends on
 
-- [materials-icon-button](..\..\icon-button)
+- [materials-icon-button](../../icon-button)
 
 ### Graph
 ```mermaid

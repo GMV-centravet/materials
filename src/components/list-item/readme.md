@@ -25,13 +25,15 @@
 
 ### Used by
 
- - [materials-expansion-panel](..\expansion-panel)
- - [materials-list-item-checkbox](..\list-item-checkbox)
- - [materials-timepicker](..\timepicker)
+ - [materials-autocomplete](../autocomplete)
+ - [materials-expansion-panel](../expansion-panel)
+ - [materials-list-item-checkbox](../list-item-checkbox)
+ - [materials-timepicker](../timepicker)
 
 ### Graph
 ```mermaid
 graph TD;
+  materials-autocomplete --> materials-list-item
   materials-expansion-panel --> materials-list-item
   materials-list-item-checkbox --> materials-list-item
   materials-timepicker --> materials-list-item

@@ -32,12 +32,12 @@
 
 ### Used by
 
- - [materials-multiple-select](..\multiple-select)
+ - [materials-multiple-select](../multiple-select)
 
 ### Depends on
 
-- [materials-list-item](..\list-item)
-- [materials-checkbox](..\checkbox)
+- [materials-list-item](../list-item)
+- [materials-checkbox](../checkbox)
 
 ### Graph
 ```mermaid

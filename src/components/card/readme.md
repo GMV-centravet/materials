@@ -20,7 +20,7 @@
 
 ### Used by
 
- - [materials-date-field](..\date-field)
+ - [materials-date-field](../date-field)
 
 ### Graph
 ```mermaid

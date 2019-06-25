@@ -30,9 +30,9 @@
 
 ### Used by
 
- - [materials-datatable-body-row](..\datatable\datatable-body-row)
- - [materials-datatable-header](..\datatable\datatable-header)
- - [materials-list-item-checkbox](..\list-item-checkbox)
+ - [materials-datatable-body-row](../datatable/datatable-body-row)
+ - [materials-datatable-header](../datatable/datatable-header)
+ - [materials-list-item-checkbox](../list-item-checkbox)
 
 ### Graph
 ```mermaid
