@@ -25,11 +25,11 @@
 
 ### Used by
 
- - [materials-time-field](..\time-field)
+ - [materials-time-field](../time-field)
 
 ### Depends on
 
-- [materials-list-item](..\list-item)
+- [materials-list-item](../list-item)
 
 ### Graph
 ```mermaid

@@ -17,6 +17,20 @@ import {
 } from './components/snackbar/SnackbarOptions';
 
 export namespace Components {
+  interface MaterialsAutocomplete {
+    /**
+    * Function of autocompletion to pass to the element called during onInput of the text-field
+    */
+    'autocomplete': (search: string) => Promise<Map<string, string>>;
+    /**
+    * For the density of the element
+    */
+    'dense': boolean;
+    /**
+    * Value of the autocomplete text-field composed by a label to be displayed in the text-field and a value that is a real value if no label given, label = value
+    */
+    'value': {label?: string, value: string};
+  }
   interface MaterialsButton {
     'block': boolean;
     'color': 'primary' | 'accent' | 'secondary' | 'error' | string;
@@ -335,9 +349,21 @@ export namespace Components {
     'setPosition': (position: "TOP_LEFT" | "TOP_RIGHT" | "BOTTOM_LEFT" | "BOTTOM_RIGHT" | "TOP_START" | "TOP_END" | "BOTTOM_START" | "BOTTOM_END") => Promise<void>;
   }
   interface MaterialsMultipleSelect {
+    /**
+    * Title displayed in the dialog
+    */
     'dialogTitle': string;
+    /**
+    * Label displayed for the multi-select
+    */
     'label': string;
+    /**
+    * Map of options selectable in the dialog
+    */
     'options': Map<string, string>;
+    /**
+    * list of selected elements
+    */
     'value': string[];
   }
   interface MaterialsRadio {
@@ -557,6 +583,12 @@ export namespace Components {
 
 declare global {
 
+
+  interface HTMLMaterialsAutocompleteElement extends Components.MaterialsAutocomplete, HTMLStencilElement {}
+  var HTMLMaterialsAutocompleteElement: {
+    prototype: HTMLMaterialsAutocompleteElement;
+    new (): HTMLMaterialsAutocompleteElement;
+  };
 
   interface HTMLMaterialsButtonElement extends Components.MaterialsButton, HTMLStencilElement {}
   var HTMLMaterialsButtonElement: {
@@ -834,6 +866,7 @@ declare global {
     new (): HTMLMaterialsTopAppBarElement;
   };
   interface HTMLElementTagNameMap {
+    'materials-autocomplete': HTMLMaterialsAutocompleteElement;
     'materials-button': HTMLMaterialsButtonElement;
     'materials-card': HTMLMaterialsCardElement;
     'materials-card-content': HTMLMaterialsCardContentElement;
@@ -884,6 +917,24 @@ declare global {
 }
 
 declare namespace LocalJSX {
+  interface MaterialsAutocomplete extends JSXBase.HTMLAttributes<HTMLMaterialsAutocompleteElement> {
+    /**
+    * Function of autocompletion to pass to the element called during onInput of the text-field
+    */
+    'autocomplete'?: (search: string) => Promise<Map<string, string>>;
+    /**
+    * For the density of the element
+    */
+    'dense'?: boolean;
+    /**
+    * Change event emitted when value is selected
+    */
+    'onChange'?: (event: CustomEvent<any>) => void;
+    /**
+    * Value of the autocomplete text-field composed by a label to be displayed in the text-field and a value that is a real value if no label given, label = value
+    */
+    'value'?: {label?: string, value: string};
+  }
   interface MaterialsButton extends JSXBase.HTMLAttributes<HTMLMaterialsButtonElement> {
     'block'?: boolean;
     'color'?: 'primary' | 'accent' | 'secondary' | 'error' | string;
@@ -934,6 +985,7 @@ declare namespace LocalJSX {
     'dense'?: boolean;
     'expendable'?: boolean;
     'expended'?: boolean;
+    'onExpand'?: (event: CustomEvent<boolean>) => void;
     'onSelectRow'?: (event: CustomEvent<boolean>) => void;
     'selectable'?: boolean;
     'selected'?: boolean;
@@ -1194,10 +1246,25 @@ declare namespace LocalJSX {
     'noPadding'?: boolean;
   }
   interface MaterialsMultipleSelect extends JSXBase.HTMLAttributes<HTMLMaterialsMultipleSelectElement> {
+    /**
+    * Title displayed in the dialog
+    */
     'dialogTitle'?: string;
+    /**
+    * Label displayed for the multi-select
+    */
     'label'?: string;
+    /**
+    * Event dispatched when multi-select value changes
+    */
     'onChange'?: (event: CustomEvent<any>) => void;
+    /**
+    * Map of options selectable in the dialog
+    */
     'options'?: Map<string, string>;
+    /**
+    * list of selected elements
+    */
     'value'?: string[];
   }
   interface MaterialsRadio extends JSXBase.HTMLAttributes<HTMLMaterialsRadioElement> {
@@ -1413,6 +1480,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
+    'materials-autocomplete': MaterialsAutocomplete;
     'materials-button': MaterialsButton;
     'materials-card': MaterialsCard;
     'materials-card-content': MaterialsCardContent;

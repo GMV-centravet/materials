@@ -17,7 +17,7 @@
 
 ### Used by
 
- - [materials-multiple-select](..\multiple-select)
+ - [materials-multiple-select](../multiple-select)
 
 ### Graph
 ```mermaid

@@ -1,17 +1,37 @@
 import { Component, Element, Event, EventEmitter, h, Prop } from '@stencil/core';
 
+/**
+ * Class that represent a multi-select element
+ * composed by a clickable text-field 
+ * that opens a dialog with a list of checkboxes
+ */
 @Component({
   tag: 'materials-multiple-select',
   styleUrl: 'multiple-select.scss',
   shadow: true
 })
 export class MaterialsMultipleSelect {
+  /**
+   * Map of options selectable in the dialog
+   */
   @Prop() options: Map<string, string>;
+  /**
+   * Label displayed for the multi-select
+   */
   @Prop() label: string;
+  /**
+   * Title displayed in the dialog
+   */
   @Prop() dialogTitle: string;
+  /**
+   * list of selected elements
+   */
   @Prop({ mutable: true, reflectToAttr: true }) value: string[] = [];
   @Element() host: HTMLElement;
 
+  /**
+   * Event dispatched when multi-select value changes
+   */
   @Event() change: EventEmitter;
 
   private multiSelectInput: HTMLMaterialsTextFieldElement;
@@ -33,6 +53,9 @@ export class MaterialsMultipleSelect {
     this.displayValue();
   }
 
+  /**
+   * @param event allows to open dialog when text-field is clicked 
+   */
   openMultiSelectDialog(event: any) {
     event.stopPropagation();
     event.preventDefault();
@@ -40,12 +63,20 @@ export class MaterialsMultipleSelect {
     this.multiSelectDialog.toggle();
   }
 
+  /**
+   * Function called when dialog is accepted
+   * emit change event
+   * display values selected in text-field
+   */
   fillMultiSelectInput() {
     this.displayValue();
     this.change.emit();
   }
 
 
+  /**
+   * Function that displays values selected in the text-field
+   */
   displayValue() {
     if (this.value) {
       const selectedValue = this.value.map(val => {
@@ -58,6 +89,11 @@ export class MaterialsMultipleSelect {
     }
   }
 
+  /**
+   * Function to select or deselect options
+   * @param {CustomEvent} event allows to know if options must be selected or deselected
+   * @param {string} option to select or deselect
+   */
   toggleOption(event: CustomEvent, option: string) {
     event.stopPropagation();
     event.preventDefault();
@@ -73,6 +109,7 @@ export class MaterialsMultipleSelect {
       <materials-text-field disabled
         label={this.label}
         overflow
+        trailing-icon="search"
         ref={el => this.multiSelectInput = el as HTMLMaterialsTextFieldElement}
         onClick={(event: any) => this.openMultiSelectDialog(event)}></materials-text-field>,
       <materials-dialog

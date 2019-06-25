@@ -25,7 +25,7 @@
 
 ### Depends on
 
-- [materials-checkbox](..\..\checkbox)
+- [materials-checkbox](../../checkbox)
 
 ### Graph
 ```mermaid

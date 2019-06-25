@@ -65,13 +65,15 @@ Type: `Promise<boolean>`
 
 ### Used by
 
- - [materials-date-field](..\date-field)
- - [materials-multiple-select](..\multiple-select)
- - [materials-time-field](..\time-field)
+ - [materials-autocomplete](../autocomplete)
+ - [materials-date-field](../date-field)
+ - [materials-multiple-select](../multiple-select)
+ - [materials-time-field](../time-field)
 
 ### Graph
 ```mermaid
 graph TD;
+  materials-autocomplete --> materials-text-field
   materials-date-field --> materials-text-field
   materials-multiple-select --> materials-text-field
   materials-time-field --> materials-text-field

@@ -55,10 +55,10 @@ Type: `Promise<void>`
 
 ### Depends on
 
-- [materials-icon](..\icon)
-- [materials-icon-button](..\icon-button)
-- [materials-button](..\button)
-- [materials-menu](..\menu)
+- [materials-icon](../icon)
+- [materials-icon-button](../icon-button)
+- [materials-button](../button)
+- [materials-menu](../menu)
 
 ### Graph
 ```mermaid

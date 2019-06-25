@@ -19,8 +19,8 @@
 
 ### Depends on
 
-- [materials-list-item](..\list-item)
-- [materials-icon](..\icon)
+- [materials-list-item](../list-item)
+- [materials-icon](../icon)
 
 ### Graph
 ```mermaid

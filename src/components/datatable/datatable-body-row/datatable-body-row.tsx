@@ -17,6 +17,8 @@ export class DatatableBodyRow {
 
   @Event() selectRow: EventEmitter<boolean>;
 
+  @Event() expand: EventEmitter<boolean>;
+
   @Watch('selected')
   watchSelected() {
     this.selectRow.emit(this.selected);
@@ -31,6 +33,7 @@ export class DatatableBodyRow {
   toggleExpendable(e: Event) {
     e.stopPropagation();
     this.expended = !this.expended;
+    this.expand.emit(this.expended);
   }
 
   render() {
