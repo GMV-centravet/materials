@@ -27,9 +27,9 @@ export namespace Components {
     */
     'dense': boolean;
     /**
-    * Value of the autocomplete text-field
+    * Value of the autocomplete text-field composed by a label to be displayed in the text-field and a value that is a real value if no label given, label = value
     */
-    'value': {display: string, val: string};
+    'value': {label?: string, value: string};
   }
   interface MaterialsButton {
     'block': boolean;
@@ -931,9 +931,9 @@ declare namespace LocalJSX {
     */
     'onChange'?: (event: CustomEvent<any>) => void;
     /**
-    * Value of the autocomplete text-field
+    * Value of the autocomplete text-field composed by a label to be displayed in the text-field and a value that is a real value if no label given, label = value
     */
-    'value'?: {display: string, val: string};
+    'value'?: {label?: string, value: string};
   }
   interface MaterialsButton extends JSXBase.HTMLAttributes<HTMLMaterialsButtonElement> {
     'block'?: boolean;

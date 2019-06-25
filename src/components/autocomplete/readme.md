@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property       | Attribute | Description                                                                               | Type                                               | Default     |
-| -------------- | --------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------- | ----------- |
-| `autocomplete` | --        | Function of autocompletion to pass to the element called during onInput of the text-field | `(search: string) => Promise<Map<string, string>>` | `undefined` |
-| `dense`        | `dense`   | For the density of the element                                                            | `boolean`                                          | `undefined` |
-| `value`        | --        | Value of the autocomplete text-field                                                      | `{ display: string; val: string; }`                | `undefined` |
+| Property       | Attribute | Description                                                                                                                                                  | Type                                               | Default     |
+| -------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------- | ----------- |
+| `autocomplete` | --        | Function of autocompletion to pass to the element called during onInput of the text-field                                                                    | `(search: string) => Promise<Map<string, string>>` | `undefined` |
+| `dense`        | `dense`   | For the density of the element                                                                                                                               | `boolean`                                          | `false`     |
+| `value`        | --        | Value of the autocomplete text-field composed by a label to be displayed in the text-field and a value that is a real value if no label given, label = value | `{ label?: string; value: string; }`               | `undefined` |
 
 
 ## Events
