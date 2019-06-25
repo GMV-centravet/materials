@@ -68,6 +68,7 @@ Type: `Promise<boolean>`
  - [materials-autocomplete](../autocomplete)
  - [materials-date-field](../date-field)
  - [materials-multiple-select](../multiple-select)
+ - [materials-time-field](../time-field)
 
 ### Graph
 ```mermaid

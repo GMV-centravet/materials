@@ -61,9 +61,9 @@ Type: `Promise<boolean>`
 
 ### Depends on
 
-- [materials-menu](..\menu)
-- [materials-timepicker](..\timepicker)
-- [materials-text-field](..\text-field)
+- [materials-menu](../menu)
+- [materials-timepicker](../timepicker)
+- [materials-text-field](../text-field)
 
 ### Graph
 ```mermaid

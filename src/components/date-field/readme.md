@@ -62,10 +62,10 @@ Type: `Promise<boolean>`
 
 ### Depends on
 
-- [materials-menu](..\menu)
-- [materials-card](..\card)
-- [materials-datepicker](..\datepicker)
-- [materials-text-field](..\text-field)
+- [materials-menu](../menu)
+- [materials-card](../card)
+- [materials-datepicker](../datepicker)
+- [materials-text-field](../text-field)
 
 ### Graph
 ```mermaid
