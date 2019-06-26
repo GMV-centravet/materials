@@ -27,6 +27,10 @@ export namespace Components {
     */
     'dense': boolean;
     /**
+    * To be displayed as outline or placeholder on the field
+    */
+    'label': string;
+    /**
     * Value of the autocomplete text-field composed by a label to be displayed in the text-field and a value that is a real value if no label given, label = value
     */
     'value': {label?: string, value: string};
@@ -926,6 +930,10 @@ declare namespace LocalJSX {
     * For the density of the element
     */
     'dense'?: boolean;
+    /**
+    * To be displayed as outline or placeholder on the field
+    */
+    'label'?: string;
     /**
     * Change event emitted when value is selected
     */
