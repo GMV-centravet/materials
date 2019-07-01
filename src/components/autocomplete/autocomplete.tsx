@@ -24,12 +24,12 @@ export class Autocomplete {
   */
   @Prop({mutable: true, reflectToAttr: true}) value: {label?: string, value: string};
   /**
-  * For the density of the element
+  * Apply low density on the element
   */
   @Prop() dense = false;
 
   /**
-   * To be displayed as outline or placeholder on the field
+   * Label of the autocomplete
    */
   @Prop() label: string;
   

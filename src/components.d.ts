@@ -23,11 +23,11 @@ export namespace Components {
     */
     'autocomplete': (search: string) => Promise<Map<string, string>>;
     /**
-    * For the density of the element
+    * Apply low density on the element
     */
     'dense': boolean;
     /**
-    * To be displayed as outline or placeholder on the field
+    * Label of the autocomplete
     */
     'label': string;
     /**
@@ -927,11 +927,11 @@ declare namespace LocalJSX {
     */
     'autocomplete'?: (search: string) => Promise<Map<string, string>>;
     /**
-    * For the density of the element
+    * Apply low density on the element
     */
     'dense'?: boolean;
     /**
-    * To be displayed as outline or placeholder on the field
+    * Label of the autocomplete
     */
     'label'?: string;
     /**
