@@ -22,7 +22,7 @@ export class Autocomplete {
   * and a value that is a real value
   * if no label given, label = value
   */
-  @Prop({mutable: true, reflectToAttr: true}) value: {label?: string, value: string};
+  @Prop({mutable: true}) value: {label?: string, value: string};
   /**
   * Apply low density on the element
   */
@@ -36,11 +36,12 @@ export class Autocomplete {
   /**
   * Change event emitted when value is selected
   */
-  @Event() change: EventEmitter;
+  @Event() change: EventEmitter<{label?: string, value: string}>;
   
   @State() suggestions: Map<string, string>;
   
   private menuElement: HTMLMaterialsMenuElement;
+  private textElement: HTMLMaterialsTextFieldElement;
   
   componentDidLoad() {
     this.watchValue();
@@ -63,13 +64,15 @@ export class Autocomplete {
   }
   
   selectSuggestion(key: string) {
+    this.menuElement.close();
     if (this.suggestions) {
-      this.value = {
+      const newValue = {
         value: key,
         label: this.suggestions.get(key)
       };
+      this.value = {...newValue};
     }
-    this.menuElement.close();
+    this.change.emit(this.value);
   }
   
   execAutocomplete(event: any) {
@@ -77,14 +80,27 @@ export class Autocomplete {
     this.autocomplete(event.target.value).then((suggests: Map<string, string>) => this.suggestions = suggests);
     this.menuElement.open();
   }
+
+  emptyField() {
+    if (!this.textElement.value) {
+      this.value = null;
+      this.change.emit(this.value);
+    }
+  }
   
   render() {
     return ([
-      <materials-text-field dense={this.dense} label={this.label} value={this.value.label} onInput={(ev: any) => this.execAutocomplete(ev)} onChange={(ev: Event) => {
-        ev.stopPropagation();
-        ev.preventDefault();
-        this.change.emit();
-      }}></materials-text-field>,
+      <materials-text-field
+        ref={el => this.textElement = el as HTMLMaterialsTextFieldElement}
+        dense={this.dense}
+        label={this.label}
+        value={this.value.label}
+        onInput={(ev: any) => this.execAutocomplete(ev)}
+        onChange={(ev: Event) => {
+          ev.stopPropagation();
+          ev.preventDefault();
+          this.emptyField();
+        }} />,
       <materials-menu ref={el => this.menuElement = el as HTMLMaterialsMenuElement}>
       {this.suggestions ? Array.from(this.suggestions.keys()).map((key: string) => <materials-list-item onClick={() => this.selectSuggestion(key)}>{this.suggestions.get(key)}</materials-list-item>) : null}
       </materials-menu>
