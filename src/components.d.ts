@@ -937,7 +937,7 @@ declare namespace LocalJSX {
     /**
     * Change event emitted when value is selected
     */
-    'onChange'?: (event: CustomEvent<any>) => void;
+    'onChange'?: (event: CustomEvent<{label?: string, value: string}>) => void;
     /**
     * Value of the autocomplete text-field composed by a label to be displayed in the text-field and a value that is a real value if no label given, label = value
     */

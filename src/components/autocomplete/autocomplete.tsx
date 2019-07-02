@@ -36,7 +36,7 @@ export class Autocomplete {
   /**
   * Change event emitted when value is selected
   */
-  @Event() change: EventEmitter;
+  @Event() change: EventEmitter<{label?: string, value: string}>;
   
   @State() suggestions: Map<string, string>;
   
@@ -72,7 +72,7 @@ export class Autocomplete {
       };
       this.value = {...newValue};
     }
-    this.change.emit();
+    this.change.emit(this.value);
   }
   
   execAutocomplete(event: any) {
@@ -84,7 +84,7 @@ export class Autocomplete {
   emptyField() {
     if (!this.textElement.value) {
       this.value = null;
-      this.change.emit();
+      this.change.emit(this.value);
     }
   }
   
