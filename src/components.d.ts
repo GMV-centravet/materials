@@ -23,9 +23,13 @@ export namespace Components {
     */
     'autocomplete': (search: string) => Promise<Map<string, string>>;
     /**
-    * For the density of the element
+    * Apply low density on the element
     */
     'dense': boolean;
+    /**
+    * Label of the autocomplete
+    */
+    'label': string;
     /**
     * Value of the autocomplete text-field composed by a label to be displayed in the text-field and a value that is a real value if no label given, label = value
     */
@@ -923,9 +927,13 @@ declare namespace LocalJSX {
     */
     'autocomplete'?: (search: string) => Promise<Map<string, string>>;
     /**
-    * For the density of the element
+    * Apply low density on the element
     */
     'dense'?: boolean;
+    /**
+    * Label of the autocomplete
+    */
+    'label'?: string;
     /**
     * Change event emitted when value is selected
     */

@@ -24,9 +24,14 @@ export class Autocomplete {
   */
   @Prop({mutable: true, reflectToAttr: true}) value: {label?: string, value: string};
   /**
-  * For the density of the element
+  * Apply low density on the element
   */
   @Prop() dense = false;
+
+  /**
+   * Label of the autocomplete
+   */
+  @Prop() label: string;
   
   /**
   * Change event emitted when value is selected
@@ -75,7 +80,7 @@ export class Autocomplete {
   
   render() {
     return ([
-      <materials-text-field dense={this.dense} value={this.value.label} onInput={(ev: any) => this.execAutocomplete(ev)} onChange={(ev: Event) => {
+      <materials-text-field dense={this.dense} label={this.label} value={this.value.label} onInput={(ev: any) => this.execAutocomplete(ev)} onChange={(ev: Event) => {
         ev.stopPropagation();
         ev.preventDefault();
         this.change.emit();

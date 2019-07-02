@@ -10,7 +10,8 @@
 | Property       | Attribute | Description                                                                                                                                                  | Type                                               | Default     |
 | -------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------- | ----------- |
 | `autocomplete` | --        | Function of autocompletion to pass to the element called during onInput of the text-field                                                                    | `(search: string) => Promise<Map<string, string>>` | `undefined` |
-| `dense`        | `dense`   | For the density of the element                                                                                                                               | `boolean`                                          | `false`     |
+| `dense`        | `dense`   | Apply low density on the element                                                                                                                             | `boolean`                                          | `false`     |
+| `label`        | `label`   | Label of the autocomplete                                                                                                                                    | `string`                                           | `undefined` |
 | `value`        | --        | Value of the autocomplete text-field composed by a label to be displayed in the text-field and a value that is a real value if no label given, label = value | `{ label?: string; value: string; }`               | `undefined` |
 
 
