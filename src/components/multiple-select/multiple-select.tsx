@@ -11,6 +11,15 @@ import { Component, Element, Event, EventEmitter, h, Prop } from '@stencil/core'
   shadow: true
 })
 export class MaterialsMultipleSelect {
+
+  /**
+   * Apply low density on the textfield
+   */
+  @Prop() dense: boolean;
+  /**
+   * Adds an icon at the end of the text field
+   */
+  @Prop() trailingIcon: string;
   /**
    * Map of options selectable in the dialog
    */
@@ -106,10 +115,12 @@ export class MaterialsMultipleSelect {
 
   render() {
     return ([
-      <materials-text-field disabled
+      <materials-text-field
+        disabled
         label={this.label}
         overflow
-        trailing-icon="search"
+        trailing-icon={this.trailingIcon}
+        dense={this.dense}
         ref={el => this.multiSelectInput = el as HTMLMaterialsTextFieldElement}
         onClick={(event: any) => this.openMultiSelectDialog(event)}></materials-text-field>,
       <materials-dialog
