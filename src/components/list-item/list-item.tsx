@@ -47,6 +47,8 @@ export class ListItem {
       'mdc-list-item': true,
       'mdc-list--non-interactive': this.disabled,
       'mdc-list-item--selected': this.selected,
+      'mdc-ripple-upgraded': this.selected,
+      'mdc-ripple-upgraded--background-focused': this.selected,
       'mdc-list-divider': this.divider,
       'no-padding': this.noPadding
     };
