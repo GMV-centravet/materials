@@ -31,6 +31,10 @@ export namespace Components {
     */
     'label': string;
     /**
+    * Adds an icon at the end of the text field
+    */
+    'trailingIcon': string;
+    /**
     * Value of the autocomplete text-field composed by a label to be displayed in the text-field and a value that is a real value if no label given, label = value
     */
     'value': {label?: string, value: string};
@@ -354,6 +358,10 @@ export namespace Components {
   }
   interface MaterialsMultipleSelect {
     /**
+    * Apply low density on the textfield
+    */
+    'dense': boolean;
+    /**
     * Title displayed in the dialog
     */
     'dialogTitle': string;
@@ -365,6 +373,10 @@ export namespace Components {
     * Map of options selectable in the dialog
     */
     'options': Map<string, string>;
+    /**
+    * Adds an icon at the end of the text field
+    */
+    'trailingIcon': string;
     /**
     * list of selected elements
     */
@@ -939,6 +951,10 @@ declare namespace LocalJSX {
     */
     'onChange'?: (event: CustomEvent<{label?: string, value: string}>) => void;
     /**
+    * Adds an icon at the end of the text field
+    */
+    'trailingIcon'?: string;
+    /**
     * Value of the autocomplete text-field composed by a label to be displayed in the text-field and a value that is a real value if no label given, label = value
     */
     'value'?: {label?: string, value: string};
@@ -1255,6 +1271,10 @@ declare namespace LocalJSX {
   }
   interface MaterialsMultipleSelect extends JSXBase.HTMLAttributes<HTMLMaterialsMultipleSelectElement> {
     /**
+    * Apply low density on the textfield
+    */
+    'dense'?: boolean;
+    /**
     * Title displayed in the dialog
     */
     'dialogTitle'?: string;
@@ -1270,6 +1290,10 @@ declare namespace LocalJSX {
     * Map of options selectable in the dialog
     */
     'options'?: Map<string, string>;
+    /**
+    * Adds an icon at the end of the text field
+    */
+    'trailingIcon'?: string;
     /**
     * list of selected elements
     */

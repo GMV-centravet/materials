@@ -27,11 +27,14 @@ export class Autocomplete {
   * Apply low density on the element
   */
   @Prop() dense = false;
-
   /**
    * Label of the autocomplete
    */
   @Prop() label: string;
+  /**
+   * Adds an icon at the end of the text field
+   */
+  @Prop() trailingIcon: string;
   
   /**
   * Change event emitted when value is selected
@@ -91,16 +94,15 @@ export class Autocomplete {
   render() {
     return ([
       <materials-text-field
-        ref={el => this.textElement = el as HTMLMaterialsTextFieldElement}
-        dense={this.dense}
+        trailing-icon={this.trailingIcon}
+        dense={this.dense} 
         label={this.label}
-        value={this.value.label}
-        onInput={(ev: any) => this.execAutocomplete(ev)}
-        onChange={(ev: Event) => {
+        value={this.value.label} 
+        onInput={(ev: any) => this.execAutocomplete(ev)} onChange={(ev: Event) => {
           ev.stopPropagation();
           ev.preventDefault();
-          this.emptyField();
-        }} />,
+          this.change.emit();
+        }}></materials-text-field>,
       <materials-menu ref={el => this.menuElement = el as HTMLMaterialsMenuElement}>
       {this.suggestions ? Array.from(this.suggestions.keys()).map((key: string) => <materials-list-item onClick={() => this.selectSuggestion(key)}>{this.suggestions.get(key)}</materials-list-item>) : null}
       </materials-menu>
