@@ -7,7 +7,7 @@ import { Component, Prop } from '@stencil/core';
 })
 export class CardAction {
 
-  /** The action label. If a icon is provided, it will be render has a title */
+  /** The action label. If an icon is provided, it will be render as a title */
   @Prop() label: string;
 
   /** Use an icon for this action */
@@ -16,8 +16,8 @@ export class CardAction {
   /** Function triggered after this action is pressed */
   @Prop() onAction: Function;
 
-  /** Set true to render this action has a single action button taking up the entire width of the action row
-   * Use only if you have only one card action
+  /** Set true to render this action as a single action button taking up the entire width of the action row
+   * Use if you have only one card action
    */
   @Prop() fullBleed: false;
 
