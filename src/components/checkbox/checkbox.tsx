@@ -12,7 +12,7 @@ export class Checkbox {
   /** The checkbox value */
   @Prop({ reflectToAttr: true, mutable: true }) value: string | number;
 
-  /** Mark the checkbox has checked */
+  /** Mark the checkbox as checked */
   @Prop({ reflectToAttr: true, mutable: true }) checked = false;
 
   /** The checkbox label (Optionnal) */
@@ -21,7 +21,7 @@ export class Checkbox {
   /** If a label is provided, where should it be aligned ? */
   @Prop() alignLabel: 'left' | 'right' = 'left';
 
-  /** Mark the checkbox has disabled */
+  /** Mark the checkbox as disabled */
   @Prop() disabled = false;
 
 
