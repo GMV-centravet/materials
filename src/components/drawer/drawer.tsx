@@ -40,9 +40,7 @@ export class Drawer {
     for (const item of this.items) {
       await item.renderHtml().then((content) => this.itemsContent.push(content));
     }
-    console.log('this.itemsContent', this.itemsContent);
     this.itemsContent = [...this.itemsContent];
-
   }
 
   componentDidUpdate() {
