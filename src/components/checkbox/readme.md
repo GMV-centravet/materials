@@ -7,16 +7,16 @@
 
 ## Properties
 
-| Property        | Attribute       | Description | Type               | Default     |
-| --------------- | --------------- | ----------- | ------------------ | ----------- |
-| `alignLabel`    | `align-label`   |             | `string`           | `'left'`    |
-| `checked`       | `checked`       |             | `boolean`          | `false`     |
-| `color`         | `color`         |             | `string`           | `'accent'`  |
-| `disabled`      | `disabled`      |             | `boolean`          | `false`     |
-| `indeterminate` | `indeterminate` |             | `boolean`          | `false`     |
-| `label`         | `label`         |             | `string`           | `undefined` |
-| `name`          | `name`          |             | `string`           | `undefined` |
-| `value`         | `value`         |             | `number \| string` | `undefined` |
+| Property        | Attribute       | Description                                          | Type                | Default     |
+| --------------- | --------------- | ---------------------------------------------------- | ------------------- | ----------- |
+| `alignLabel`    | `align-label`   | If a label is provided, where should it be aligned ? | `"left" \| "right"` | `'left'`    |
+| `checked`       | `checked`       | Mark the checkbox has checked                        | `boolean`           | `false`     |
+| `color`         | `color`         |                                                      | `string`            | `'accent'`  |
+| `disabled`      | `disabled`      | Mark the checkbox has disabled                       | `boolean`           | `false`     |
+| `indeterminate` | `indeterminate` |                                                      | `boolean`           | `false`     |
+| `label`         | `label`         | The checkbox label (Optionnal)                       | `string`            | `undefined` |
+| `name`          | `name`          |                                                      | `string`            | `undefined` |
+| `value`         | `value`         | The checkbox value                                   | `number \| string`  | `undefined` |
 
 
 ## Events

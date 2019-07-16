@@ -4,7 +4,7 @@ import { Component, Element, Event, EventEmitter, h, Prop } from '@stencil/core'
 @Component({
   tag: 'materials-top-app-bar',
   styleUrl: 'top-app-bar.scss',
-  shadow: false
+  shadow: true
 })
 export class TopAppBar {
 
@@ -21,9 +21,14 @@ export class TopAppBar {
 
   private topAppBarElement: HTMLElement;
 
+  private actions: HTMLMaterialsTopAppBarActionElement[];
 
+  componentWillLoad() {
+    this.actions = Array.from(this.host.querySelectorAll('materials-top-app-bar-action'));
+  }
 
   componentDidLoad() {
+
     this.topAppBarElement = this.host.querySelector('.mdc-top-app-bar');
     const topAppBar = MDCTopAppBar.attachTo(this.topAppBarElement);
     topAppBar.listen('MDCTopAppBar:nav', () => {
@@ -47,6 +52,11 @@ export class TopAppBar {
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
           <a class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
           <span class="mdc-top-app-bar__title">{this.barTitle}</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+          {this.actions.map(a =>
+            <a href="#" class={{ 'material-icons': !!a.icon, 'mdc-top-app-bar__action-item': true }} aria-label={a.actionTitle} title={a.actionTitle}>{a.label}</a>
+          )}
         </section>
       </div>
     </header >;

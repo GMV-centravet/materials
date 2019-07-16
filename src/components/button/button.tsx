@@ -1,5 +1,19 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 
+/**
+ * A Material Design button component.
+ *
+ * To render a clear Material button on any html page :
+ * @example
+ * <materials-button>Click me</materials-button>
+ *
+ * @description
+ * You can use any icon from the material-icons collection (https://material.io/tools/icons)
+ *
+ * Code is available on github: https://github.com/GMV-centravet/materials/tree/master/src/components/button
+ *
+ * Material Design guidelines: https://material.io/design/components/buttons.html
+ */
 @Component({
   tag: 'materials-button',
   styleUrl: 'button.scss',
@@ -7,20 +21,38 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
 })
 export class Button {
 
-  @Prop() icon: string;
-  @Prop() color: 'primary' | 'accent' | 'secondary' | 'error' | string = 'primary';
-  @Prop() type: 'button' | 'submit' | 'reset';
-  @Prop() disabled = false;
-  /**
-   * Attention la valeur du border-radius sera toujours en px !
+  /** The button color, it can be either :
+   *  - a predifined value : 'primary', 'secondary', 'error'.
+   *  - an hexa color code : #225566, #CCC.
+   *  - a css named color : red, blue.
    */
-  @Prop() radius: number | string;
-  @Prop() raised: boolean;
-  @Prop() unelevated: boolean;
-  @Prop() outlined: boolean;
-  @Prop() dense: boolean;
-  @Prop() block: boolean;
-  @Element() btnEl: HTMLButtonElement;
+  @Prop() color: 'primary' | 'secondary' | 'error' | string = 'primary';
+
+  /** A material icon name */
+  @Prop() icon?: string = '';
+
+  /** The button type */
+  @Prop() type: 'button' | 'submit' | 'reset' = 'button';
+
+  /** Disable the button */
+  @Prop() disabled = false;
+
+  /** Render a raised Material button */
+  @Prop() raised: boolean = false;
+
+  /** Render an unelevated Material button */
+  @Prop() unelevated: boolean = false;
+
+  /** Render an outlined Material button */
+  @Prop() outlined: boolean = false;
+
+  /** Render a dense Material button () */
+  @Prop() dense: boolean = false;
+
+  /** Render a block Material button (Full width) */
+  @Prop() block: boolean = false;
+
+  @Element() private btnEl: HTMLButtonElement;
 
   private getClasses() {
     return {
@@ -29,23 +61,16 @@ export class Button {
       'mdc-button--unelevated': this.unelevated,
       'mdc-button--outlined': this.outlined,
       'mdc-button--dense': this.dense,
-      'mdc-theme--secondary': this.color === 'accent' || this.color === 'secondary',
+      'mdc-theme--secondary': this.color === 'secondary',
       'mdc-theme--error': this.color === 'error'
 
     };
   }
 
   componentDidLoad() {
-    if (this.color && !/(accent)|(primary)|(secondary)|(error)/.test(this.color)) {
+    if (this.color && !/(primary)|(secondary)|(error)/.test(this.color)) {
       this.btnEl.style.setProperty('--mdc-theme-primary', this.color);
     }
-  }
-
-  private getStyle() {
-    return {
-      // Attention la valeur du border-radius sera toujours en px !
-      'border-radius': this.radius ? Number.parseInt(this.radius.toString(), 10) + 'px' : null
-    };
   }
 
   render() {
@@ -54,7 +79,6 @@ export class Button {
         <button
           type={this.type}
           disabled={this.disabled}
-          style={this.getStyle()}
           class={this.getClasses()}
         >
           {this.icon &&
