@@ -8,17 +8,36 @@ import { Component, Event, EventEmitter, h, Prop } from '@stencil/core';
   shadow: true
 })
 export class Checkbox {
-  @Prop() disabled = false;
-  @Prop() color: 'primary' | 'accent' | 'secondary' | 'danger' | string = 'accent';
-  @Prop() name: string;
+
+  /** The checkbox value */
   @Prop({ reflectToAttr: true, mutable: true }) value: string | number;
+
+  /** Mark the checkbox as checked */
   @Prop({ reflectToAttr: true, mutable: true }) checked = false;
+
+  /** The checkbox label (Optionnal) */
+  @Prop() label?: string;
+
+  /** If a label is provided, where should it be aligned ? */
+  @Prop() alignLabel: 'left' | 'right' = 'left';
+
+  /** Mark the checkbox as disabled */
+  @Prop() disabled = false;
+
+
   @Prop() indeterminate = false;
-  @Prop() label: string;
-  @Prop() alignLabel = 'left';
+
+
+  @Prop() color: 'primary' | 'accent' | 'secondary' | 'danger' | string = 'accent';
+
+  @Prop() name: string;
+
+
   @Event() change: EventEmitter;
-  mdcCheckbox: MDCCheckbox;
-  checkboxDiv: HTMLElement;
+
+  private mdcCheckbox: MDCCheckbox;
+
+  private checkboxDiv: HTMLElement;
 
 
   componentDidLoad() {
@@ -30,8 +49,6 @@ export class Checkbox {
       this.checkboxDiv.style.setProperty('--mdc-theme-secondary', this.color);
     }
   }
-
-
 
   componentDidUnload() {
     this.mdcCheckbox.destroy();

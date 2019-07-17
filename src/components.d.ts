@@ -14,6 +14,9 @@ import {
 } from './components/menu/anchor-margin';
 import {
   SnackBarOptions,
+} from './components/dialog-controller/SnackbarOptions';
+import {
+  SnackBarOptions as SnackBarOptions1,
 } from './components/snackbar/SnackbarOptions';
 
 export namespace Components {
@@ -40,36 +43,94 @@ export namespace Components {
     'value': {label?: string, value: string};
   }
   interface MaterialsButton {
+    /**
+    * Render a block Material button (Full width)
+    */
     'block': boolean;
-    'color': 'primary' | 'accent' | 'secondary' | 'error' | string;
+    /**
+    * The button color, it can be either : - a predifined value : 'primary', 'secondary', 'error'. - an hexa color code : #225566, #CCC. - a css named color : red, blue.
+    */
+    'color': 'primary' | 'secondary' | 'error' | string;
+    /**
+    * Render a dense Material button ()
+    */
     'dense': boolean;
+    /**
+    * Disable the button
+    */
     'disabled': boolean;
-    'icon': string;
+    /**
+    * A material icon name
+    */
+    'icon'?: string;
+    /**
+    * Render an outlined Material button
+    */
     'outlined': boolean;
     /**
-    * Attention la valeur du border-radius sera toujours en px !
+    * Render a raised Material button
     */
-    'radius': number | string;
     'raised': boolean;
+    /**
+    * The button type
+    */
     'type': 'button' | 'submit' | 'reset';
+    /**
+    * Render an unelevated Material button
+    */
     'unelevated': boolean;
   }
   interface MaterialsCard {
+    'cardTitle': string;
     'elevation': number;
     'height': string;
     'maxHeight': string;
+    'onAction': Function;
     'padding': number;
     'width': string;
   }
+  interface MaterialsCardAction {
+    /**
+    * Set true to render this action has a single action button taking up the entire width of the action row Use only if you have only one card action
+    */
+    'fullBleed': false;
+    /**
+    * Use an icon for this action
+    */
+    'icon': string;
+    /**
+    * The action label. If a icon is provided, it will be render has a title
+    */
+    'label': string;
+    /**
+    * Function triggered after this action is pressed
+    */
+    'onAction': Function;
+  }
   interface MaterialsCardContent {}
   interface MaterialsCheckbox {
-    'alignLabel': string;
+    /**
+    * If a label is provided, where should it be aligned ?
+    */
+    'alignLabel': 'left' | 'right';
+    /**
+    * Mark the checkbox has checked
+    */
     'checked': boolean;
     'color': 'primary' | 'accent' | 'secondary' | 'danger' | string;
+    /**
+    * Mark the checkbox has disabled
+    */
     'disabled': boolean;
     'indeterminate': boolean;
-    'label': string;
+    /**
+    * The checkbox label (Optionnal)
+    */
+    'label'?: string;
     'name': string;
+    /**
+    * The checkbox value
+    */
     'value': string | number;
   }
   interface MaterialsChip {}
@@ -265,6 +326,9 @@ export namespace Components {
     'alignEnd': boolean;
     'label': string;
   }
+  interface MaterialsHeadline {
+    'level': '1' | '2' | '3' | '4' | '5' | '6';
+  }
   interface MaterialsIcon {
     'color': string;
     'dark': boolean;
@@ -426,6 +490,11 @@ export namespace Components {
     'timeout': number;
   }
   interface MaterialsSnackbarController {
+    'create': (options: any) => Promise<void>;
+    'pushToQueue': (snack: HTMLMaterialsSnackbarElement) => Promise<void>;
+    'sliceQueue': () => Promise<void>;
+  }
+  interface MaterialsSnackbarController {
     'create': (options: SnackBarOptions) => Promise<void>;
     'pushToQueue': (snack: HTMLMaterialsSnackbarElement) => Promise<void>;
     'sliceQueue': () => Promise<void>;
@@ -453,6 +522,9 @@ export namespace Components {
     'openStep': (index: number) => Promise<void>;
     'previousStep': () => Promise<void>;
     'showButtons': boolean;
+  }
+  interface MaterialsSubtitle {
+    'level': '1' | '2';
   }
   interface MaterialsSwitch {
     'checked': boolean;
@@ -595,6 +667,11 @@ export namespace Components {
     'prominent': boolean;
     'short': boolean;
   }
+  interface MaterialsTopAppBarAction {
+    'actionTitle': string;
+    'icon'?: string;
+    'label': string;
+  }
 }
 
 declare global {
@@ -616,6 +693,12 @@ declare global {
   var HTMLMaterialsCardElement: {
     prototype: HTMLMaterialsCardElement;
     new (): HTMLMaterialsCardElement;
+  };
+
+  interface HTMLMaterialsCardActionElement extends Components.MaterialsCardAction, HTMLStencilElement {}
+  var HTMLMaterialsCardActionElement: {
+    prototype: HTMLMaterialsCardActionElement;
+    new (): HTMLMaterialsCardActionElement;
   };
 
   interface HTMLMaterialsCardContentElement extends Components.MaterialsCardContent, HTMLStencilElement {}
@@ -744,6 +827,12 @@ declare global {
     new (): HTMLMaterialsFormFieldElement;
   };
 
+  interface HTMLMaterialsHeadlineElement extends Components.MaterialsHeadline, HTMLStencilElement {}
+  var HTMLMaterialsHeadlineElement: {
+    prototype: HTMLMaterialsHeadlineElement;
+    new (): HTMLMaterialsHeadlineElement;
+  };
+
   interface HTMLMaterialsIconElement extends Components.MaterialsIcon, HTMLStencilElement {}
   var HTMLMaterialsIconElement: {
     prototype: HTMLMaterialsIconElement;
@@ -822,6 +911,12 @@ declare global {
     new (): HTMLMaterialsSnackbarControllerElement;
   };
 
+  interface HTMLMaterialsSnackbarControllerElement extends Components.MaterialsSnackbarController, HTMLStencilElement {}
+  var HTMLMaterialsSnackbarControllerElement: {
+    prototype: HTMLMaterialsSnackbarControllerElement;
+    new (): HTMLMaterialsSnackbarControllerElement;
+  };
+
   interface HTMLMaterialsStepElement extends Components.MaterialsStep, HTMLStencilElement {}
   var HTMLMaterialsStepElement: {
     prototype: HTMLMaterialsStepElement;
@@ -832,6 +927,12 @@ declare global {
   var HTMLMaterialsStepperElement: {
     prototype: HTMLMaterialsStepperElement;
     new (): HTMLMaterialsStepperElement;
+  };
+
+  interface HTMLMaterialsSubtitleElement extends Components.MaterialsSubtitle, HTMLStencilElement {}
+  var HTMLMaterialsSubtitleElement: {
+    prototype: HTMLMaterialsSubtitleElement;
+    new (): HTMLMaterialsSubtitleElement;
   };
 
   interface HTMLMaterialsSwitchElement extends Components.MaterialsSwitch, HTMLStencilElement {}
@@ -881,10 +982,17 @@ declare global {
     prototype: HTMLMaterialsTopAppBarElement;
     new (): HTMLMaterialsTopAppBarElement;
   };
+
+  interface HTMLMaterialsTopAppBarActionElement extends Components.MaterialsTopAppBarAction, HTMLStencilElement {}
+  var HTMLMaterialsTopAppBarActionElement: {
+    prototype: HTMLMaterialsTopAppBarActionElement;
+    new (): HTMLMaterialsTopAppBarActionElement;
+  };
   interface HTMLElementTagNameMap {
     'materials-autocomplete': HTMLMaterialsAutocompleteElement;
     'materials-button': HTMLMaterialsButtonElement;
     'materials-card': HTMLMaterialsCardElement;
+    'materials-card-action': HTMLMaterialsCardActionElement;
     'materials-card-content': HTMLMaterialsCardContentElement;
     'materials-checkbox': HTMLMaterialsCheckboxElement;
     'materials-chip': HTMLMaterialsChipElement;
@@ -906,6 +1014,7 @@ declare global {
     'materials-expansion-panel': HTMLMaterialsExpansionPanelElement;
     'materials-fab': HTMLMaterialsFabElement;
     'materials-form-field': HTMLMaterialsFormFieldElement;
+    'materials-headline': HTMLMaterialsHeadlineElement;
     'materials-icon': HTMLMaterialsIconElement;
     'materials-icon-button': HTMLMaterialsIconButtonElement;
     'materials-linear-progress': HTMLMaterialsLinearProgressElement;
@@ -919,8 +1028,10 @@ declare global {
     'materials-select': HTMLMaterialsSelectElement;
     'materials-snackbar': HTMLMaterialsSnackbarElement;
     'materials-snackbar-controller': HTMLMaterialsSnackbarControllerElement;
+    'materials-snackbar-controller': HTMLMaterialsSnackbarControllerElement;
     'materials-step': HTMLMaterialsStepElement;
     'materials-stepper': HTMLMaterialsStepperElement;
+    'materials-subtitle': HTMLMaterialsSubtitleElement;
     'materials-switch': HTMLMaterialsSwitchElement;
     'materials-tab': HTMLMaterialsTabElement;
     'materials-tabs': HTMLMaterialsTabsElement;
@@ -929,6 +1040,7 @@ declare global {
     'materials-time-field': HTMLMaterialsTimeFieldElement;
     'materials-timepicker': HTMLMaterialsTimepickerElement;
     'materials-top-app-bar': HTMLMaterialsTopAppBarElement;
+    'materials-top-app-bar-action': HTMLMaterialsTopAppBarActionElement;
   }
 }
 
@@ -960,37 +1072,95 @@ declare namespace LocalJSX {
     'value'?: {label?: string, value: string};
   }
   interface MaterialsButton extends JSXBase.HTMLAttributes<HTMLMaterialsButtonElement> {
+    /**
+    * Render a block Material button (Full width)
+    */
     'block'?: boolean;
-    'color'?: 'primary' | 'accent' | 'secondary' | 'error' | string;
+    /**
+    * The button color, it can be either : - a predifined value : 'primary', 'secondary', 'error'. - an hexa color code : #225566, #CCC. - a css named color : red, blue.
+    */
+    'color'?: 'primary' | 'secondary' | 'error' | string;
+    /**
+    * Render a dense Material button ()
+    */
     'dense'?: boolean;
+    /**
+    * Disable the button
+    */
     'disabled'?: boolean;
+    /**
+    * A material icon name
+    */
     'icon'?: string;
+    /**
+    * Render an outlined Material button
+    */
     'outlined'?: boolean;
     /**
-    * Attention la valeur du border-radius sera toujours en px !
+    * Render a raised Material button
     */
-    'radius'?: number | string;
     'raised'?: boolean;
+    /**
+    * The button type
+    */
     'type'?: 'button' | 'submit' | 'reset';
+    /**
+    * Render an unelevated Material button
+    */
     'unelevated'?: boolean;
   }
   interface MaterialsCard extends JSXBase.HTMLAttributes<HTMLMaterialsCardElement> {
+    'cardTitle'?: string;
     'elevation'?: number;
     'height'?: string;
     'maxHeight'?: string;
+    'onAction'?: Function;
     'padding'?: number;
     'width'?: string;
   }
+  interface MaterialsCardAction extends JSXBase.HTMLAttributes<HTMLMaterialsCardActionElement> {
+    /**
+    * Set true to render this action has a single action button taking up the entire width of the action row Use only if you have only one card action
+    */
+    'fullBleed'?: false;
+    /**
+    * Use an icon for this action
+    */
+    'icon'?: string;
+    /**
+    * The action label. If a icon is provided, it will be render has a title
+    */
+    'label'?: string;
+    /**
+    * Function triggered after this action is pressed
+    */
+    'onAction'?: Function;
+  }
   interface MaterialsCardContent extends JSXBase.HTMLAttributes<HTMLMaterialsCardContentElement> {}
   interface MaterialsCheckbox extends JSXBase.HTMLAttributes<HTMLMaterialsCheckboxElement> {
-    'alignLabel'?: string;
+    /**
+    * If a label is provided, where should it be aligned ?
+    */
+    'alignLabel'?: 'left' | 'right';
+    /**
+    * Mark the checkbox has checked
+    */
     'checked'?: boolean;
     'color'?: 'primary' | 'accent' | 'secondary' | 'danger' | string;
+    /**
+    * Mark the checkbox has disabled
+    */
     'disabled'?: boolean;
     'indeterminate'?: boolean;
+    /**
+    * The checkbox label (Optionnal)
+    */
     'label'?: string;
     'name'?: string;
     'onChange'?: (event: CustomEvent<any>) => void;
+    /**
+    * The checkbox value
+    */
     'value'?: string | number;
   }
   interface MaterialsChip extends JSXBase.HTMLAttributes<HTMLMaterialsChipElement> {}
@@ -1185,6 +1355,9 @@ declare namespace LocalJSX {
     'alignEnd'?: boolean;
     'label'?: string;
   }
+  interface MaterialsHeadline extends JSXBase.HTMLAttributes<HTMLMaterialsHeadlineElement> {
+    'level'?: '1' | '2' | '3' | '4' | '5' | '6';
+  }
   interface MaterialsIcon extends JSXBase.HTMLAttributes<HTMLMaterialsIconElement> {
     'color'?: string;
     'dark'?: boolean;
@@ -1346,6 +1519,7 @@ declare namespace LocalJSX {
     'timeout'?: number;
   }
   interface MaterialsSnackbarController extends JSXBase.HTMLAttributes<HTMLMaterialsSnackbarControllerElement> {}
+  interface MaterialsSnackbarController extends JSXBase.HTMLAttributes<HTMLMaterialsSnackbarControllerElement> {}
   interface MaterialsStep extends JSXBase.HTMLAttributes<HTMLMaterialsStepElement> {
     'active'?: boolean;
     'confirmationText'?: string;
@@ -1367,6 +1541,9 @@ declare namespace LocalJSX {
     'activeStep'?: number;
     'inactiveSteps'?: number[];
     'showButtons'?: boolean;
+  }
+  interface MaterialsSubtitle extends JSXBase.HTMLAttributes<HTMLMaterialsSubtitleElement> {
+    'level'?: '1' | '2';
   }
   interface MaterialsSwitch extends JSXBase.HTMLAttributes<HTMLMaterialsSwitchElement> {
     'checked'?: boolean;
@@ -1510,11 +1687,17 @@ declare namespace LocalJSX {
     'prominent'?: boolean;
     'short'?: boolean;
   }
+  interface MaterialsTopAppBarAction extends JSXBase.HTMLAttributes<HTMLMaterialsTopAppBarActionElement> {
+    'actionTitle'?: string;
+    'icon'?: string;
+    'label'?: string;
+  }
 
   interface IntrinsicElements {
     'materials-autocomplete': MaterialsAutocomplete;
     'materials-button': MaterialsButton;
     'materials-card': MaterialsCard;
+    'materials-card-action': MaterialsCardAction;
     'materials-card-content': MaterialsCardContent;
     'materials-checkbox': MaterialsCheckbox;
     'materials-chip': MaterialsChip;
@@ -1536,6 +1719,7 @@ declare namespace LocalJSX {
     'materials-expansion-panel': MaterialsExpansionPanel;
     'materials-fab': MaterialsFab;
     'materials-form-field': MaterialsFormField;
+    'materials-headline': MaterialsHeadline;
     'materials-icon': MaterialsIcon;
     'materials-icon-button': MaterialsIconButton;
     'materials-linear-progress': MaterialsLinearProgress;
@@ -1549,8 +1733,10 @@ declare namespace LocalJSX {
     'materials-select': MaterialsSelect;
     'materials-snackbar': MaterialsSnackbar;
     'materials-snackbar-controller': MaterialsSnackbarController;
+    'materials-snackbar-controller': MaterialsSnackbarController;
     'materials-step': MaterialsStep;
     'materials-stepper': MaterialsStepper;
+    'materials-subtitle': MaterialsSubtitle;
     'materials-switch': MaterialsSwitch;
     'materials-tab': MaterialsTab;
     'materials-tabs': MaterialsTabs;
@@ -1559,6 +1745,7 @@ declare namespace LocalJSX {
     'materials-time-field': MaterialsTimeField;
     'materials-timepicker': MaterialsTimepicker;
     'materials-top-app-bar': MaterialsTopAppBar;
+    'materials-top-app-bar-action': MaterialsTopAppBarAction;
   }
 }
 

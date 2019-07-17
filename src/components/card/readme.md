@@ -7,13 +7,15 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type     | Default     |
-| ----------- | ------------ | ----------- | -------- | ----------- |
-| `elevation` | `elevation`  |             | `number` | `1`         |
-| `height`    | `height`     |             | `string` | `'auto'`    |
-| `maxHeight` | `max-height` |             | `string` | `undefined` |
-| `padding`   | `padding`    |             | `number` | `undefined` |
-| `width`     | `width`      |             | `string` | `'auto'`    |
+| Property    | Attribute    | Description | Type       | Default     |
+| ----------- | ------------ | ----------- | ---------- | ----------- |
+| `cardTitle` | `card-title` |             | `string`   | `undefined` |
+| `elevation` | `elevation`  |             | `number`   | `1`         |
+| `height`    | `height`     |             | `string`   | `'auto'`    |
+| `maxHeight` | `max-height` |             | `string`   | `undefined` |
+| `onAction`  | --           |             | `Function` | `undefined` |
+| `padding`   | `padding`    |             | `number`   | `undefined` |
+| `width`     | `width`      |             | `string`   | `'auto'`    |
 
 
 ## Dependencies

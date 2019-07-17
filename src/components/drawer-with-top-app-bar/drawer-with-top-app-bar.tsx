@@ -21,6 +21,11 @@ export class DrawerWithTopAppBar {
   @State() itemsContent: string[] = [];
 
   private drawer: MDCDrawer;
+  private actions: HTMLMaterialsTopAppBarActionElement[];
+
+  componentWillLoad() {
+    this.actions = Array.from(this.host.querySelectorAll('materials-top-app-bar-action'));
+  }
 
 
   items: HTMLMaterialsDrawerListItemElement[];
@@ -57,12 +62,18 @@ export class DrawerWithTopAppBar {
       'mdc-top-app-bar--short-collapsed': this.appBarType === 'short-closed',
 
     }
+    console.log('actions', this.actions);
     return (
       <header class={classes} id="app-bar">
         <div class="mdc-top-app-bar__row">
           <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <a class="demo-menu material-icons mdc-top-app-bar__navigation-icon">menu</a>
             <span class="mdc-top-app-bar__title">{this.appBarTitle}</span>
+          </section>
+          <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            {this.actions.map(a =>
+              <a href="#" class={{ 'material-icons': !!a.icon, 'mdc-top-app-bar__action-item': true }} aria-label={a.actionTitle} title={a.actionTitle}>{a.label}</a>
+            )}
           </section>
         </div>
       </header>
