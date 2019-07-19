@@ -61,7 +61,7 @@ export class Card {
             <slot />
           </div>
         }
-        {(this.actionButtons || this.actionIcons) &&
+        {((this.actionButtons && this.actionButtons.length > 0) || (this.actionIcons && this.actionIcons.length > 0)) &&
           <div class={{ 'mdc-card__actions': true, 'mdc-card__actions--full-bleed': this.fullBleedAction }}>
             {this.actionButtons && <div class="mdc-card__action-buttons">
               {this.actionButtons.map(action => {
