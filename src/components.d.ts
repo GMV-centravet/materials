@@ -14,9 +14,6 @@ import {
 } from './components/menu/anchor-margin';
 import {
   SnackBarOptions,
-} from './components/dialog-controller/SnackbarOptions';
-import {
-  SnackBarOptions as SnackBarOptions1,
 } from './components/snackbar/SnackbarOptions';
 
 export namespace Components {
@@ -91,7 +88,7 @@ export namespace Components {
   }
   interface MaterialsCardAction {
     /**
-    * Set true to render this action has a single action button taking up the entire width of the action row Use only if you have only one card action
+    * Set true to render this action as a single action button taking up the entire width of the action row Use if you have only one card action
     */
     'fullBleed': false;
     /**
@@ -99,7 +96,7 @@ export namespace Components {
     */
     'icon': string;
     /**
-    * The action label. If a icon is provided, it will be render has a title
+    * The action label. If an icon is provided, it will be render as a title
     */
     'label': string;
     /**
@@ -114,12 +111,12 @@ export namespace Components {
     */
     'alignLabel': 'left' | 'right';
     /**
-    * Mark the checkbox has checked
+    * Mark the checkbox as checked
     */
     'checked': boolean;
     'color': 'primary' | 'accent' | 'secondary' | 'danger' | string;
     /**
-    * Mark the checkbox has disabled
+    * Mark the checkbox as disabled
     */
     'disabled': boolean;
     'indeterminate': boolean;
@@ -488,11 +485,6 @@ export namespace Components {
     'leading': boolean;
     'stacked': boolean;
     'timeout': number;
-  }
-  interface MaterialsSnackbarController {
-    'create': (options: any) => Promise<void>;
-    'pushToQueue': (snack: HTMLMaterialsSnackbarElement) => Promise<void>;
-    'sliceQueue': () => Promise<void>;
   }
   interface MaterialsSnackbarController {
     'create': (options: SnackBarOptions) => Promise<void>;
@@ -911,12 +903,6 @@ declare global {
     new (): HTMLMaterialsSnackbarControllerElement;
   };
 
-  interface HTMLMaterialsSnackbarControllerElement extends Components.MaterialsSnackbarController, HTMLStencilElement {}
-  var HTMLMaterialsSnackbarControllerElement: {
-    prototype: HTMLMaterialsSnackbarControllerElement;
-    new (): HTMLMaterialsSnackbarControllerElement;
-  };
-
   interface HTMLMaterialsStepElement extends Components.MaterialsStep, HTMLStencilElement {}
   var HTMLMaterialsStepElement: {
     prototype: HTMLMaterialsStepElement;
@@ -1028,7 +1014,6 @@ declare global {
     'materials-select': HTMLMaterialsSelectElement;
     'materials-snackbar': HTMLMaterialsSnackbarElement;
     'materials-snackbar-controller': HTMLMaterialsSnackbarControllerElement;
-    'materials-snackbar-controller': HTMLMaterialsSnackbarControllerElement;
     'materials-step': HTMLMaterialsStepElement;
     'materials-stepper': HTMLMaterialsStepperElement;
     'materials-subtitle': HTMLMaterialsSubtitleElement;
@@ -1120,7 +1105,7 @@ declare namespace LocalJSX {
   }
   interface MaterialsCardAction extends JSXBase.HTMLAttributes<HTMLMaterialsCardActionElement> {
     /**
-    * Set true to render this action has a single action button taking up the entire width of the action row Use only if you have only one card action
+    * Set true to render this action as a single action button taking up the entire width of the action row Use if you have only one card action
     */
     'fullBleed'?: false;
     /**
@@ -1128,7 +1113,7 @@ declare namespace LocalJSX {
     */
     'icon'?: string;
     /**
-    * The action label. If a icon is provided, it will be render has a title
+    * The action label. If an icon is provided, it will be render as a title
     */
     'label'?: string;
     /**
@@ -1143,12 +1128,12 @@ declare namespace LocalJSX {
     */
     'alignLabel'?: 'left' | 'right';
     /**
-    * Mark the checkbox has checked
+    * Mark the checkbox as checked
     */
     'checked'?: boolean;
     'color'?: 'primary' | 'accent' | 'secondary' | 'danger' | string;
     /**
-    * Mark the checkbox has disabled
+    * Mark the checkbox as disabled
     */
     'disabled'?: boolean;
     'indeterminate'?: boolean;
@@ -1519,7 +1504,6 @@ declare namespace LocalJSX {
     'timeout'?: number;
   }
   interface MaterialsSnackbarController extends JSXBase.HTMLAttributes<HTMLMaterialsSnackbarControllerElement> {}
-  interface MaterialsSnackbarController extends JSXBase.HTMLAttributes<HTMLMaterialsSnackbarControllerElement> {}
   interface MaterialsStep extends JSXBase.HTMLAttributes<HTMLMaterialsStepElement> {
     'active'?: boolean;
     'confirmationText'?: string;
@@ -1732,7 +1716,6 @@ declare namespace LocalJSX {
     'materials-radio-group': MaterialsRadioGroup;
     'materials-select': MaterialsSelect;
     'materials-snackbar': MaterialsSnackbar;
-    'materials-snackbar-controller': MaterialsSnackbarController;
     'materials-snackbar-controller': MaterialsSnackbarController;
     'materials-step': MaterialsStep;
     'materials-stepper': MaterialsStepper;
