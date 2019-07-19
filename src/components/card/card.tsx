@@ -57,7 +57,7 @@ export class Card {
             <slot />
           </div> :
 
-          <div style={{ 'padding': this.padding ? this.padding + 'px' : null }}>
+          <div style={{'height': '100%', 'padding': this.padding ? this.padding + 'px' : null }}>
             <slot />
           </div>
         }
