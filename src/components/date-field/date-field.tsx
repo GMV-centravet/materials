@@ -105,8 +105,8 @@ export class DateField {
     if (!this.datepicker) return;
     return (
 
-      <materials-menu noPadding ref={el => this.materialsMenuDatepickerEl = el as HTMLMaterialsMenuElement}>
-        <materials-card elevation={4} width="fit-content">
+      <materials-menu noPadding ref={el => this.materialsMenuDatepickerEl = el}>
+        <materials-card padding={16} elevation={4} width="fit-content">
           <materials-datepicker
             class="date-picker"
             dateSelected={this.value ? new Date(this.value) : new Date()}
