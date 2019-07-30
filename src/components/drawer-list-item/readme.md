@@ -7,26 +7,26 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type      | Default     |
-| ----------- | ------------ | ----------- | --------- | ----------- |
-| `activated` | `activated`  |             | `boolean` | `undefined` |
-| `icon`      | `icon`       |             | `string`  | `undefined` |
-| `label`     | `label`      |             | `string`  | `undefined` |
-| `targetUrl` | `target-url` |             | `string`  | `undefined` |
+| Property             | Attribute    | Description                                  | Type      | Default     |
+| -------------------- | ------------ | -------------------------------------------- | --------- | ----------- |
+| `activated`          | `activated`  | Mark this drawer item as activated           | `boolean` | `undefined` |
+| `icon`               | `icon`       | Render an icon (from material-icons library) | `string`  | `undefined` |
+| `label` _(required)_ | `label`      | The drawer item label                        | `string`  | `undefined` |
+| `targetUrl`          | `target-url` | render with a href="${targetUrl}"            | `string`  | `undefined` |
 
 
 ## Events
 
-| Event   | Description | Type               |
-| ------- | ----------- | ------------------ |
-| `press` |             | `CustomEvent<any>` |
+| Event   | Description                 | Type               |
+| ------- | --------------------------- | ------------------ |
+| `press` | Emitted when it get pressed | `CustomEvent<any>` |
 
 
 ## Methods
 
 ### `press(e: any) => Promise<void>`
 
-
+Trigger a press event
 
 #### Returns
 
