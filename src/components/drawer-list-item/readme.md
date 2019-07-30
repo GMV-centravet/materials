@@ -15,15 +15,22 @@
 | `targetUrl` | `target-url` |             | `string`  | `undefined` |
 
 
+## Events
+
+| Event   | Description | Type               |
+| ------- | ----------- | ------------------ |
+| `press` |             | `CustomEvent<any>` |
+
+
 ## Methods
 
-### `renderHtml() => Promise<any>`
+### `press(e: any) => Promise<void>`
 
 
 
 #### Returns
 
-Type: `Promise<any>`
+Type: `Promise<void>`
 
 
 

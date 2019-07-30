@@ -286,7 +286,7 @@ export namespace Components {
     'activated': boolean;
     'icon': string;
     'label': string;
-    'renderHtml': () => Promise<any>;
+    'press': (e: any) => Promise<void>;
     'targetUrl': string;
   }
   interface MaterialsDrawerWithTopAppBar {
@@ -1307,6 +1307,7 @@ declare namespace LocalJSX {
     'activated'?: boolean;
     'icon'?: string;
     'label'?: string;
+    'onPress'?: (event: CustomEvent<any>) => void;
     'targetUrl'?: string;
   }
   interface MaterialsDrawerWithTopAppBar extends JSXBase.HTMLAttributes<HTMLMaterialsDrawerWithTopAppBarElement> {
