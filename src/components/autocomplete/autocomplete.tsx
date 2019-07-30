@@ -43,7 +43,7 @@ export class Autocomplete {
   
   @State() suggestions: Map<string, string>;
 
-  @State() showSuggestions: boolean = false;
+  @State() showSuggestions = false;
   
   private textElement: HTMLMaterialsTextFieldElement;
   
