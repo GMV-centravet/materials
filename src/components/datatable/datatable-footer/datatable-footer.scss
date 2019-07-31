@@ -1,8 +1,9 @@
 .container {
-  min-height: 50px;
+  min-height: 42px;
   background-color: var(--mdc-theme-datatable-header, #fff);
   color: var(--mdc-theme-on-datatable-header, #212121);
   font-family: Roboto, Arial, sans-serif;
   font-size: 15px;
   padding-left: 8px;
+  padding-top: 8px;
 }
