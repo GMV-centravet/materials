@@ -10,6 +10,12 @@ import {
   Sort,
 } from './components/datatable/sort';
 import {
+  DialogAction,
+} from './components/dialog/dialog-action';
+import {
+  DialogOpts,
+} from './components/dialog-controller/dialog-opts';
+import {
   AnchorMargin,
 } from './components/menu/anchor-margin';
 import {
@@ -260,6 +266,14 @@ export namespace Components {
   }
   interface MaterialsDialog {
     'acceptButton': string;
+    /**
+    * A list of this dialog actions
+    */
+    'actions': DialogAction[];
+    /**
+    * The dialog body, it can be an HTMLElement or plain text
+    */
+    'body': string | HTMLElement;
     'cancelButton': string;
     'close': () => Promise<void>;
     'closeButton': boolean;
@@ -267,12 +281,27 @@ export namespace Components {
     'disableAcceptButton': boolean;
     'height': string;
     'isOpen': () => Promise<boolean>;
+    /**
+    * @deprecated since 1.1.0 : not used
+    */
     'items': string[];
     'open': () => Promise<void>;
+    /**
+    * @deprecated since 1.1.0 : dialog scroll automatically
+    */
     'scrollable': boolean;
+    /**
+    * @deprecated since 1.1.0 : use toggle() instead Open/Close dialog.
+    */
     'show': () => Promise<void>;
     'toggle': () => Promise<void>;
     'width': string;
+  }
+  interface MaterialsDialogController {
+    /**
+    * Create a HTMLMaterialsDialogElement and returns it
+    */
+    'create': (opts: DialogOpts) => Promise<HTMLMaterialsDialogElement>;
   }
   interface MaterialsDrawer {
     'close': () => Promise<void>;
@@ -286,11 +315,11 @@ export namespace Components {
     /**
     * Mark this drawer item as activated
     */
-    'activated'?: boolean;
+    'activated': boolean;
     /**
     * Render an icon (from material-icons library)
     */
-    'icon'?: string;
+    'icon': string;
     /**
     * The drawer item label
     */
@@ -302,7 +331,7 @@ export namespace Components {
     /**
     * render with a href="${targetUrl}"
     */
-    'targetUrl'?: string;
+    'targetUrl': string;
   }
   interface MaterialsDrawerWithTopAppBar {
     'appBarDense': boolean;
@@ -792,6 +821,12 @@ declare global {
     new (): HTMLMaterialsDialogElement;
   };
 
+  interface HTMLMaterialsDialogControllerElement extends Components.MaterialsDialogController, HTMLStencilElement {}
+  var HTMLMaterialsDialogControllerElement: {
+    prototype: HTMLMaterialsDialogControllerElement;
+    new (): HTMLMaterialsDialogControllerElement;
+  };
+
   interface HTMLMaterialsDrawerElement extends Components.MaterialsDrawer, HTMLStencilElement {}
   var HTMLMaterialsDrawerElement: {
     prototype: HTMLMaterialsDrawerElement;
@@ -1008,6 +1043,7 @@ declare global {
     'materials-date-field': HTMLMaterialsDateFieldElement;
     'materials-datepicker': HTMLMaterialsDatepickerElement;
     'materials-dialog': HTMLMaterialsDialogElement;
+    'materials-dialog-controller': HTMLMaterialsDialogControllerElement;
     'materials-drawer': HTMLMaterialsDrawerElement;
     'materials-drawer-list-item': HTMLMaterialsDrawerListItemElement;
     'materials-drawer-with-top-app-bar': HTMLMaterialsDrawerWithTopAppBarElement;
@@ -1303,17 +1339,32 @@ declare namespace LocalJSX {
   }
   interface MaterialsDialog extends JSXBase.HTMLAttributes<HTMLMaterialsDialogElement> {
     'acceptButton'?: string;
+    /**
+    * A list of this dialog actions
+    */
+    'actions'?: DialogAction[];
+    /**
+    * The dialog body, it can be an HTMLElement or plain text
+    */
+    'body'?: string | HTMLElement;
     'cancelButton'?: string;
     'closeButton'?: boolean;
     'dialogTitle'?: string;
     'disableAcceptButton'?: boolean;
     'height'?: string;
+    /**
+    * @deprecated since 1.1.0 : not used
+    */
     'items'?: string[];
     'onAccept'?: (event: CustomEvent<any>) => void;
     'onCancel'?: (event: CustomEvent<any>) => void;
+    /**
+    * @deprecated since 1.1.0 : dialog scroll automatically
+    */
     'scrollable'?: boolean;
     'width'?: string;
   }
+  interface MaterialsDialogController extends JSXBase.HTMLAttributes<HTMLMaterialsDialogControllerElement> {}
   interface MaterialsDrawer extends JSXBase.HTMLAttributes<HTMLMaterialsDrawerElement> {
     'dismissible'?: boolean;
     'modal'?: boolean;
@@ -1727,6 +1778,7 @@ declare namespace LocalJSX {
     'materials-date-field': MaterialsDateField;
     'materials-datepicker': MaterialsDatepicker;
     'materials-dialog': MaterialsDialog;
+    'materials-dialog-controller': MaterialsDialogController;
     'materials-drawer': MaterialsDrawer;
     'materials-drawer-list-item': MaterialsDrawerListItem;
     'materials-drawer-with-top-app-bar': MaterialsDrawerWithTopAppBar;

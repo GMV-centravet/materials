@@ -12,6 +12,39 @@
 </head>
 
 <body>
+  <materials-dialog-controller></materials-dialog-controller>
+  <button id='btn'>Test</button>
 </body>
+
+<script>
+  const btn = document.querySelector('#btn');
+  btn.addEventListener('click', () => {
+    const ctrl = document.querySelector('materials-dialog-controller');
+    const test = document.createElement('h1');
+    test.innerText = 'Blah blah';
+    ctrl.create({
+      actions: null,
+      title: 'Toto',
+      body: test,
+      actions: [{
+          label: "OK",
+          role: 'accept',
+          action: () => alert('ok')
+        },
+        {
+          label: "Cancel",
+          role: 'close'
+        },
+        {
+          label: "Test",
+          role: 'no-close',
+          action: () => alert('Toto')
+        }
+      ]
+
+    }).then(dialog => dialog.open());
+  })
+
+</script>
 
 </html>
