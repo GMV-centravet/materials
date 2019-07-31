@@ -283,11 +283,26 @@ export namespace Components {
     'toggle': () => Promise<void>;
   }
   interface MaterialsDrawerListItem {
-    'activated': boolean;
-    'icon': string;
+    /**
+    * Mark this drawer item as activated
+    */
+    'activated'?: boolean;
+    /**
+    * Render an icon (from material-icons library)
+    */
+    'icon'?: string;
+    /**
+    * The drawer item label
+    */
     'label': string;
-    'renderHtml': () => Promise<any>;
-    'targetUrl': string;
+    /**
+    * Trigger a press event
+    */
+    'press': (e: any) => Promise<void>;
+    /**
+    * render with a href="${targetUrl}"
+    */
+    'targetUrl'?: string;
   }
   interface MaterialsDrawerWithTopAppBar {
     'appBarDense': boolean;
@@ -1304,9 +1319,25 @@ declare namespace LocalJSX {
     'modal'?: boolean;
   }
   interface MaterialsDrawerListItem extends JSXBase.HTMLAttributes<HTMLMaterialsDrawerListItemElement> {
+    /**
+    * Mark this drawer item as activated
+    */
     'activated'?: boolean;
+    /**
+    * Render an icon (from material-icons library)
+    */
     'icon'?: string;
-    'label'?: string;
+    /**
+    * The drawer item label
+    */
+    'label': string;
+    /**
+    * Emitted when it get pressed
+    */
+    'onPress'?: (event: CustomEvent<any>) => void;
+    /**
+    * render with a href="${targetUrl}"
+    */
     'targetUrl'?: string;
   }
   interface MaterialsDrawerWithTopAppBar extends JSXBase.HTMLAttributes<HTMLMaterialsDrawerWithTopAppBarElement> {
