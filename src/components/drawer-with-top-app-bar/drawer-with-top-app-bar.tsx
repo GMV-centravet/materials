@@ -28,8 +28,6 @@ export class DrawerWithTopAppBar {
     this.items = Array.from(this.host.querySelectorAll('materials-drawer-list-item'));
   }
 
-
-
   async componentDidLoad() {
     if (!this.drawer && this.items.length > 0) {
       this.drawer = MDCDrawer.attachTo(this.host.shadowRoot.querySelector('.mdc-drawer'));
@@ -42,9 +40,6 @@ export class DrawerWithTopAppBar {
         this.drawer.open = !this.drawer.open;
       });
     }
-  }
-
-  componentDidUpdate() {
   }
 
   renderAppBar() {

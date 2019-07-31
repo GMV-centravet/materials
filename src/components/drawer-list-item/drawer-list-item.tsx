@@ -2,7 +2,9 @@ import { Component, Event, EventEmitter, Method, Prop } from '@stencil/core';
 
 @Component({
   tag: 'materials-drawer-list-item',
-  styleUrl: 'drawer-list-item.css'
+  styleUrl: 'drawer-list-item.css',
+  shadow: true
+
 })
 export class DrawerListItem {
 
