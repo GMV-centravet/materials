@@ -148,7 +148,7 @@ export class TextField {
   render() {
     return (
       <Host class={{ 'materials-text-field--dense': this.dense }}>
-        <div style={{ 'width': this.width + 'px' }} class={this.getClasses()} ref={mdcTextField => this.textFieldEl = mdcTextField}>
+        <div style={{ 'width': this.width ? (this.width + 'px') : '100%' }} class={this.getClasses()} ref={mdcTextField => this.textFieldEl = mdcTextField}>
           {(() => {
             return this.leadingIcon ? (<i class="material-icons mdc-text-field__icon" tabindex="0" role="button">{this.leadingIcon}</i>) : '';
           })()}
