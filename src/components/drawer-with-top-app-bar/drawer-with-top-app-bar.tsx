@@ -1,6 +1,6 @@
 import { MDCDrawer } from '@material/drawer';
 import { MDCTopAppBar } from '@material/top-app-bar';
-import { Component, Element, h, Prop, State } from '@stencil/core';
+import { Component, Element, h, Prop } from '@stencil/core';
 import { Host } from '@stencil/core';
 
 @Component({
@@ -18,28 +18,18 @@ export class DrawerWithTopAppBar {
   @Prop() appBarTitle: string;
   @Prop() open: boolean;
 
-  @State() itemsContent: string[] = [];
 
   private drawer: MDCDrawer;
   private actions: HTMLMaterialsTopAppBarActionElement[];
+  private items: HTMLMaterialsDrawerListItemElement[];
 
   componentWillLoad() {
     this.actions = Array.from(this.host.querySelectorAll('materials-top-app-bar-action'));
+    this.items = Array.from(this.host.querySelectorAll('materials-drawer-list-item'));
   }
-
-
-  items: HTMLMaterialsDrawerListItemElement[];
 
   async componentDidLoad() {
-    this.items = Array.from(this.host.querySelectorAll('materials-drawer-list-item'));
-    for (const item of this.items) {
-      await item.renderHtml().then((content) => this.itemsContent.push(content));
-    }
-    this.itemsContent = [...this.itemsContent];
-  }
-
-  componentDidUpdate() {
-    if (!this.drawer && this.itemsContent.length > 0) {
+    if (!this.drawer && this.items.length > 0) {
       this.drawer = MDCDrawer.attachTo(this.host.shadowRoot.querySelector('.mdc-drawer'));
       this.drawer.open = this.open;
       const topAppBar = MDCTopAppBar.attachTo(this.host.shadowRoot.getElementById('app-bar'));
@@ -62,7 +52,6 @@ export class DrawerWithTopAppBar {
       'mdc-top-app-bar--short-collapsed': this.appBarType === 'short-closed',
 
     }
-    console.log('actions', this.actions);
     return (
       <header class={classes} id="app-bar">
         <div class="mdc-top-app-bar__row">
@@ -80,15 +69,24 @@ export class DrawerWithTopAppBar {
     );
   }
 
+  renderDrawerItem(item: HTMLMaterialsDrawerListItemElement) {
+    return <a class={{
+      'mdc-list-item': true,
+      'mdc-list-item--activated': item.activated
+    }} href={item.targetUrl} onClick={(e) => { item.press(e) }} aria-current="page">
+      {item.icon && <i class="material-icons mdc-list-item__graphic" aria-hidden="true">{item.icon}</i>}
+      <span class="mdc-list-item__text">{item.label}</span>
+    </a>
+
+  }
+
   renderModal() {
     return [
       this.renderAppBar(),
       <aside class="mdc-drawer mdc-drawer--modal">
         <div class="mdc-drawer__content">
           <nav class="mdc-list">
-            {this.itemsContent.map(i => {
-              return i;
-            })}
+            {this.items.map(item => this.renderDrawerItem(item))}
           </nav>
         </div>
       </aside>,
@@ -102,9 +100,7 @@ export class DrawerWithTopAppBar {
       <aside class="mdc-drawer mdc-drawer--dismissible">
         <div class="mdc-drawer__content">
           <div class="mdc-list">
-            {this.itemsContent.map(i => {
-              return i;
-            })}
+            {this.items.map(item => this.renderDrawerItem(item))}
           </div>
         </div>
       </aside>,
@@ -126,9 +122,7 @@ export class DrawerWithTopAppBar {
       <aside class="mdc-drawer mdc-drawer--dismissible mdc-top-app-bar--fixed-adjust">
         <div class="mdc-drawer__content">
           <div class="mdc-list">
-            {this.itemsContent.map(i => {
-              return i;
-            })}
+            {this.items.map(item => this.renderDrawerItem(item))}
           </div>
         </div>
       </aside>,

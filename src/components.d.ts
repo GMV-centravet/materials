@@ -136,6 +136,28 @@ export namespace Components {
     'dense': boolean;
     'oddEvenStyle': boolean;
   }
+  interface MaterialsDatatableAction {
+    /**
+    * The datatable-action color, it can be either : - a predifined value : 'primary', 'secondary', 'error'. - an hexa color code : #225566, #CCC. - a css named color : red, blue.
+    */
+    'color': 'primary' | 'secondary' | 'error' | string;
+    /**
+    * Mark this datatable action as displayed
+    */
+    'display': boolean;
+    /**
+    * Render an icon (from material-icons library)
+    */
+    'icon': string;
+    /**
+    * The datatable action label
+    */
+    'label': string;
+    /**
+    * Trigger a press event
+    */
+    'press': (e: any) => Promise<void>;
+  }
   interface MaterialsDatatableBody {}
   interface MaterialsDatatableBodyCell {
     'align': 'start' | 'end' | 'center';
@@ -283,10 +305,25 @@ export namespace Components {
     'toggle': () => Promise<void>;
   }
   interface MaterialsDrawerListItem {
+    /**
+    * Mark this drawer item as activated
+    */
     'activated': boolean;
+    /**
+    * Render an icon (from material-icons library)
+    */
     'icon': string;
+    /**
+    * The drawer item label
+    */
     'label': string;
-    'renderHtml': () => Promise<any>;
+    /**
+    * Trigger a press event
+    */
+    'press': (e: any) => Promise<void>;
+    /**
+    * render with a href="${targetUrl}"
+    */
     'targetUrl': string;
   }
   interface MaterialsDrawerWithTopAppBar {
@@ -717,6 +754,12 @@ declare global {
     new (): HTMLMaterialsDatatableElement;
   };
 
+  interface HTMLMaterialsDatatableActionElement extends Components.MaterialsDatatableAction, HTMLStencilElement {}
+  var HTMLMaterialsDatatableActionElement: {
+    prototype: HTMLMaterialsDatatableActionElement;
+    new (): HTMLMaterialsDatatableActionElement;
+  };
+
   interface HTMLMaterialsDatatableBodyElement extends Components.MaterialsDatatableBody, HTMLStencilElement {}
   var HTMLMaterialsDatatableBodyElement: {
     prototype: HTMLMaterialsDatatableBodyElement;
@@ -983,6 +1026,7 @@ declare global {
     'materials-checkbox': HTMLMaterialsCheckboxElement;
     'materials-chip': HTMLMaterialsChipElement;
     'materials-datatable': HTMLMaterialsDatatableElement;
+    'materials-datatable-action': HTMLMaterialsDatatableActionElement;
     'materials-datatable-body': HTMLMaterialsDatatableBodyElement;
     'materials-datatable-body-cell': HTMLMaterialsDatatableBodyCellElement;
     'materials-datatable-body-row': HTMLMaterialsDatatableBodyRowElement;
@@ -1155,6 +1199,28 @@ declare namespace LocalJSX {
     'oddEvenStyle'?: boolean;
     'onSort'?: (event: CustomEvent<Sort>) => void;
   }
+  interface MaterialsDatatableAction extends JSXBase.HTMLAttributes<HTMLMaterialsDatatableActionElement> {
+    /**
+    * The datatable-action color, it can be either : - a predifined value : 'primary', 'secondary', 'error'. - an hexa color code : #225566, #CCC. - a css named color : red, blue.
+    */
+    'color'?: 'primary' | 'secondary' | 'error' | string;
+    /**
+    * Mark this datatable action as displayed
+    */
+    'display'?: boolean;
+    /**
+    * Render an icon (from material-icons library)
+    */
+    'icon'?: string;
+    /**
+    * The datatable action label
+    */
+    'label': string;
+    /**
+    * Emitted when it get pressed
+    */
+    'onPress'?: (event: CustomEvent<any>) => void;
+  }
   interface MaterialsDatatableBody extends JSXBase.HTMLAttributes<HTMLMaterialsDatatableBodyElement> {}
   interface MaterialsDatatableBodyCell extends JSXBase.HTMLAttributes<HTMLMaterialsDatatableBodyCellElement> {
     'align'?: 'start' | 'end' | 'center';
@@ -1304,9 +1370,25 @@ declare namespace LocalJSX {
     'modal'?: boolean;
   }
   interface MaterialsDrawerListItem extends JSXBase.HTMLAttributes<HTMLMaterialsDrawerListItemElement> {
+    /**
+    * Mark this drawer item as activated
+    */
     'activated'?: boolean;
+    /**
+    * Render an icon (from material-icons library)
+    */
     'icon'?: string;
-    'label'?: string;
+    /**
+    * The drawer item label
+    */
+    'label': string;
+    /**
+    * Emitted when it get pressed
+    */
+    'onPress'?: (event: CustomEvent<any>) => void;
+    /**
+    * render with a href="${targetUrl}"
+    */
     'targetUrl'?: string;
   }
   interface MaterialsDrawerWithTopAppBar extends JSXBase.HTMLAttributes<HTMLMaterialsDrawerWithTopAppBarElement> {
@@ -1686,6 +1768,7 @@ declare namespace LocalJSX {
     'materials-checkbox': MaterialsCheckbox;
     'materials-chip': MaterialsChip;
     'materials-datatable': MaterialsDatatable;
+    'materials-datatable-action': MaterialsDatatableAction;
     'materials-datatable-body': MaterialsDatatableBody;
     'materials-datatable-body-cell': MaterialsDatatableBodyCell;
     'materials-datatable-body-row': MaterialsDatatableBodyRow;
