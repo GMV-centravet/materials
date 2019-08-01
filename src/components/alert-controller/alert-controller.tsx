@@ -14,11 +14,7 @@ export class MaterialsAlertController {
   async create(opts: AlertOpts) {
     const dialog = document.createElement('materials-dialog');
     dialog.dialogTitle = opts.title;
-    dialog.actions = [{
-      label: opts.acceptText,
-      role: 'accept',
-      action: opts.onAccept
-    }];
+    dialog.actions = [];
     if (opts.cancelText) {
       dialog.actions.push({
         label: opts.cancelText,
@@ -26,6 +22,12 @@ export class MaterialsAlertController {
         action: opts.onCancel
       })
     }
+
+    dialog.actions.push({
+      label: opts.acceptText,
+      role: 'accept',
+      action: opts.onAccept
+    });
     dialog.body = opts.message;
     dialog.addEventListener('accept', () => dialog.remove());
     dialog.addEventListener('cancel', () => dialog.remove());
