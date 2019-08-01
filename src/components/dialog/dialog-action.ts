@@ -13,7 +13,7 @@ export class DialogAction {
    */
   role!: 'accept' | 'close' | 'no-close';
   /** A function executed when this action get pressed */
-  action?: () => Promise<any>;
+  action?: Function;
   /** An html title help for this action */
   title?: string;
 }

@@ -33,9 +33,9 @@ Material Design guidelines: https://material.io/design/components/buttons.html
 
 ### Used by
 
- - [materials-datepicker](../datepicker)
- - [materials-dropdown](../dropdown)
- - [materials-step](../stepper)
+ - [materials-datepicker](..\datepicker)
+ - [materials-dropdown](..\dropdown)
+ - [materials-step](..\stepper)
 
 ### Graph
 ```mermaid

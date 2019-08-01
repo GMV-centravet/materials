@@ -7,6 +7,9 @@
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
+  AlertOpts,
+} from './components/alert-controller/alert-opts';
+import {
   Sort,
 } from './components/datatable/sort';
 import {
@@ -23,6 +26,12 @@ import {
 } from './components/snackbar/SnackbarOptions';
 
 export namespace Components {
+  interface MaterialsAlertController {
+    /**
+    * Create a HTMLMaterialsDialogElement and returns it
+    */
+    'create': (opts: AlertOpts) => Promise<HTMLMaterialsDialogElement>;
+  }
   interface MaterialsAutocomplete {
     /**
     * Function of autocompletion to pass to the element called during onInput of the text-field
@@ -713,6 +722,12 @@ export namespace Components {
 declare global {
 
 
+  interface HTMLMaterialsAlertControllerElement extends Components.MaterialsAlertController, HTMLStencilElement {}
+  var HTMLMaterialsAlertControllerElement: {
+    prototype: HTMLMaterialsAlertControllerElement;
+    new (): HTMLMaterialsAlertControllerElement;
+  };
+
   interface HTMLMaterialsAutocompleteElement extends Components.MaterialsAutocomplete, HTMLStencilElement {}
   var HTMLMaterialsAutocompleteElement: {
     prototype: HTMLMaterialsAutocompleteElement;
@@ -1025,6 +1040,7 @@ declare global {
     new (): HTMLMaterialsTopAppBarActionElement;
   };
   interface HTMLElementTagNameMap {
+    'materials-alert-controller': HTMLMaterialsAlertControllerElement;
     'materials-autocomplete': HTMLMaterialsAutocompleteElement;
     'materials-button': HTMLMaterialsButtonElement;
     'materials-card': HTMLMaterialsCardElement;
@@ -1081,6 +1097,7 @@ declare global {
 }
 
 declare namespace LocalJSX {
+  interface MaterialsAlertController extends JSXBase.HTMLAttributes<HTMLMaterialsAlertControllerElement> {}
   interface MaterialsAutocomplete extends JSXBase.HTMLAttributes<HTMLMaterialsAutocompleteElement> {
     /**
     * Function of autocompletion to pass to the element called during onInput of the text-field
@@ -1760,6 +1777,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
+    'materials-alert-controller': MaterialsAlertController;
     'materials-autocomplete': MaterialsAutocomplete;
     'materials-button': MaterialsButton;
     'materials-card': MaterialsCard;
