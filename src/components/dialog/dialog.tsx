@@ -1,5 +1,7 @@
 import { MDCDialog } from '@material/dialog';
-import { Component, Element, Event, EventEmitter, h, Method, Prop } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Method, Prop, Watch } from '@stencil/core';
+
+import { DialogAction } from './dialog-action';
 
 @Component({
   tag: 'materials-dialog',
@@ -22,7 +24,11 @@ export class Dialog {
    * @deprecated since 1.1.0 : dialog scroll automatically
    */
   @Prop() scrollable: boolean;
+  /**
+   * @deprecated since 1.1.0 : not used
+   */
   @Prop() items: string[] = [];
+
   @Prop() width: string;
   @Prop() height: string;
   @Prop() dialogTitle = '';
@@ -30,6 +36,14 @@ export class Dialog {
   @Prop() cancelButton: string;
   @Prop() disableAcceptButton: boolean;
   @Prop() closeButton: boolean;
+
+  /** A list of this dialog actions */
+  @Prop() actions: DialogAction[];
+
+  /** The dialog body, it can be an HTMLElement or plain text */
+  @Prop() body: string | HTMLElement;
+
+  bodySection: HTMLElement;
 
   componentDidLoad() {
     this.mdcDialog = new MDCDialog(this.dialogEl);
@@ -46,6 +60,19 @@ export class Dialog {
           break;
       }
     });
+
+    this.updateBody();
+  }
+
+  @Watch('body')
+  watchBody() {
+    this.updateBody();
+  }
+
+  updateBody() {
+    if (this.bodySection && this.body) {
+      this.body instanceof HTMLElement ? this.bodySection.appendChild(this.body) : this.bodySection.innerText = this.body;
+    }
   }
 
   /**
@@ -86,7 +113,7 @@ export class Dialog {
 
   render() {
     return (
-      <aside id="my-mdc-dialog" class="mdc-dialog" role="alertdialog" aria-modal="true" aria-labelledby={this.dialogTitle} aria-describedby="mdc-dialog-description"
+      <aside class="mdc-dialog" role="alertdialog" aria-modal="true" aria-labelledby={this.dialogTitle} aria-describedby="mdc-dialog-description"
         ref={el => this.dialogEl = el}>
         <div class="mdc-dialog__container">
           <div style={{ 'min-width': this.width + 'px', 'width': this.width + 'px' }} class="mdc-dialog__surface">
@@ -94,18 +121,24 @@ export class Dialog {
               {this.dialogTitle}
               {this.closeButton && <materials-icon-button class="close-btn" icon="close" onClick={() => this.close()} />}
             </h2>
-            <section id="mdc-dialog-content" style={{ 'min-height': this.height + 'px', 'height': this.height + 'px' }} class={this.getSectionClass()}>
+            <section ref={el => this.bodySection = el} id="mdc-dialog-content" style={{ 'min-height': this.height + 'px', 'height': this.height + 'px' }} class={this.getSectionClass()}>
               <slot name="body" />
             </section>
-            <footer class="mdc-dialog__actions">
-              <slot name="third-button" />
-              {!!this.cancelButton &&
-                <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">{this.cancelButton}</button>
-              }
-              {!!this.acceptButton &&
-                <button type="button" disabled={this.disableAcceptButton} class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">{this.acceptButton}</button>
-              }
-            </footer>
+            {this.actions ?
+              <footer class="mdc-dialog__actions">
+                {this.actions.map(a => <button type="button" class="mdc-button mdc-dialog__button" title={a.title ? a.title : a.label} onClick={() => { if (a.action) a.action() }} data-mdc-dialog-action={a.role === 'accept' || a.role === 'close' ? a.role : null}>{a.label}</button>)}
+              </footer>
+              :
+              <footer class="mdc-dialog__actions">
+                <slot name="third-button" />
+                {!!this.cancelButton &&
+                  <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">{this.cancelButton}</button>
+                }
+                {!!this.acceptButton &&
+                  <button type="button" disabled={this.disableAcceptButton} class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">{this.acceptButton}</button>
+                }
+              </footer>
+            }
           </div>
         </div>
         <div class="mdc-dialog__scrim"></div>

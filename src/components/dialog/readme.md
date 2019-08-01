@@ -7,17 +7,19 @@
 
 ## Properties
 
-| Property              | Attribute               | Description                                                                                         | Type       | Default     |
-| --------------------- | ----------------------- | --------------------------------------------------------------------------------------------------- | ---------- | ----------- |
-| `acceptButton`        | `accept-button`         |                                                                                                     | `string`   | `undefined` |
-| `cancelButton`        | `cancel-button`         |                                                                                                     | `string`   | `undefined` |
-| `closeButton`         | `close-button`          |                                                                                                     | `boolean`  | `undefined` |
-| `dialogTitle`         | `dialog-title`          |                                                                                                     | `string`   | `''`        |
-| `disableAcceptButton` | `disable-accept-button` |                                                                                                     | `boolean`  | `undefined` |
-| `height`              | `height`                |                                                                                                     | `string`   | `undefined` |
-| `items`               | --                      |                                                                                                     | `string[]` | `[]`        |
-| `scrollable`          | `scrollable`            | <span style="color:red">**[DEPRECATED]**</span> since 1.1.0 : dialog scroll automatically<br/><br/> | `boolean`  | `undefined` |
-| `width`               | `width`                 |                                                                                                     | `string`   | `undefined` |
+| Property              | Attribute               | Description                                                                                         | Type                    | Default     |
+| --------------------- | ----------------------- | --------------------------------------------------------------------------------------------------- | ----------------------- | ----------- |
+| `acceptButton`        | `accept-button`         |                                                                                                     | `string`                | `undefined` |
+| `actions`             | --                      | A list of this dialog actions                                                                       | `DialogAction[]`        | `undefined` |
+| `body`                | `body`                  | The dialog body, it can be an HTMLElement or plain text                                             | `HTMLElement \| string` | `undefined` |
+| `cancelButton`        | `cancel-button`         |                                                                                                     | `string`                | `undefined` |
+| `closeButton`         | `close-button`          |                                                                                                     | `boolean`               | `undefined` |
+| `dialogTitle`         | `dialog-title`          |                                                                                                     | `string`                | `''`        |
+| `disableAcceptButton` | `disable-accept-button` |                                                                                                     | `boolean`               | `undefined` |
+| `height`              | `height`                |                                                                                                     | `string`                | `undefined` |
+| `items`               | --                      | <span style="color:red">**[DEPRECATED]**</span> since 1.1.0 : not used<br/><br/>                    | `string[]`              | `[]`        |
+| `scrollable`          | `scrollable`            | <span style="color:red">**[DEPRECATED]**</span> since 1.1.0 : dialog scroll automatically<br/><br/> | `boolean`               | `undefined` |
+| `width`               | `width`                 |                                                                                                     | `string`                | `undefined` |
 
 
 ## Events
@@ -62,7 +64,8 @@ Type: `Promise<void>`
 
 ### `show() => Promise<void>`
 
-
+<span style="color:red">**[DEPRECATED]**</span> since 1.1.0 : use toggle() instead
+Open/Close dialog.<br/><br/>
 
 #### Returns
 
@@ -85,6 +88,7 @@ Type: `Promise<void>`
 
 ### Used by
 
+ - [materials-dialog-controller](../dialog-controller)
  - [materials-multiple-select](../multiple-select)
 
 ### Depends on
@@ -95,6 +99,7 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   materials-dialog --> materials-icon-button
+  materials-dialog-controller --> materials-dialog
   materials-multiple-select --> materials-dialog
   style materials-dialog fill:#f9f,stroke:#333,stroke-width:4px
 ```

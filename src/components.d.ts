@@ -7,8 +7,17 @@
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
+  AlertOpts,
+} from './components/alert-controller/alert-opts';
+import {
   Sort,
 } from './components/datatable/sort';
+import {
+  DialogAction,
+} from './components/dialog/dialog-action';
+import {
+  DialogOpts,
+} from './components/dialog-controller/dialog-opts';
 import {
   AnchorMargin,
 } from './components/menu/anchor-margin';
@@ -17,6 +26,12 @@ import {
 } from './components/snackbar/SnackbarOptions';
 
 export namespace Components {
+  interface MaterialsAlertController {
+    /**
+    * Create a HTMLMaterialsDialogElement and returns it
+    */
+    'create': (opts: AlertOpts) => Promise<HTMLMaterialsDialogElement>;
+  }
   interface MaterialsAutocomplete {
     /**
     * Function of autocompletion to pass to the element called during onInput of the text-field
@@ -282,6 +297,14 @@ export namespace Components {
   }
   interface MaterialsDialog {
     'acceptButton': string;
+    /**
+    * A list of this dialog actions
+    */
+    'actions': DialogAction[];
+    /**
+    * The dialog body, it can be an HTMLElement or plain text
+    */
+    'body': string | HTMLElement;
     'cancelButton': string;
     'close': () => Promise<void>;
     'closeButton': boolean;
@@ -289,12 +312,27 @@ export namespace Components {
     'disableAcceptButton': boolean;
     'height': string;
     'isOpen': () => Promise<boolean>;
+    /**
+    * @deprecated since 1.1.0 : not used
+    */
     'items': string[];
     'open': () => Promise<void>;
+    /**
+    * @deprecated since 1.1.0 : dialog scroll automatically
+    */
     'scrollable': boolean;
+    /**
+    * @deprecated since 1.1.0 : use toggle() instead Open/Close dialog.
+    */
     'show': () => Promise<void>;
     'toggle': () => Promise<void>;
     'width': string;
+  }
+  interface MaterialsDialogController {
+    /**
+    * Create a HTMLMaterialsDialogElement and returns it
+    */
+    'create': (opts: DialogOpts) => Promise<HTMLMaterialsDialogElement>;
   }
   interface MaterialsDrawer {
     'close': () => Promise<void>;
@@ -706,6 +744,12 @@ export namespace Components {
 declare global {
 
 
+  interface HTMLMaterialsAlertControllerElement extends Components.MaterialsAlertController, HTMLStencilElement {}
+  var HTMLMaterialsAlertControllerElement: {
+    prototype: HTMLMaterialsAlertControllerElement;
+    new (): HTMLMaterialsAlertControllerElement;
+  };
+
   interface HTMLMaterialsAutocompleteElement extends Components.MaterialsAutocomplete, HTMLStencilElement {}
   var HTMLMaterialsAutocompleteElement: {
     prototype: HTMLMaterialsAutocompleteElement;
@@ -818,6 +862,12 @@ declare global {
   var HTMLMaterialsDialogElement: {
     prototype: HTMLMaterialsDialogElement;
     new (): HTMLMaterialsDialogElement;
+  };
+
+  interface HTMLMaterialsDialogControllerElement extends Components.MaterialsDialogController, HTMLStencilElement {}
+  var HTMLMaterialsDialogControllerElement: {
+    prototype: HTMLMaterialsDialogControllerElement;
+    new (): HTMLMaterialsDialogControllerElement;
   };
 
   interface HTMLMaterialsDrawerElement extends Components.MaterialsDrawer, HTMLStencilElement {}
@@ -1018,6 +1068,7 @@ declare global {
     new (): HTMLMaterialsTopAppBarActionElement;
   };
   interface HTMLElementTagNameMap {
+    'materials-alert-controller': HTMLMaterialsAlertControllerElement;
     'materials-autocomplete': HTMLMaterialsAutocompleteElement;
     'materials-button': HTMLMaterialsButtonElement;
     'materials-card': HTMLMaterialsCardElement;
@@ -1037,6 +1088,7 @@ declare global {
     'materials-date-field': HTMLMaterialsDateFieldElement;
     'materials-datepicker': HTMLMaterialsDatepickerElement;
     'materials-dialog': HTMLMaterialsDialogElement;
+    'materials-dialog-controller': HTMLMaterialsDialogControllerElement;
     'materials-drawer': HTMLMaterialsDrawerElement;
     'materials-drawer-list-item': HTMLMaterialsDrawerListItemElement;
     'materials-drawer-with-top-app-bar': HTMLMaterialsDrawerWithTopAppBarElement;
@@ -1074,6 +1126,7 @@ declare global {
 }
 
 declare namespace LocalJSX {
+  interface MaterialsAlertController extends JSXBase.HTMLAttributes<HTMLMaterialsAlertControllerElement> {}
   interface MaterialsAutocomplete extends JSXBase.HTMLAttributes<HTMLMaterialsAutocompleteElement> {
     /**
     * Function of autocompletion to pass to the element called during onInput of the text-field
@@ -1354,17 +1407,32 @@ declare namespace LocalJSX {
   }
   interface MaterialsDialog extends JSXBase.HTMLAttributes<HTMLMaterialsDialogElement> {
     'acceptButton'?: string;
+    /**
+    * A list of this dialog actions
+    */
+    'actions'?: DialogAction[];
+    /**
+    * The dialog body, it can be an HTMLElement or plain text
+    */
+    'body'?: string | HTMLElement;
     'cancelButton'?: string;
     'closeButton'?: boolean;
     'dialogTitle'?: string;
     'disableAcceptButton'?: boolean;
     'height'?: string;
+    /**
+    * @deprecated since 1.1.0 : not used
+    */
     'items'?: string[];
     'onAccept'?: (event: CustomEvent<any>) => void;
     'onCancel'?: (event: CustomEvent<any>) => void;
+    /**
+    * @deprecated since 1.1.0 : dialog scroll automatically
+    */
     'scrollable'?: boolean;
     'width'?: string;
   }
+  interface MaterialsDialogController extends JSXBase.HTMLAttributes<HTMLMaterialsDialogControllerElement> {}
   interface MaterialsDrawer extends JSXBase.HTMLAttributes<HTMLMaterialsDrawerElement> {
     'dismissible'?: boolean;
     'modal'?: boolean;
@@ -1760,6 +1828,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
+    'materials-alert-controller': MaterialsAlertController;
     'materials-autocomplete': MaterialsAutocomplete;
     'materials-button': MaterialsButton;
     'materials-card': MaterialsCard;
@@ -1779,6 +1848,7 @@ declare namespace LocalJSX {
     'materials-date-field': MaterialsDateField;
     'materials-datepicker': MaterialsDatepicker;
     'materials-dialog': MaterialsDialog;
+    'materials-dialog-controller': MaterialsDialogController;
     'materials-drawer': MaterialsDrawer;
     'materials-drawer-list-item': MaterialsDrawerListItem;
     'materials-drawer-with-top-app-bar': MaterialsDrawerWithTopAppBar;
