@@ -22,7 +22,7 @@ Type: `Promise<HTMLMaterialsDialogElement>`
 
 ### Depends on
 
-- [materials-dialog](..\dialog)
+- [materials-dialog](../dialog)
 
 ### Graph
 ```mermaid

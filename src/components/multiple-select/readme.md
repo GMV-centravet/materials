@@ -28,10 +28,10 @@
 
 ### Depends on
 
-- [materials-text-field](..\text-field)
-- [materials-dialog](..\dialog)
-- [materials-list](..\list)
-- [materials-list-item-checkbox](..\list-item-checkbox)
+- [materials-text-field](../text-field)
+- [materials-dialog](../dialog)
+- [materials-list](../list)
+- [materials-list-item-checkbox](../list-item-checkbox)
 
 ### Graph
 ```mermaid

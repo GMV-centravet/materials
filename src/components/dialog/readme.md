@@ -88,12 +88,12 @@ Type: `Promise<void>`
 
 ### Used by
 
- - [materials-dialog-controller](..\dialog-controller)
- - [materials-multiple-select](..\multiple-select)
+ - [materials-dialog-controller](../dialog-controller)
+ - [materials-multiple-select](../multiple-select)
 
 ### Depends on
 
-- [materials-icon-button](..\icon-button)
+- [materials-icon-button](../icon-button)
 
 ### Graph
 ```mermaid
