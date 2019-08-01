@@ -10,7 +10,7 @@ export class AlertOpts {
   /** The cancel button text */
   cancelText?: string;
   /** Triggered when accept button get pressed*/
-  onAccept: Function;
+  onAccept?: Function;
   /** Triggered when cancel button get pressed*/
   onCancel?: Function;
 
