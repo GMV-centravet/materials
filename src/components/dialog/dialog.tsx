@@ -117,10 +117,12 @@ export class Dialog {
         ref={el => this.dialogEl = el}>
         <div class="mdc-dialog__container">
           <div style={{ 'min-width': this.width + 'px', 'width': this.width + 'px' }} class="mdc-dialog__surface">
-            <h2 id="mdc-dialog-label" class="mdc-dialog__title">
-              {this.dialogTitle}
-              {this.closeButton && <materials-icon-button class="close-btn" icon="close" onClick={() => this.close()} />}
-            </h2>
+            {this.dialogTitle &&
+              <h2 id="mdc-dialog-label" class="mdc-dialog__title">
+                {this.dialogTitle}
+                {this.closeButton && <materials-icon-button class="close-btn" icon="close" onClick={() => this.close()} />}
+              </h2>
+            }
             <section ref={el => this.bodySection = el} id="mdc-dialog-content" style={{ 'min-height': this.height + 'px', 'height': this.height + 'px' }} class={this.getSectionClass()}>
               <slot name="body" />
             </section>
