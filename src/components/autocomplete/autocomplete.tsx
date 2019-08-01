@@ -42,8 +42,9 @@ export class Autocomplete {
   @Event() change: EventEmitter<{label?: string, value: string}>;
   
   @State() suggestions: Map<string, string>;
+
+  @State() showSuggestions = false;
   
-  private menuElement: HTMLMaterialsMenuElement;
   private textElement: HTMLMaterialsTextFieldElement;
   
   componentDidLoad() {
@@ -67,7 +68,7 @@ export class Autocomplete {
   }
   
   selectSuggestion(key: string) {
-    this.menuElement.close();
+    this.showSuggestions = false;
     if (this.suggestions) {
       const newValue = {
         value: key,
@@ -81,31 +82,36 @@ export class Autocomplete {
   execAutocomplete(event: any) {
     this.value.label = event.target.value;
     this.autocomplete(event.target.value).then((suggests: Map<string, string>) => this.suggestions = suggests);
-    this.menuElement.open();
+    this.showSuggestions = this.suggestions && this.suggestions.size > 0;
   }
 
-  emptyField() {
+  handleChange() {
     if (!this.textElement.value) {
       this.value = null;
+      this.change.emit(this.value);
+    } else {
       this.change.emit(this.value);
     }
   }
   
   render() {
-    return ([
-      <materials-text-field
-        trailing-icon={this.trailingIcon}
-        dense={this.dense} 
-        label={this.label}
-        value={this.value.label} 
-        onInput={(ev: any) => this.execAutocomplete(ev)} onChange={(ev: Event) => {
-          ev.stopPropagation();
-          ev.preventDefault();
-          this.change.emit();
-        }}></materials-text-field>,
-      <materials-menu ref={el => this.menuElement = el as HTMLMaterialsMenuElement}>
-      {this.suggestions ? Array.from(this.suggestions.keys()).map((key: string) => <materials-list-item onClick={() => this.selectSuggestion(key)}>{this.suggestions.get(key)}</materials-list-item>) : null}
-      </materials-menu>
-    ]);
+    return (
+      <div style={{'position': 'relative'}}> 
+        <materials-text-field
+          ref={el => this.textElement = el as HTMLMaterialsTextFieldElement}
+          trailing-icon={this.trailingIcon}
+          dense={this.dense} 
+          label={this.label}
+          value={this.value.label} 
+          onInput={(ev: any) => this.execAutocomplete(ev)} onChange={(ev: Event) => {
+            ev.stopPropagation();
+            ev.preventDefault();
+            this.handleChange();
+          }}></materials-text-field>
+          {this.showSuggestions &&
+          <materials-list style={{'position': 'absolute','top': (this.textElement.getBoundingClientRect().bottom - this.textElement.getBoundingClientRect().top) + 'px'}}>
+            {Array.from(this.suggestions.keys()).map((key: string) => <materials-list-item onClick={() => this.selectSuggestion(key)}>{this.suggestions.get(key)}</materials-list-item>)}
+          </materials-list>}
+        </div>);
   }
 }
