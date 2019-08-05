@@ -46,6 +46,10 @@ export namespace Components {
     */
     'label': string;
     /**
+    * Limits the number of suggestions displayed in list
+    */
+    'maxSuggestions': number;
+    /**
     * Adds an icon at the end of the text field
     */
     'trailingIcon': string;
@@ -312,18 +316,9 @@ export namespace Components {
     'disableAcceptButton': boolean;
     'height': string;
     'isOpen': () => Promise<boolean>;
-    /**
-    * @deprecated since 1.1.0 : not used
-    */
     'items': string[];
     'open': () => Promise<void>;
-    /**
-    * @deprecated since 1.1.0 : dialog scroll automatically
-    */
     'scrollable': boolean;
-    /**
-    * @deprecated since 1.1.0 : use toggle() instead Open/Close dialog.
-    */
     'show': () => Promise<void>;
     'toggle': () => Promise<void>;
     'width': string;
@@ -1141,6 +1136,10 @@ declare namespace LocalJSX {
     */
     'label'?: string;
     /**
+    * Limits the number of suggestions displayed in list
+    */
+    'maxSuggestions'?: number;
+    /**
     * Change event emitted when value is selected
     */
     'onChange'?: (event: CustomEvent<{label?: string, value: string}>) => void;
@@ -1420,15 +1419,9 @@ declare namespace LocalJSX {
     'dialogTitle'?: string;
     'disableAcceptButton'?: boolean;
     'height'?: string;
-    /**
-    * @deprecated since 1.1.0 : not used
-    */
     'items'?: string[];
     'onAccept'?: (event: CustomEvent<any>) => void;
     'onCancel'?: (event: CustomEvent<any>) => void;
-    /**
-    * @deprecated since 1.1.0 : dialog scroll automatically
-    */
     'scrollable'?: boolean;
     'width'?: string;
   }

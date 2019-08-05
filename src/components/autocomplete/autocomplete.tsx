@@ -16,6 +16,7 @@ export class Autocomplete {
   * called during onInput of the text-field
   */
   @Prop() autocomplete: (search: string) => Promise<Map<string, string>>;
+
   /**
   * Value of the autocomplete text-field
   * composed by a label to be displayed in the text-field
@@ -23,18 +24,26 @@ export class Autocomplete {
   * if no label given, label = value
   */
   @Prop({mutable: true}) value: {label?: string, value: string};
+
   /**
   * Apply low density on the element
   */
   @Prop() dense = false;
+
   /**
    * Label of the autocomplete
    */
   @Prop() label: string;
+
   /**
    * Adds an icon at the end of the text field
    */
   @Prop() trailingIcon: string;
+
+  /**
+   * Limits the number of suggestions displayed in list
+   */
+  @Prop() maxSuggestions: number;
   
   /**
   * Change event emitted when value is selected
@@ -44,11 +53,14 @@ export class Autocomplete {
   @State() suggestions: Map<string, string>;
 
   @State() showSuggestions = false;
+
+  @State() selectedIndex = -1;
   
   private textElement: HTMLMaterialsTextFieldElement;
   
   componentDidLoad() {
     this.watchValue();
+    this.textElement.addEventListener('keydown', event => this.navigateSuggestions(event));
   }
 
   componentWillLoad() {
@@ -66,6 +78,46 @@ export class Autocomplete {
       }
     }
   }
+
+  navigateSuggestions(event: KeyboardEvent): any {
+    if (this.suggestions && this.suggestions.size > 0) {
+      let newIndex;
+      const suggestionKeys = Array.from(this.suggestions.keys());
+      switch (event.key) {
+        case 'ArrowDown':
+          newIndex = this.selectedIndex !== null ? this.selectedIndex + 1 : 0;
+          if (newIndex >= this.suggestions.size) {
+            newIndex = 0;
+          }
+          this.selectedIndex = newIndex;
+          break;
+        case 'ArrowUp':
+          newIndex = this.selectedIndex !== null ? this.selectedIndex - 1 : this.suggestions.size - 1;
+          if (newIndex < 0) {
+            newIndex = this.suggestions.size - 1;
+          }
+          this.selectedIndex = newIndex;
+          break;
+        case 'Enter':
+          // Select first value with enter if none selected
+          if (this.selectedIndex === null) {
+            this.selectedIndex = 0;
+          }
+          this.selectSuggestion(suggestionKeys[this.selectedIndex]);
+          this.change.emit(this.value);
+          this.clearSuggestions();
+          return;
+        default:
+          return;
+      }
+      event.preventDefault();
+    }
+  }
+
+  clearSuggestions() {
+    this.selectedIndex = -1;
+    this.suggestions = null;
+  }
   
   selectSuggestion(key: string) {
     this.showSuggestions = false;
@@ -76,7 +128,6 @@ export class Autocomplete {
       };
       this.value = {...newValue};
     }
-    this.change.emit(this.value);
   }
   
   execAutocomplete(event: any) {
@@ -102,7 +153,11 @@ export class Autocomplete {
           trailing-icon={this.trailingIcon}
           dense={this.dense} 
           label={this.label}
-          value={this.value.label} 
+          value={this.value.label}
+          onBlur={() => {
+            this.change.emit(this.value);
+            this.showSuggestions = false;
+          }} 
           onInput={(ev: any) => this.execAutocomplete(ev)} onChange={(ev: Event) => {
             ev.stopPropagation();
             ev.preventDefault();
@@ -110,7 +165,7 @@ export class Autocomplete {
           }}></materials-text-field>
           {this.showSuggestions &&
           <materials-list style={{'position': 'absolute','top': (this.textElement.getBoundingClientRect().bottom - this.textElement.getBoundingClientRect().top) + 'px'}}>
-            {Array.from(this.suggestions.keys()).map((key: string) => <materials-list-item onClick={() => this.selectSuggestion(key)}>{this.suggestions.get(key)}</materials-list-item>)}
+            {Array.from(this.suggestions.keys()).map((key: string, index: number) => index < this.maxSuggestions ? <materials-list-item selected={index === this.selectedIndex} onClick={() => this.selectSuggestion(key)}>{this.suggestions.get(key)}</materials-list-item> : null)}
           </materials-list>}
         </div>);
   }

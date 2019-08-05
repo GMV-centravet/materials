@@ -5,8 +5,7 @@
 materials-list {
     z-index: 1;
     background-color: #fff;
-    height: 80%;
     width: 100%;
-    overflow-y: scroll;
-    scrollbar-width: thin;
+    overflow-y: visible;
+    box-shadow: 0 2px 4px 0px #AAA;
 }
