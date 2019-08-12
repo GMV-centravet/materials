@@ -17,7 +17,10 @@ export class Dialog {
   dialogEl: any;
   bodyElement: HTMLElement;
   mdcDialog: MDCDialog;
+
+  /** Event emitted when acceptButton is clicked */
   @Event() accept: EventEmitter;
+  /** Event emitted when cancelButton is clicked */
   @Event() cancel: EventEmitter;
 
   /**
@@ -29,12 +32,19 @@ export class Dialog {
    */
   @Prop() items: string[] = [];
 
+  /** Set the witdth of the dialog screen */
   @Prop() width: string;
+  /** Set the height of the dialog screen */
   @Prop() height: string;
+  /** Set the title of the dialog */
   @Prop() dialogTitle = '';
+  /** Display a button which execute accept action */
   @Prop() acceptButton: string;
+  /** Display a button which execute cancel action */
   @Prop() cancelButton: string;
+  /** Display accept button as disabled */
   @Prop() disableAcceptButton: boolean;
+  /** Display a close button in the top right of the dialog */
   @Prop() closeButton: boolean;
 
   /** A list of this dialog actions */
@@ -84,21 +94,33 @@ export class Dialog {
     this.toggle();
   }
 
+  /**
+   * Open/close dialog
+   */
   @Method()
   async toggle() {
     this.mdcDialog.isOpen ? this.close() : this.open();
   }
 
+  /**
+   * Returns true if the dialog is open
+   */
   @Method()
   async isOpen(): Promise<boolean> {
     return this.mdcDialog.isOpen;
   }
 
+  /**
+   * Opens the dialog
+   */
   @Method()
   async open() {
     this.mdcDialog.open();
   }
 
+  /**
+   * CloseS the dialog
+   */
   @Method()
   async close() {
     this.mdcDialog.close();

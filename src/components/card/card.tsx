@@ -9,13 +9,19 @@ export class Card {
 
   @Element() host: HTMLElement;
 
+  /** Set Card width */
   @Prop() width = 'auto';
+  /** Set Card height */
   @Prop() height = 'auto';
+  /** Set Card max height */
   @Prop() maxHeight: string;
+  /** Set Card shadow elevation */
   @Prop() elevation = 1;
+  /** Set Card padding */
   @Prop() padding: number;
+  /** Set Card title */
   @Prop() cardTitle: string;
-
+  /** Function executed when click on card */
   @Prop() onAction: Function;
 
   @State() actionButtons: HTMLMaterialsCardActionElement[] = [];

@@ -5,12 +5,13 @@ import { Component, h } from '@stencil/core';
   shadow: false
 })
 export class CardContent {
+  
   cardContentEl: any;
+
   componentDidLoad() {
     this.cardContentEl.style.setProperty('padding', '16px 16px 16px 16px');
-
-    // this.cardContentEl.style.setProperty('padding-bottom','24px')
   }
+
   render() {
     return (
       <section ref={el => this.cardContentEl = el}>

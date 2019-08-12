@@ -16,10 +16,14 @@ export class Datatable {
 
   @Element() host: HTMLMaterialsDatatableElement;
 
+  /** Set the color scheme for the datatable */
   @Prop() color: 'primary' | 'secondary';
+  /** Apply low density on the element */
   @Prop() dense: boolean;
+  /** Apply odd style to the element  */
   @Prop() oddEvenStyle: boolean;
 
+  /** Emitted when datatable is sorted  */
   @Event() sort: EventEmitter<Sort>;
 
   componentDidLoad() {

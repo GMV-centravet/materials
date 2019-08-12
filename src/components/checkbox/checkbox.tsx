@@ -25,14 +25,16 @@ export class Checkbox {
   @Prop() disabled = false;
 
 
+  /** Make the checkbox appear indeterminate */
   @Prop() indeterminate = false;
 
-
+  /** Color of the checkbox */
   @Prop() color: 'primary' | 'accent' | 'secondary' | 'danger' | string = 'accent';
 
+  /** Checkbox name */
   @Prop() name: string;
 
-
+  /** Change event emitted when checkbox value changes */
   @Event() change: EventEmitter;
 
   private mdcCheckbox: MDCCheckbox;
