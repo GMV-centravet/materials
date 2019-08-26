@@ -1,9 +1,11 @@
 :host {
+
+  $mdc-dialog-max-width: 860px;
+
   @import "@material/dialog/mdc-dialog";
 
   @import "@material/typography/mdc-typography";
   @import "@material/button/mdc-button.scss";
-
 
   ::-webkit-scrollbar {
     background: transparent;
@@ -35,8 +37,6 @@
       position: absolute;
     }
   }
-
-
 
   .mdc-dialog__footer {
     slot[name="third-button"] {

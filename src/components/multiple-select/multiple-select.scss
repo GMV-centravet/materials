@@ -6,3 +6,8 @@
 materials-text-field {
     text-overflow: ellipsis;
 }
+
+.body-list {
+    display: flex;
+    flex-direction: row;
+}
