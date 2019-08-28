@@ -1,13 +1,12 @@
 :host {
     display: block;
-    cursor: pointer;
-}
-
-materials-text-field {
-    text-overflow: ellipsis;
-}
-
-.body-list {
-    display: flex;
-    flex-direction: row;
+    font-size: 1rem;
+    materials-text-field {
+        text-overflow: ellipsis;
+    }
+    
+    .body-list {
+        display: flex;
+        flex-direction: row;
+    }
 }

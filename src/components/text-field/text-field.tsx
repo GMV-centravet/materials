@@ -31,6 +31,7 @@ export class TextField {
   @Prop() outlined: boolean;
   @Prop() focused: boolean;
   @Prop() disabled: boolean;
+  @Prop() readonly: boolean;
   @Prop() leadingIcon: string;
   @Prop() trailingIcon: string;
   @Prop() label: string;
@@ -160,6 +161,7 @@ export class TextField {
             value={this.value}
             disabled={this.disabled}
             required={this.required}
+            readonly={this.readonly}
             name={this.name}
             ref={el => this.inputEl = el}
             onInput={(ev: any) => {

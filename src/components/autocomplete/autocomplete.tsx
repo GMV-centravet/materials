@@ -165,7 +165,12 @@ export class Autocomplete {
           }}></materials-text-field>
           {this.showSuggestions &&
           <materials-list style={{'position': 'absolute','top': (this.textElement.getBoundingClientRect().bottom - this.textElement.getBoundingClientRect().top) + 'px'}}>
-            {Array.from(this.suggestions.keys()).map((key: string, index: number) => index < this.maxSuggestions ? <materials-list-item selected={index === this.selectedIndex} onClick={() => this.selectSuggestion(key)}>{this.suggestions.get(key)}</materials-list-item> : null)}
+            {Array.from(this.suggestions.keys()).map((key: string, index: number) => index < this.maxSuggestions ? <materials-list-item selected={index === this.selectedIndex} onClick={() => {
+              this.selectSuggestion(key);
+              this.change.emit(this.value);
+              this.clearSuggestions();
+            }}
+            label={this.suggestions.get(key)}></materials-list-item> : null)}
           </materials-list>}
         </div>);
   }

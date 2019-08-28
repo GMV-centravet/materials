@@ -659,6 +659,7 @@ export namespace Components {
     'overflow': boolean;
     'pattern': string;
     'persistent': boolean;
+    'readonly': boolean;
     'required': boolean;
     'trailingIcon': string;
     'type': string;
@@ -1765,6 +1766,7 @@ declare namespace LocalJSX {
     'overflow'?: boolean;
     'pattern'?: string;
     'persistent'?: boolean;
+    'readonly'?: boolean;
     'required'?: boolean;
     'trailingIcon'?: string;
     'type'?: string;

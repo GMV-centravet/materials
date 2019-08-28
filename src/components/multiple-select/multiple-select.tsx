@@ -140,7 +140,8 @@ export class MaterialsMultipleSelect {
   render() {
     return ([
       <materials-text-field
-        disabled
+        focused={!!this.value && this.value.length > 0}
+        readonly
         label={this.label}
         overflow
         trailing-icon={this.trailingIcon}
