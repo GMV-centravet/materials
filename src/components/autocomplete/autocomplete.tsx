@@ -153,6 +153,7 @@ export class Autocomplete {
           trailing-icon={this.trailingIcon}
           dense={this.dense} 
           label={this.label}
+          focused={!!this.value.label}
           value={this.value.label}
           onBlur={() => {
             this.change.emit(this.value);
