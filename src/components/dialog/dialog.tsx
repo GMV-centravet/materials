@@ -141,7 +141,7 @@ export class Dialog {
           <div style={{ 'min-width': this.width + 'px', 'width': this.width + 'px' }} class="mdc-dialog__surface">
             {this.dialogTitle &&
               <h2 id="mdc-dialog-label" class="mdc-dialog__title">
-                {this.dialogTitle}
+                {this.dialogTitle}&nbsp;&nbsp;&nbsp;&nbsp;
                 {this.closeButton && <materials-icon-button class="close-btn" icon="close" onClick={() => this.close()} />}
               </h2>
             }

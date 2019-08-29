@@ -149,7 +149,16 @@ export namespace Components {
     */
     'value': string | number;
   }
-  interface MaterialsChip {}
+  interface MaterialsChip {
+    /**
+    * The chip background color, it can be either : - a predifined value : 'primary', 'secondary'. - an hexa color code : #225566, #CCC. - a css named color : red, blue.
+    */
+    'color': 'primary' | 'secondary' | string;
+    /**
+    * The chip text color, it can be either : - a predifined value : 'primary', 'secondary'. - an hexa color code : #225566, #CCC. - a css named color : red, blue.
+    */
+    'inkColor': 'primary' | 'secondary' | string;
+  }
   interface MaterialsDatatable {
     'color': 'primary' | 'secondary';
     'dense': boolean;
@@ -316,9 +325,18 @@ export namespace Components {
     'disableAcceptButton': boolean;
     'height': string;
     'isOpen': () => Promise<boolean>;
+    /**
+    * @deprecated since 1.1.0 : not used
+    */
     'items': string[];
     'open': () => Promise<void>;
+    /**
+    * @deprecated since 1.1.0 : dialog scroll automatically
+    */
     'scrollable': boolean;
+    /**
+    * @deprecated since 1.1.0 : use toggle() instead Open/Close dialog.
+    */
     'show': () => Promise<void>;
     'toggle': () => Promise<void>;
     'width': string;
@@ -501,6 +519,10 @@ export namespace Components {
     */
     'label': string;
     /**
+    * Display selectable elements on many columns according to the max number of elements per columns allowed
+    */
+    'maxElementsColumn': number;
+    /**
     * Map of options selectable in the dialog
     */
     'options': Map<string, string>;
@@ -637,6 +659,7 @@ export namespace Components {
     'overflow': boolean;
     'pattern': string;
     'persistent': boolean;
+    'readonly': boolean;
     'required': boolean;
     'trailingIcon': string;
     'type': string;
@@ -1244,7 +1267,16 @@ declare namespace LocalJSX {
     */
     'value'?: string | number;
   }
-  interface MaterialsChip extends JSXBase.HTMLAttributes<HTMLMaterialsChipElement> {}
+  interface MaterialsChip extends JSXBase.HTMLAttributes<HTMLMaterialsChipElement> {
+    /**
+    * The chip background color, it can be either : - a predifined value : 'primary', 'secondary'. - an hexa color code : #225566, #CCC. - a css named color : red, blue.
+    */
+    'color'?: 'primary' | 'secondary' | string;
+    /**
+    * The chip text color, it can be either : - a predifined value : 'primary', 'secondary'. - an hexa color code : #225566, #CCC. - a css named color : red, blue.
+    */
+    'inkColor'?: 'primary' | 'secondary' | string;
+  }
   interface MaterialsDatatable extends JSXBase.HTMLAttributes<HTMLMaterialsDatatableElement> {
     'color'?: 'primary' | 'secondary';
     'dense'?: boolean;
@@ -1419,9 +1451,15 @@ declare namespace LocalJSX {
     'dialogTitle'?: string;
     'disableAcceptButton'?: boolean;
     'height'?: string;
+    /**
+    * @deprecated since 1.1.0 : not used
+    */
     'items'?: string[];
     'onAccept'?: (event: CustomEvent<any>) => void;
     'onCancel'?: (event: CustomEvent<any>) => void;
+    /**
+    * @deprecated since 1.1.0 : dialog scroll automatically
+    */
     'scrollable'?: boolean;
     'width'?: string;
   }
@@ -1584,6 +1622,10 @@ declare namespace LocalJSX {
     */
     'label'?: string;
     /**
+    * Display selectable elements on many columns according to the max number of elements per columns allowed
+    */
+    'maxElementsColumn'?: number;
+    /**
     * Event dispatched when multi-select value changes
     */
     'onChange'?: (event: CustomEvent<any>) => void;
@@ -1724,6 +1766,7 @@ declare namespace LocalJSX {
     'overflow'?: boolean;
     'pattern'?: string;
     'persistent'?: boolean;
+    'readonly'?: boolean;
     'required'?: boolean;
     'trailingIcon'?: string;
     'type'?: string;

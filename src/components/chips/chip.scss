@@ -1,1 +1,18 @@
+$mdc-typography-styles-body2: (
+    font-size: 1rem
+);
+
 @import "@material/chips/mdc-chips";
+
+.mdc-chip.mdc-theme--secondary {
+    --mdc-theme-primary: var(--mdc-theme-secondary);
+    --mdc-theme-on-primary: var(--mdc-theme-on-secondary);
+}
+
+.mdc-chip--colored {
+    @include mdc-chip-fill-color(var(--mdc-theme-primary));
+}
+
+.mdc-chip--ink-colored {
+    @include mdc-chip-ink-color(on-primary);
+}

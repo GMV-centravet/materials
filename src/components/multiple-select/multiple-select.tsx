@@ -36,6 +36,11 @@ export class MaterialsMultipleSelect {
    * list of selected elements
    */
   @Prop({ mutable: true, reflectToAttr: true }) value: string[] = [];
+  /**
+   * Display selectable elements on many columns according to the max number of elements per columns allowed
+   */
+  @Prop() maxElementsColumn: number;
+
   @Element() host: HTMLElement;
 
   /**
@@ -45,13 +50,32 @@ export class MaterialsMultipleSelect {
 
   private multiSelectInput: HTMLMaterialsTextFieldElement;
   private multiSelectDialog: HTMLMaterialsDialogElement;
+  
+  private multiList: Map<number, string[]>;
 
   componentWillLoad() {
     if(!this.value) this.value = [];
+    this.computeMultiList();
   }
 
   componentWillUpdate() {
     if(!this.value) this.value = [];
+    this.computeMultiList();
+  }
+
+  computeMultiList() {
+    const nbList = this.maxElementsColumn ? (this.options.size / this.maxElementsColumn) + (this.options.size % this.maxElementsColumn) : 0;
+    if (nbList > 0) {
+      this.multiList = new Map();
+      const keys = Array.from(this.options.keys());
+      for (let i = 0; i < nbList; i++) {
+        const start = i * this.maxElementsColumn;
+        const end = (i + 1) * this.maxElementsColumn;
+        this.multiList.set(i, keys.slice(start, end < this.options.size ? end : this.options.size))
+      }
+    } else {
+      this.multiList = new Map().set(0, Array.from(this.options.keys()));
+    }
   }
 
   componentDidLoad() {
@@ -116,7 +140,8 @@ export class MaterialsMultipleSelect {
   render() {
     return ([
       <materials-text-field
-        disabled
+        focused={!!this.value && this.value.length > 0}
+        readonly
         label={this.label}
         overflow
         trailing-icon={this.trailingIcon}
@@ -129,12 +154,17 @@ export class MaterialsMultipleSelect {
         close-button
         onAccept={() => this.fillMultiSelectInput()}
         ref={el => this.multiSelectDialog = el as HTMLMaterialsDialogElement}>
-        <materials-list slot="body">
-          {this.options && Array.from(this.options.keys()).map(opt => {
-            return <materials-list-item-checkbox onChange={(event: CustomEvent) => this.toggleOption(event, opt)} checked={this.value && this.value.length > 0 && !!this.value.find(val => opt === val)} label={this.options.get(opt)} value={opt as string | number}></materials-list-item-checkbox>;
-          })
+        <div slot="body" class="body-list">
+          {
+            this.multiList && Array.from(this.multiList.keys()).map(optKeys => {
+              return <materials-list>
+                {this.multiList.get(optKeys).map(opt => {
+                  return <materials-list-item-checkbox onChange={(event: CustomEvent) => this.toggleOption(event, opt)} checked={this.value && this.value.length > 0 && !!this.value.find(val => opt === val)} label={this.options.get(opt)} value={opt as string | number}></materials-list-item-checkbox>;
+                })}
+              </materials-list>
+            })
           }
-        </materials-list>
+        </div>
       </materials-dialog>
     ]);
   }
