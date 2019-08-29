@@ -97,12 +97,33 @@ export namespace Components {
     'unelevated': boolean;
   }
   interface MaterialsCard {
+    /**
+    * Set Card title
+    */
     'cardTitle': string;
+    /**
+    * Set Card shadow elevation
+    */
     'elevation': number;
+    /**
+    * Set Card height
+    */
     'height': string;
+    /**
+    * Set Card max height
+    */
     'maxHeight': string;
+    /**
+    * Function executed when click on card
+    */
     'onAction': Function;
+    /**
+    * Set Card padding
+    */
     'padding': number;
+    /**
+    * Set Card width
+    */
     'width': string;
   }
   interface MaterialsCardAction {
@@ -133,16 +154,25 @@ export namespace Components {
     * Mark the checkbox as checked
     */
     'checked': boolean;
+    /**
+    * Color of the checkbox
+    */
     'color': 'primary' | 'accent' | 'secondary' | 'danger' | string;
     /**
     * Mark the checkbox as disabled
     */
     'disabled': boolean;
+    /**
+    * Make the checkbox appear indeterminate
+    */
     'indeterminate': boolean;
     /**
     * The checkbox label (Optionnal)
     */
     'label'?: string;
+    /**
+    * Checkbox name
+    */
     'name': string;
     /**
     * The checkbox value
@@ -160,8 +190,17 @@ export namespace Components {
     'inkColor': 'primary' | 'secondary' | string;
   }
   interface MaterialsDatatable {
+    /**
+    * Set the color scheme for the datatable
+    */
     'color': 'primary' | 'secondary';
+    /**
+    * Apply low density on the element
+    */
     'dense': boolean;
+    /**
+    * Apply odd style to the element
+    */
     'oddEvenStyle': boolean;
   }
   interface MaterialsDatatableAction {
@@ -296,19 +335,34 @@ export namespace Components {
   }
   interface MaterialsDatepicker {
     /**
-    * Utilisé pour mettre en surbrillance une période ex: Lundi au dimanche.
+    * Used to highlight a time period such as : from Monday to Sunday
     */
     'dateRange': { start: Date, end: Date };
     /**
-    * Le curseur de la date sélectionée. Sera positioné grace dateSelected.
+    * Used to display current selected date
     */
     'dateSelected': Date;
+    /**
+    * Display month picker on the element
+    */
     'monthPicker': boolean;
+    /**
+    * Display button to empty value of the element
+    */
     'nullable': boolean;
+    /**
+    * Display button for selecting today's date
+    */
     'todayPicker': boolean;
+    /**
+    * Display year picker on the element
+    */
     'yearPicker': boolean;
   }
   interface MaterialsDialog {
+    /**
+    * Display a button which execute accept action
+    */
     'acceptButton': string;
     /**
     * A list of this dialog actions
@@ -318,27 +372,48 @@ export namespace Components {
     * The dialog body, it can be an HTMLElement or plain text
     */
     'body': string | HTMLElement;
+    /**
+    * Display a button which execute cancel action
+    */
     'cancelButton': string;
+    /**
+    * CloseS the dialog
+    */
     'close': () => Promise<void>;
+    /**
+    * Display a close button in the top right of the dialog
+    */
     'closeButton': boolean;
+    /**
+    * Set the title of the dialog
+    */
     'dialogTitle': string;
+    /**
+    * Display accept button as disabled
+    */
     'disableAcceptButton': boolean;
+    /**
+    * Set the height of the dialog screen
+    */
     'height': string;
+    /**
+    * Returns true if the dialog is open
+    */
     'isOpen': () => Promise<boolean>;
-    /**
-    * @deprecated since 1.1.0 : not used
-    */
     'items': string[];
+    /**
+    * Opens the dialog
+    */
     'open': () => Promise<void>;
-    /**
-    * @deprecated since 1.1.0 : dialog scroll automatically
-    */
     'scrollable': boolean;
-    /**
-    * @deprecated since 1.1.0 : use toggle() instead Open/Close dialog.
-    */
     'show': () => Promise<void>;
+    /**
+    * Open/close dialog
+    */
     'toggle': () => Promise<void>;
+    /**
+    * Set the witdth of the dialog screen
+    */
     'width': string;
   }
   interface MaterialsDialogController {
@@ -348,11 +423,26 @@ export namespace Components {
     'create': (opts: DialogOpts) => Promise<HTMLMaterialsDialogElement>;
   }
   interface MaterialsDrawer {
+    /**
+    * Close the drawer
+    */
     'close': () => Promise<void>;
+    /**
+    * Apply dismissible style on the drawer
+    */
     'dismissible': boolean;
+    /**
+    * Set the drawer as a modal
+    */
     'modal': boolean;
+    /**
+    * Open the drawer
+    */
     'open': () => Promise<void>;
     'renderHtml': () => Promise<any[]>;
+    /**
+    * Open/close the drawer
+    */
     'toggle': () => Promise<void>;
   }
   interface MaterialsDrawerListItem {
@@ -1214,12 +1304,33 @@ declare namespace LocalJSX {
     'unelevated'?: boolean;
   }
   interface MaterialsCard extends JSXBase.HTMLAttributes<HTMLMaterialsCardElement> {
+    /**
+    * Set Card title
+    */
     'cardTitle'?: string;
+    /**
+    * Set Card shadow elevation
+    */
     'elevation'?: number;
+    /**
+    * Set Card height
+    */
     'height'?: string;
+    /**
+    * Set Card max height
+    */
     'maxHeight'?: string;
+    /**
+    * Function executed when click on card
+    */
     'onAction'?: Function;
+    /**
+    * Set Card padding
+    */
     'padding'?: number;
+    /**
+    * Set Card width
+    */
     'width'?: string;
   }
   interface MaterialsCardAction extends JSXBase.HTMLAttributes<HTMLMaterialsCardActionElement> {
@@ -1250,17 +1361,29 @@ declare namespace LocalJSX {
     * Mark the checkbox as checked
     */
     'checked'?: boolean;
+    /**
+    * Color of the checkbox
+    */
     'color'?: 'primary' | 'accent' | 'secondary' | 'danger' | string;
     /**
     * Mark the checkbox as disabled
     */
     'disabled'?: boolean;
+    /**
+    * Make the checkbox appear indeterminate
+    */
     'indeterminate'?: boolean;
     /**
     * The checkbox label (Optionnal)
     */
     'label'?: string;
+    /**
+    * Checkbox name
+    */
     'name'?: string;
+    /**
+    * Change event emitted when checkbox value changes
+    */
     'onChange'?: (event: CustomEvent<any>) => void;
     /**
     * The checkbox value
@@ -1278,9 +1401,21 @@ declare namespace LocalJSX {
     'inkColor'?: 'primary' | 'secondary' | string;
   }
   interface MaterialsDatatable extends JSXBase.HTMLAttributes<HTMLMaterialsDatatableElement> {
+    /**
+    * Set the color scheme for the datatable
+    */
     'color'?: 'primary' | 'secondary';
+    /**
+    * Apply low density on the element
+    */
     'dense'?: boolean;
+    /**
+    * Apply odd style to the element
+    */
     'oddEvenStyle'?: boolean;
+    /**
+    * Emitted when datatable is sorted
+    */
     'onSort'?: (event: CustomEvent<Sort>) => void;
   }
   interface MaterialsDatatableAction extends JSXBase.HTMLAttributes<HTMLMaterialsDatatableActionElement> {
@@ -1423,20 +1558,38 @@ declare namespace LocalJSX {
   }
   interface MaterialsDatepicker extends JSXBase.HTMLAttributes<HTMLMaterialsDatepickerElement> {
     /**
-    * Utilisé pour mettre en surbrillance une période ex: Lundi au dimanche.
+    * Used to highlight a time period such as : from Monday to Sunday
     */
     'dateRange'?: { start: Date, end: Date };
     /**
-    * Le curseur de la date sélectionée. Sera positioné grace dateSelected.
+    * Used to display current selected date
     */
     'dateSelected'?: Date;
+    /**
+    * Display month picker on the element
+    */
     'monthPicker'?: boolean;
+    /**
+    * Display button to empty value of the element
+    */
     'nullable'?: boolean;
+    /**
+    * Event emitted when new date is selected
+    */
     'onDateSelectedUpdate'?: (event: CustomEvent<Date>) => void;
+    /**
+    * Display button for selecting today's date
+    */
     'todayPicker'?: boolean;
+    /**
+    * Display year picker on the element
+    */
     'yearPicker'?: boolean;
   }
   interface MaterialsDialog extends JSXBase.HTMLAttributes<HTMLMaterialsDialogElement> {
+    /**
+    * Display a button which execute accept action
+    */
     'acceptButton'?: string;
     /**
     * A list of this dialog actions
@@ -1446,26 +1599,50 @@ declare namespace LocalJSX {
     * The dialog body, it can be an HTMLElement or plain text
     */
     'body'?: string | HTMLElement;
+    /**
+    * Display a button which execute cancel action
+    */
     'cancelButton'?: string;
+    /**
+    * Display a close button in the top right of the dialog
+    */
     'closeButton'?: boolean;
+    /**
+    * Set the title of the dialog
+    */
     'dialogTitle'?: string;
+    /**
+    * Display accept button as disabled
+    */
     'disableAcceptButton'?: boolean;
+    /**
+    * Set the height of the dialog screen
+    */
     'height'?: string;
-    /**
-    * @deprecated since 1.1.0 : not used
-    */
     'items'?: string[];
-    'onAccept'?: (event: CustomEvent<any>) => void;
-    'onCancel'?: (event: CustomEvent<any>) => void;
     /**
-    * @deprecated since 1.1.0 : dialog scroll automatically
+    * Event emitted when acceptButton is clicked
     */
+    'onAccept'?: (event: CustomEvent<any>) => void;
+    /**
+    * Event emitted when cancelButton is clicked
+    */
+    'onCancel'?: (event: CustomEvent<any>) => void;
     'scrollable'?: boolean;
+    /**
+    * Set the witdth of the dialog screen
+    */
     'width'?: string;
   }
   interface MaterialsDialogController extends JSXBase.HTMLAttributes<HTMLMaterialsDialogControllerElement> {}
   interface MaterialsDrawer extends JSXBase.HTMLAttributes<HTMLMaterialsDrawerElement> {
+    /**
+    * Apply dismissible style on the drawer
+    */
     'dismissible'?: boolean;
+    /**
+    * Set the drawer as a modal
+    */
     'modal'?: boolean;
   }
   interface MaterialsDrawerListItem extends JSXBase.HTMLAttributes<HTMLMaterialsDrawerListItemElement> {
