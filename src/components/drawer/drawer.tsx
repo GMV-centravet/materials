@@ -10,7 +10,9 @@ export class Drawer {
 
   @Element() host: HTMLMaterialsDrawerElement;
 
+  /** Apply dismissible style on the drawer */
   @Prop() dismissible: boolean;
+  /** Set the drawer as a modal */
   @Prop() modal: boolean;
 
   @State() topAppBar: HTMLMaterialsTopAppBarElement;
@@ -19,16 +21,21 @@ export class Drawer {
   @State() items: HTMLMaterialsDrawerListItemElement[];
 
 
+  /**
+   * Open/close the drawer
+   */
   @Method()
   async toggle() {
     this.mdcDrawer.open = !this.mdcDrawer.open;
   }
 
+  /** Open the drawer */
   @Method()
   async open() {
     this.mdcDrawer.open = true
   }
 
+  /** Close the drawer */
   @Method()
   async close() {
     this.mdcDrawer.open = false;

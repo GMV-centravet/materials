@@ -14,19 +14,24 @@ export class Datepicker {
 
   @State() currentMonth: Date = new Date(new Date().setHours(0, 0, 0, 0));
 
+  /** Display year picker on the element */
   @Prop() yearPicker = true;
+  /** Display month picker on the element */
   @Prop() monthPicker = true;
+  /** Display button for selecting today's date */
   @Prop() todayPicker = true;
+  /** Display button to empty value of the element */
   @Prop() nullable = false;
 
   /**
-   * Utilisé pour mettre en surbrillance une période ex: Lundi au dimanche.
+   * Used to highlight a time period such as : from Monday to Sunday
    */
   @Prop({ mutable: true }) dateRange: { start: Date, end: Date } = { start: new Date(), end: new Date() };
 
+  /** Event emitted when new date is selected */
   @Event() dateSelectedUpdate: EventEmitter<Date>;
   /**
-   * Le curseur de la date sélectionée. Sera positioné grace dateSelected.
+   * Used to display current selected date
    */
   @Prop({ mutable: true }) dateSelected: Date = new Date(new Date().setHours(0, 0, 0, 0));
 
@@ -164,7 +169,7 @@ export class Datepicker {
               title="Mois précédent"
               onClick={() => this.addMonth(-1)} />
             {capitalizeFirstLetter(this.currentMonth.toLocaleString('fr-fr', { month: 'long', year: this.yearPicker ? undefined : 'numeric' }))
-              /**Si yearPicker est a false ont met l'annee a cote du mois */}
+              /**If yearPicker false display year next to month */}
             <materials-icon-button
               dense
               icon="chevron_right"
