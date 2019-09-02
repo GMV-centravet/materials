@@ -7,14 +7,15 @@
 
 ## Properties
 
-| Property       | Attribute       | Description                               | Type                  | Default     |
-| -------------- | --------------- | ----------------------------------------- | --------------------- | ----------- |
-| `dense`        | `dense`         | Apply low density on the textfield        | `boolean`             | `undefined` |
-| `dialogTitle`  | `dialog-title`  | Title displayed in the dialog             | `string`              | `undefined` |
-| `label`        | `label`         | Label displayed for the multi-select      | `string`              | `undefined` |
-| `options`      | --              | Map of options selectable in the dialog   | `Map<string, string>` | `undefined` |
-| `trailingIcon` | `trailing-icon` | Adds an icon at the end of the text field | `string`              | `undefined` |
-| `value`        | --              | list of selected elements                 | `string[]`            | `[]`        |
+| Property            | Attribute             | Description                                                                                             | Type                  | Default     |
+| ------------------- | --------------------- | ------------------------------------------------------------------------------------------------------- | --------------------- | ----------- |
+| `dense`             | `dense`               | Apply low density on the textfield                                                                      | `boolean`             | `undefined` |
+| `dialogTitle`       | `dialog-title`        | Title displayed in the dialog                                                                           | `string`              | `undefined` |
+| `label`             | `label`               | Label displayed for the multi-select                                                                    | `string`              | `undefined` |
+| `maxElementsColumn` | `max-elements-column` | Display selectable elements on many columns according to the max number of elements per columns allowed | `number`              | `undefined` |
+| `options`           | --                    | Map of options selectable in the dialog                                                                 | `Map<string, string>` | `undefined` |
+| `trailingIcon`      | `trailing-icon`       | Adds an icon at the end of the text field                                                               | `string`              | `undefined` |
+| `value`             | --                    | list of selected elements                                                                               | `string[]`            | `[]`        |
 
 
 ## Events

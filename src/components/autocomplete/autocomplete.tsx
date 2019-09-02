@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, h, Prop, State, Watch } from '@stencil/core';
+import { Component, Event, EventEmitter, Host, h, Prop, State, Watch } from '@stencil/core';
 /**
 * Class that represent an autocomplete element
 * composed by a textfield
@@ -147,18 +147,17 @@ export class Autocomplete {
   
   render() {
     return (
-      <div style={{'position': 'relative'}}> 
+      <Host style={{'position': 'relative'}} onBlur={() => {
+        this.change.emit(this.value);
+        this.showSuggestions = false;
+      }}> 
         <materials-text-field
           ref={el => this.textElement = el as HTMLMaterialsTextFieldElement}
           trailing-icon={this.trailingIcon}
           dense={this.dense} 
           label={this.label}
           focused={!!this.value.label}
-          value={this.value.label}
-          onBlur={() => {
-            this.change.emit(this.value);
-            this.showSuggestions = false;
-          }} 
+          value={this.value.label} 
           onInput={(ev: any) => this.execAutocomplete(ev)} onChange={(ev: Event) => {
             ev.stopPropagation();
             ev.preventDefault();
@@ -166,13 +165,14 @@ export class Autocomplete {
           }}></materials-text-field>
           {this.showSuggestions &&
           <materials-list style={{'position': 'absolute','top': (this.textElement.getBoundingClientRect().bottom - this.textElement.getBoundingClientRect().top) + 'px'}}>
-            {Array.from(this.suggestions.keys()).map((key: string, index: number) => index < this.maxSuggestions ? <materials-list-item selected={index === this.selectedIndex} onClick={() => {
-              this.selectSuggestion(key);
-              this.change.emit(this.value);
-              this.clearSuggestions();
+            {Array.from(this.suggestions.keys()).map((key: string, index: number) => index < this.maxSuggestions ? 
+              <materials-list-item selected={index === this.selectedIndex} onClick={() => {
+                this.selectSuggestion(key);
+                this.change.emit(this.value);
+                this.clearSuggestions();
             }}
             label={this.suggestions.get(key)}></materials-list-item> : null)}
           </materials-list>}
-        </div>);
+        </Host>);
   }
 }

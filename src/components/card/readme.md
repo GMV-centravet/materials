@@ -7,15 +7,15 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type       | Default     |
-| ----------- | ------------ | ----------- | ---------- | ----------- |
-| `cardTitle` | `card-title` |             | `string`   | `undefined` |
-| `elevation` | `elevation`  |             | `number`   | `1`         |
-| `height`    | `height`     |             | `string`   | `'auto'`    |
-| `maxHeight` | `max-height` |             | `string`   | `undefined` |
-| `onAction`  | --           |             | `Function` | `undefined` |
-| `padding`   | `padding`    |             | `number`   | `undefined` |
-| `width`     | `width`      |             | `string`   | `'auto'`    |
+| Property    | Attribute    | Description                          | Type       | Default     |
+| ----------- | ------------ | ------------------------------------ | ---------- | ----------- |
+| `cardTitle` | `card-title` | Set Card title                       | `string`   | `undefined` |
+| `elevation` | `elevation`  | Set Card shadow elevation            | `number`   | `1`         |
+| `height`    | `height`     | Set Card height                      | `string`   | `'auto'`    |
+| `maxHeight` | `max-height` | Set Card max height                  | `string`   | `undefined` |
+| `onAction`  | --           | Function executed when click on card | `Function` | `undefined` |
+| `padding`   | `padding`    | Set Card padding                     | `number`   | `undefined` |
+| `width`     | `width`      | Set Card width                       | `string`   | `'auto'`    |
 
 
 ## Dependencies
