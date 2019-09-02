@@ -70,7 +70,6 @@ Type: `Promise<void>`
 
 ### Used by
 
- - [materials-autocomplete](../autocomplete)
  - [materials-date-field](../date-field)
  - [materials-dropdown](../dropdown)
  - [materials-time-field](../time-field)
@@ -78,7 +77,6 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
-  materials-autocomplete --> materials-menu
   materials-date-field --> materials-menu
   materials-dropdown --> materials-menu
   materials-time-field --> materials-menu

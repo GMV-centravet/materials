@@ -17,11 +17,13 @@
 
 ### Used by
 
+ - [materials-autocomplete](../autocomplete)
  - [materials-multiple-select](../multiple-select)
 
 ### Graph
 ```mermaid
 graph TD;
+  materials-autocomplete --> materials-list
   materials-multiple-select --> materials-list
   style materials-list fill:#f9f,stroke:#333,stroke-width:4px
 ```

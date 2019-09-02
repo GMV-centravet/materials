@@ -23,6 +23,7 @@
 | `overflow`         | `overflow`          |                                                      | `boolean`               | `undefined` |
 | `pattern`          | `pattern`           |                                                      | `string`                | `undefined` |
 | `persistent`       | `persistent`        |                                                      | `boolean`               | `undefined` |
+| `readonly`         | `readonly`          |                                                      | `boolean`               | `undefined` |
 | `required`         | `required`          |                                                      | `boolean`               | `undefined` |
 | `trailingIcon`     | `trailing-icon`     |                                                      | `string`                | `undefined` |
 | `type`             | `type`              |                                                      | `string`                | `'text'`    |
