@@ -21,7 +21,7 @@ export class DatatableFooter {
   render() {
     return (
       <div class="container">
-        {this.actions ? this.actions.map(a => {
+        {this.actions && this.actions.length > 0 ? this.actions.map(a => {
           return a.display && <materials-button raised color={a.color} icon={a.icon} onClick={(e) => a.press(e)}>{a.label}</materials-button>;
         })
         :
