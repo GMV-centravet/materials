@@ -1,5 +1,5 @@
 import { MDCRipple } from '@material/ripple';
-import { Component, Element, h, Prop } from '@stencil/core';
+import { Component, Element, h, Prop,Host, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'materials-list-item',
@@ -8,8 +8,19 @@ import { Component, Element, h, Prop } from '@stencil/core';
 })
 export class ListItem {
   @Prop() role: string;
+  /**
+   * Mark this item as disabled.
+   */
   @Prop() disabled: boolean = false;
-  @Prop({ reflectToAttr: true }) selected: boolean; // reflectToAttr necessaire pour le scrollAuto du timepicker.
+
+  /**
+   * Mark this item as selected.
+   */
+  @Prop({ reflectToAttr: true,mutable:true }) selected: boolean; 
+  /**
+   * make the item selectable
+   */
+  @Prop() selectable = false;  
   @Prop() divider: boolean = false;
   @Prop() itemStartStyle: any;
   @Prop() itemEndStyle: any;
@@ -18,6 +29,7 @@ export class ListItem {
    * Prefere le label au <slot /> pour beneficier du textWrap.
    */
   @Prop() label: any;
+
   /**
    * Coupe le text par defaut.
    */
@@ -27,7 +39,13 @@ export class ListItem {
    * override la height par defaut du composant list-item.
    */
   @Prop() size: 'medium' | 'small';
+
   @Element() host: HTMLElement;
+
+  /**
+   * click of list-item handler 
+   */
+  @Event() itemSelected :EventEmitter<void>;
 
   componentDidLoad() {
     const itemStart = this.host.shadowRoot.querySelector('.mdc-list-item__graphic');
@@ -64,8 +82,17 @@ export class ListItem {
 
     return css;
   }
+
+  handleClick() {
+    if(this.selectable){
+      this.selected = !this.selected;
+      this.itemSelected.emit();
+    }
+  }
+
   render() {
     return (
+      <Host onClick={()=>this.handleClick()}>
       <li class={this.getClasses()}
         style={this.setHeight()}
         role={this.role}
@@ -80,6 +107,7 @@ export class ListItem {
           <slot name="item-end"></slot>
         </div>
       </li>
+      </Host>
     );
   }
 }
