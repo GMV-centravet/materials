@@ -1,5 +1,5 @@
 import { MDCRipple } from '@material/ripple';
-import { Component, Element, h, Prop } from '@stencil/core';
+import { Component, Element, h, Prop,Host, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'materials-list-item',
@@ -9,7 +9,8 @@ import { Component, Element, h, Prop } from '@stencil/core';
 export class ListItem {
   @Prop() role: string;
   @Prop() disabled: boolean = false;
-  @Prop({ reflectToAttr: true }) selected: boolean; // reflectToAttr necessaire pour le scrollAuto du timepicker.
+  @Prop({ reflectToAttr: true,mutable:true }) selected: boolean; // reflectToAttr necessaire pour le scrollAuto du timepicker.
+  @Prop() selectable = false; // make the item selectable
   @Prop() divider: boolean = false;
   @Prop() itemStartStyle: any;
   @Prop() itemEndStyle: any;
@@ -28,6 +29,11 @@ export class ListItem {
    */
   @Prop() size: 'medium' | 'small';
   @Element() host: HTMLElement;
+
+  /**
+   * click of list-item handler 
+   */
+  @Event() itemSelected :EventEmitter<void>;
 
   componentDidLoad() {
     const itemStart = this.host.shadowRoot.querySelector('.mdc-list-item__graphic');
@@ -64,8 +70,17 @@ export class ListItem {
 
     return css;
   }
+
+  handleClick() {
+    if(this.selectable){
+      this.selected = !this.selected;
+      this.itemSelected.emit();
+    }
+  }
+
   render() {
     return (
+      <Host onClick={()=>this.handleClick()}>
       <li class={this.getClasses()}
         style={this.setHeight()}
         role={this.role}
@@ -80,6 +95,7 @@ export class ListItem {
           <slot name="item-end"></slot>
         </div>
       </li>
+      </Host>
     );
   }
 }
