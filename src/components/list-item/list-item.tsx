@@ -8,10 +8,13 @@ import { Component, Element, h, Prop,Host, Event, EventEmitter } from '@stencil/
 })
 export class ListItem {
   @Prop() role: string;
+  /**
+   * Mark this item as disabled.
+   */
   @Prop() disabled: boolean = false;
 
   /**
-   * reflectToAttr necessaire pour le scrollAuto du timepicker.
+   * Mark this item as selected.
    */
   @Prop({ reflectToAttr: true,mutable:true }) selected: boolean; 
   /**
@@ -26,6 +29,7 @@ export class ListItem {
    * Prefere le label au <slot /> pour beneficier du textWrap.
    */
   @Prop() label: any;
+
   /**
    * Coupe le text par defaut.
    */
@@ -35,6 +39,7 @@ export class ListItem {
    * override la height par defaut du composant list-item.
    */
   @Prop() size: 'medium' | 'small';
+
   @Element() host: HTMLElement;
 
   /**
