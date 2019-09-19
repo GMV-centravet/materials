@@ -9,8 +9,15 @@ import { Component, Element, h, Prop,Host, Event, EventEmitter } from '@stencil/
 export class ListItem {
   @Prop() role: string;
   @Prop() disabled: boolean = false;
-  @Prop({ reflectToAttr: true,mutable:true }) selected: boolean; // reflectToAttr necessaire pour le scrollAuto du timepicker.
-  @Prop() selectable = false; // make the item selectable
+
+  /**
+   * reflectToAttr necessaire pour le scrollAuto du timepicker.
+   */
+  @Prop({ reflectToAttr: true,mutable:true }) selected: boolean; 
+  /**
+   * make the item selectable
+   */
+  @Prop() selectable = false;  
   @Prop() divider: boolean = false;
   @Prop() itemStartStyle: any;
   @Prop() itemEndStyle: any;
