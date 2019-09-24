@@ -502,9 +502,22 @@ export namespace Components {
     'type': 'accordion' | 'expandable' | 'popout';
   }
   interface MaterialsFab {
+    /**
+    * Optional, animates the FAB out of view.  When set to false, the FAB will return to view.
+    */
+    'hidden': boolean;
+    /**
+    * Optionnal, an icon name from the material icons set
+    */
     'icon': string;
-    'name': string;
-    'radius': number;
+    /**
+    * Optionnal, a text label  If provided, it will render as an extended FAB
+    */
+    'label': string;
+    /**
+    * Optional, specifies the FAB size
+    */
+    'size': 'medium' | 'small';
   }
   interface MaterialsFormField {
     'alignEnd': boolean;
@@ -565,6 +578,9 @@ export namespace Components {
     'size': HTMLMaterialsListItemElement["size"];
   }
   interface MaterialsListItem {
+    /**
+    * Mark this item as disabled.
+    */
     'disabled': boolean;
     'divider': boolean;
     'itemEndStyle': any;
@@ -575,7 +591,13 @@ export namespace Components {
     'label': any;
     'noPadding': boolean;
     'role': string;
+    /**
+    * make the item selectable
+    */
     'selectable': boolean;
+    /**
+    * Mark this item as selected.
+    */
     'selected': boolean;
     /**
     * override la height par defaut du composant list-item.
@@ -1717,9 +1739,22 @@ declare namespace LocalJSX {
     'type'?: 'accordion' | 'expandable' | 'popout';
   }
   interface MaterialsFab extends JSXBase.HTMLAttributes<HTMLMaterialsFabElement> {
+    /**
+    * Optional, animates the FAB out of view.  When set to false, the FAB will return to view.
+    */
+    'hidden'?: boolean;
+    /**
+    * Optionnal, an icon name from the material icons set
+    */
     'icon'?: string;
-    'name'?: string;
-    'radius'?: number;
+    /**
+    * Optionnal, a text label  If provided, it will render as an extended FAB
+    */
+    'label'?: string;
+    /**
+    * Optional, specifies the FAB size
+    */
+    'size'?: 'medium' | 'small';
   }
   interface MaterialsFormField extends JSXBase.HTMLAttributes<HTMLMaterialsFormFieldElement> {
     'alignEnd'?: boolean;
@@ -1777,6 +1812,9 @@ declare namespace LocalJSX {
     'size'?: HTMLMaterialsListItemElement["size"];
   }
   interface MaterialsListItem extends JSXBase.HTMLAttributes<HTMLMaterialsListItemElement> {
+    /**
+    * Mark this item as disabled.
+    */
     'disabled'?: boolean;
     'divider'?: boolean;
     'itemEndStyle'?: any;
@@ -1791,7 +1829,13 @@ declare namespace LocalJSX {
     */
     'onItemSelected'?: (event: CustomEvent<void>) => void;
     'role'?: string;
+    /**
+    * make the item selectable
+    */
     'selectable'?: boolean;
+    /**
+    * Mark this item as selected.
+    */
     'selected'?: boolean;
     /**
     * override la height par defaut du composant list-item.
