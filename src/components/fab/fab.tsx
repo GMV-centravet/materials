@@ -36,7 +36,7 @@ export class Fab {
 
   componentWillLoad() {
     if (!this.icon && !this.label) {
-      throw 'You should define at least a label or an icon';
+      throw '[materials][FAB] You should define at least a label or an icon';
     }
   }
 
