@@ -7,7 +7,7 @@ import { Component, Element, h, Prop } from '@stencil/core';
 })
 export class DatatableFooter {
 
-
+  /** Set the color of the action buttons of the footer */
   @Prop() color: 'primary' | 'secondary';
 
   @Element() host: HTMLMaterialsDatatableFooterElement;

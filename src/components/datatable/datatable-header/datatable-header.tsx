@@ -7,10 +7,14 @@ import { Component, Event, EventEmitter, h, Prop, Watch } from '@stencil/core';
 })
 export class DatatableHeader {
 
+  /** Render checkbox that select all datable content if checked */
   @Prop() selectable: boolean;
+  /** Mark header checkbox as selected */
   @Prop({ mutable: true }) selected: boolean;
+  /** Set the background color of the header also used for select checkbox */
   @Prop() color: 'primary' | 'secondary';
 
+  /** Event emitted when header checkbox is selected */
   @Event() selectAll: EventEmitter<boolean>;
 
   @Watch('selected')

@@ -11,14 +11,22 @@ export class DatatableHeaderColumn {
 
   @Element() host: HTMLElement;
 
+  /** The header column label */
   @Prop() label: string;
+  /** The header column value used for sorting */
   @Prop() value: string;
+  /** The header column description */
   @Prop() description: string;
+  /** Set the header column as sortable */
   @Prop() sortable: boolean;
+  /** Mark the header column as sorted */
   @Prop({ mutable: true }) sorted: boolean;
+  /** Apply align on column */
   @Prop() align: 'start' | 'end' | 'center' = 'start';
+  /** The header column width */
   @Prop() width: string;
 
+  /** Event emitted when sort button is clicked */
   @Event() sort: EventEmitter<Sort>;
 
   @State() direction: SortDirection = SortDirection.ASC;

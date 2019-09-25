@@ -12,10 +12,15 @@ export class DrawerWithTopAppBar {
 
   @Element() host: HTMLMaterialsDrawerWithTopAppBarElement;
 
+  /** The drawer type */
   @Prop() drawerType: 'modal' | 'fullHeight' | 'below' = 'fullHeight';
+  /** The app bar type */
   @Prop() appBarType: 'fixed' | 'prominent' | 'short' | 'short-closed' | 'standard' = 'standard';
+  /** Apply low density on the app bar */
   @Prop() appBarDense: boolean;
+  /** The title of the app bar */
   @Prop() appBarTitle: string;
+  /** Set the app bar as open */
   @Prop() open: boolean;
 
 

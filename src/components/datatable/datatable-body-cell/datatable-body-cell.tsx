@@ -7,8 +7,10 @@ import { Component, h, Host, Prop } from '@stencil/core';
 })
 export class DatatableBodyCell {
 
+  /** Width of the datatable body cell */
   @Prop() width: string;
 
+  /** Align content of the cell */
   @Prop() align: 'start' | 'end' | 'center' = 'start';
 
   render() {

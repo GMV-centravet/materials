@@ -9,14 +9,19 @@ export class DatatableBodyRow {
 
   @Element() host: HTMLElement;
 
+  /** Set the row as selectable and adds a checkbox at start of row */
   @Prop() selectable: boolean;
+  /** Apply low density on the row */
   @Prop() dense: boolean;
+  /** Mark the row as selected */
   @Prop({ mutable: true }) selected = false;
+  /** Set the row as expandable and adds an icon button to expand content */
   @Prop() expendable: boolean;
+  /** Mark the row as expanded */
   @Prop({ mutable: true }) expended: boolean;
-
+  /** Event emitted when row is selected by its checkbox */
   @Event() selectRow: EventEmitter<boolean>;
-
+  /** Event emitted when expand button is clicked */
   @Event() expand: EventEmitter<boolean>;
 
   @Watch('selected')

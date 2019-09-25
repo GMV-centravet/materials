@@ -15,12 +15,19 @@ export class Dropdown {
   private materialsMenuEl: HTMLMaterialsMenuElement;
   private buttonEl: HTMLMaterialsButtonElement;
 
+  /** The dropdown title */
   @Prop() menuTitle: string;
+  /** Position of the menu */
   @Prop() menuPosition: 'TOP_LEFT' | 'TOP_RIGHT' | 'BOTTOM_LEFT' | 'BOTTOM_RIGHT' | 'TOP_START' | 'TOP_END' | 'BOTTOM_START' | 'BOTTOM_END';
+  /** Icon for opening the menu */
   @Prop() icon: string;
+  /** Display onnly icon button for menu and not its title */
   @Prop() iconOnly: boolean;
+  /** Color of the menu button */
   @Prop() color: string;
+  /** The type of the menu icon button */
   @Prop() buttonType: string;
+  /** Helper of the icon button */
   @Prop() iconHelper: string;
 
   componentDidLoad() {
