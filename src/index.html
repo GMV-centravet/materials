@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <title>Stencil Component Starter</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+    <title>Stencil Component Starter</title>
 
-  <script type="module" src="/build/materials.esm.js"></script>
-  <script nomodule src="/build/materials.js"></script>
+    <script type="module" src="/build/materials.esm.js"></script>
+    <script nomodule src="/build/materials.js"></script>
+  </head>
 
-</head>
-
-<body>
-</body>
+  <body>
+    <materials-text-field  trailing-icon='clear' title="Tester l'url du site">toto</materials-text-field>
+    <materials-text-field  leading-icon='trash' title="Tester l'url du site">tata</materials-text-field>
+    <materials-text-field  leading-icon='trash' trailing-icon='yeah' title="Tester l'url du site">tato</materials-text-field>
+  </body>
+  <script>
+    (function () {
+      const toto = document.querySelector('materials-text-field');
+      toto.trailingIconAction = () => {
+        console.log('toto');
+      }
+      toto.leadingIconAction = () => {
+        console.log('tata');
+      }
+    })();
+  </script>
 
 </html>

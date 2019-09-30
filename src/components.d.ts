@@ -787,6 +787,7 @@ export namespace Components {
     'isValid': () => Promise<boolean>;
     'label': string;
     'leadingIcon': string;
+    'leadingIconAction': Function;
     'name': string;
     'outlined': boolean;
     'overflow': boolean;
@@ -795,6 +796,7 @@ export namespace Components {
     'readonly': boolean;
     'required': boolean;
     'trailingIcon': string;
+    'trailingIconAction': Function;
     'type': string;
     'value': any;
     'width': number;
@@ -2023,6 +2025,7 @@ declare namespace LocalJSX {
     'hideNativeClear'?: boolean;
     'label'?: string;
     'leadingIcon'?: string;
+    'leadingIconAction'?: Function;
     'name'?: string;
     'onChange'?: (event: CustomEvent<any>) => void;
     'onInput'?: (event: CustomEvent<any>) => void;
@@ -2033,6 +2036,7 @@ declare namespace LocalJSX {
     'readonly'?: boolean;
     'required'?: boolean;
     'trailingIcon'?: string;
+    'trailingIconAction'?: Function;
     'type'?: string;
     'value'?: any;
     'width'?: number;
