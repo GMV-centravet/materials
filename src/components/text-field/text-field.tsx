@@ -1,7 +1,7 @@
 import { MDCFloatingLabel } from '@material/floating-label';
 import { MDCLineRipple } from '@material/line-ripple';
 import { MDCNotchedOutline } from '@material/notched-outline';
-import { MDCTextField } from '@material/textfield';
+import { MDCTextField, MDCTextFieldIcon } from '@material/textfield';
 import { MDCTextFieldHelperText } from '@material/textfield/helper-text';
 import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 
@@ -33,7 +33,9 @@ export class TextField {
   @Prop() disabled: boolean;
   @Prop() readonly: boolean;
   @Prop() leadingIcon: string;
+  @Prop() leadingIconAction: Function;
   @Prop() trailingIcon: string;
+  @Prop() trailingIconAction: Function;
   @Prop() label: string;
   @Prop() name: string;
 
@@ -86,6 +88,12 @@ export class TextField {
       MDCNotchedOutline.attachTo(this.notchedOutlineEl);
     } else {
       MDCLineRipple.attachTo(this.lineRippleEl);
+    }
+    if (this.leadingIcon && this.leadingIconAction) {
+      MDCTextFieldIcon.attachTo(this.host.shadowRoot.querySelector('.materials-leading-icon'));
+    }
+    if (this.trailingIcon && this.trailingIconAction) {
+      MDCTextFieldIcon.attachTo(this.host.shadowRoot.querySelector('.materials-trailing-icon'));
     }
   }
 
@@ -144,15 +152,26 @@ export class TextField {
     this.mdcTextFieldHelperText.foundation.setValidation(false);
     this.realHelperText = this.helperText;
   }
+  
+  async handleLeadingIconClick() {
+    if (this.leadingIconAction) {
+      this.leadingIconAction();
+    }
+  }
 
+  async handleTrailingIconClick() {
+    if (this.trailingIconAction) {
+      this.trailingIconAction();
+    }
+  }
 
   render() {
     return (
       <Host class={{ 'materials-text-field--dense': this.dense }}>
         <div style={{ 'width': this.width ? (this.width + 'px') : '100%' }} class={this.getClasses()} ref={mdcTextField => this.textFieldEl = mdcTextField}>
-          {(() => {
-            return this.leadingIcon ? (<i class="material-icons mdc-text-field__icon" tabindex="0" role="button">{this.leadingIcon}</i>) : '';
-          })()}
+          {this.leadingIcon &&
+            <i class="materials-leading-icon material-icons mdc-text-field__icon" onClick={() => this.handleLeadingIconClick()} tabindex="0" role="button">{this.leadingIcon}</i>
+          }
           <input
             id="my-text-field"
             class={{ 'mdc-text-field__input': true, 'hide-native-clear': this.hideNativeClear, 'mdc-text-field--overflow-elipsis': this.overflow }}
@@ -170,7 +189,9 @@ export class TextField {
             }}
             onChange={(ev: any) => this.change.emit(ev)}
           />
-          {this.trailingIcon && (<i class="material-icons mdc-text-field__icon" tabindex="0" role="button">{this.trailingIcon}</i>)}
+          {this.trailingIcon &&
+            <i onClick={()=>this.handleTrailingIconClick()} class="materials-trailing-icon material-icons mdc-text-field__icon" tabindex="0" role="button">{this.trailingIcon}</i>
+          }
           {this.outlined ?
             <div class="mdc-notched-outline" ref={notchedOutlineEl => this.notchedOutlineEl = notchedOutlineEl}>
               <div class="mdc-notched-outline__leading"></div>
