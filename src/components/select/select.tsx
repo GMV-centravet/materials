@@ -155,7 +155,7 @@ export class Select {
   }
 
   private destroyMdc() {
-    this.mdcSelect.destroy();
+    if (this.mdcSelect) this.mdcSelect.destroy();
     if (this.mdcNotchedOutline) {
       this.mdcNotchedOutline.destroy();
     }
@@ -176,7 +176,7 @@ export class Select {
           ref={el => this.selectTagEl = el}
           required={this.required}>
           {this.defaultEmpty && <option value="" selected={!this.value} disabled={this.required}>&nbsp;</option>}
-          {this.options && Array.from(this.options.keys()).map(optionValue => <option value={optionValue.toString()} selected={optionValue.toString() === this.value.toString()}>{this.options.get(optionValue)}</option>)}
+          {this.options && Array.from(this.options.keys()).map(optionValue => <option value={optionValue.toString()} selected={this.value ? optionValue.toString() === this.value.toString() : false}>{this.options.get(optionValue)}</option>)}
           <slot />
         </select>
 
