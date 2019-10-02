@@ -400,12 +400,21 @@ export namespace Components {
     * Returns true if the dialog is open
     */
     'isOpen': () => Promise<boolean>;
+    /**
+    * @deprecated since 1.1.0 : not used
+    */
     'items': string[];
     /**
     * Opens the dialog
     */
     'open': () => Promise<void>;
+    /**
+    * @deprecated since 1.1.0 : dialog scroll automatically
+    */
     'scrollable': boolean;
+    /**
+    * @deprecated since 1.1.0 : use toggle() instead Open/Close dialog.
+    */
     'show': () => Promise<void>;
     /**
     * Open/close dialog
@@ -563,6 +572,9 @@ export namespace Components {
     * Optional, make a list selectable
     */
     'selectable': boolean;
+    /**
+    * @deprecated use dense instead
+    */
     'size': HTMLMaterialsListItemElement["size"];
   }
   interface MaterialsListItem {
@@ -775,7 +787,6 @@ export namespace Components {
     'isValid': () => Promise<boolean>;
     'label': string;
     'leadingIcon': string;
-    'leadingIconAction': Function;
     'name': string;
     'outlined': boolean;
     'overflow': boolean;
@@ -784,7 +795,6 @@ export namespace Components {
     'readonly': boolean;
     'required': boolean;
     'trailingIcon': string;
-    'trailingIconAction': Function;
     'type': string;
     'value': any;
     'width': number;
@@ -1652,6 +1662,9 @@ declare namespace LocalJSX {
     * Set the height of the dialog screen
     */
     'height'?: string;
+    /**
+    * @deprecated since 1.1.0 : not used
+    */
     'items'?: string[];
     /**
     * Event emitted when acceptButton is clicked
@@ -1661,6 +1674,9 @@ declare namespace LocalJSX {
     * Event emitted when cancelButton is clicked
     */
     'onCancel'?: (event: CustomEvent<any>) => void;
+    /**
+    * @deprecated since 1.1.0 : dialog scroll automatically
+    */
     'scrollable'?: boolean;
     /**
     * Set the witdth of the dialog screen
@@ -1790,6 +1806,9 @@ declare namespace LocalJSX {
     * Optional, make a list selectable
     */
     'selectable'?: boolean;
+    /**
+    * @deprecated use dense instead
+    */
     'size'?: HTMLMaterialsListItemElement["size"];
   }
   interface MaterialsListItem extends JSXBase.HTMLAttributes<HTMLMaterialsListItemElement> {
@@ -2004,10 +2023,11 @@ declare namespace LocalJSX {
     'hideNativeClear'?: boolean;
     'label'?: string;
     'leadingIcon'?: string;
-    'leadingIconAction'?: Function;
     'name'?: string;
     'onChange'?: (event: CustomEvent<any>) => void;
     'onInput'?: (event: CustomEvent<any>) => void;
+    'onLeadingIconPress'?: (event: CustomEvent<any>) => void;
+    'onTrailingIconPress'?: (event: CustomEvent<any>) => void;
     'outlined'?: boolean;
     'overflow'?: boolean;
     'pattern'?: string;
@@ -2015,7 +2035,6 @@ declare namespace LocalJSX {
     'readonly'?: boolean;
     'required'?: boolean;
     'trailingIcon'?: string;
-    'trailingIconAction'?: Function;
     'type'?: string;
     'value'?: any;
     'width'?: number;
