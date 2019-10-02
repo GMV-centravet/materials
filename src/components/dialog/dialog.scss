@@ -22,6 +22,7 @@
   }
 
   .mdc-dialog {
+    z-index: 15;
     .mdc-dialog__title {
       background-color: var(--mdc-theme-dialog-title-fill-color, --mdc-theme-background);
       color: var(--mdc-theme-dialog-title-ink-color, --mdc-theme-on-background);
