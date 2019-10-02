@@ -46,11 +46,11 @@ export class Select {
   @Prop() width: string;
   @Prop() leadingIcon: string;
   @Prop() helperText: string;
-  @Prop({ mutable: true, reflectToAttr: true }) value: any;
+  @Prop({ mutable: true, reflect: true }) value: any;
 
   @Prop() customValidation: () => Promise<string>;
 
-  @Prop() options: Map<string | number | string[], string>;
+  @Prop() options: Map<string | number, string>;
 
   @State() realHelperText: string;
 
@@ -176,7 +176,7 @@ export class Select {
           ref={el => this.selectTagEl = el}
           required={this.required}>
           {this.defaultEmpty && <option value="" selected={!this.value} disabled={this.required}>&nbsp;</option>}
-          {this.options && Array.from(this.options.keys()).map(optionValue => <option value={optionValue} selected={optionValue === this.value}>{this.options.get(optionValue)}</option>)}
+          {this.options && Array.from(this.options.keys()).map(optionValue => <option value={optionValue.toString()} selected={optionValue.toString() === this.value.toString()}>{this.options.get(optionValue)}</option>)}
           <slot />
         </select>
 
