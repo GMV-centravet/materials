@@ -25,7 +25,9 @@ export class TextField {
 
   @Event() input: EventEmitter;
   @Event() change: EventEmitter;
+  /** Emitted when a trailing icon is press */
   @Event() trailingIconPress: EventEmitter;
+  /** Emitted when a leading icon is press */
   @Event() leadingIconPress: EventEmitter;
 
   @Prop() fullwidth: boolean;
