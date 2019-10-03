@@ -25,6 +25,10 @@ export class TextField {
 
   @Event() input: EventEmitter;
   @Event() change: EventEmitter;
+  /** Emitted when a trailing icon is pressed */
+  @Event() trailingIconPress: EventEmitter;
+  /** Emitted when a leading icon is pressed */
+  @Event() leadingIconPress: EventEmitter;
 
   @Prop() fullwidth: boolean;
   @Prop() dense: boolean;
@@ -33,9 +37,7 @@ export class TextField {
   @Prop() disabled: boolean;
   @Prop() readonly: boolean;
   @Prop() leadingIcon: string;
-  @Prop() leadingIconAction: Function;
   @Prop() trailingIcon: string;
-  @Prop() trailingIconAction: Function;
   @Prop() label: string;
   @Prop() name: string;
 
@@ -89,10 +91,10 @@ export class TextField {
     } else {
       MDCLineRipple.attachTo(this.lineRippleEl);
     }
-    if (this.leadingIcon && this.leadingIconAction) {
+    if (this.leadingIcon && this.leadingIconPress) {
       MDCTextFieldIcon.attachTo(this.host.shadowRoot.querySelector('.materials-leading-icon'));
     }
-    if (this.trailingIcon && this.trailingIconAction) {
+    if (this.trailingIcon && this.trailingIconPress) {
       MDCTextFieldIcon.attachTo(this.host.shadowRoot.querySelector('.materials-trailing-icon'));
     }
   }
@@ -152,25 +154,13 @@ export class TextField {
     this.mdcTextFieldHelperText.foundation.setValidation(false);
     this.realHelperText = this.helperText;
   }
-  
-  async handleLeadingIconClick() {
-    if (this.leadingIconAction) {
-      this.leadingIconAction();
-    }
-  }
-
-  async handleTrailingIconClick() {
-    if (this.trailingIconAction) {
-      this.trailingIconAction();
-    }
-  }
 
   render() {
     return (
       <Host class={{ 'materials-text-field--dense': this.dense }}>
         <div style={{ 'width': this.width ? (this.width + 'px') : '100%' }} class={this.getClasses()} ref={mdcTextField => this.textFieldEl = mdcTextField}>
           {this.leadingIcon &&
-            <i class="materials-leading-icon material-icons mdc-text-field__icon" onClick={() => this.handleLeadingIconClick()} tabindex="0" role="button">{this.leadingIcon}</i>
+            <i class="materials-leading-icon material-icons mdc-text-field__icon" onClick={(ev: any) => this.leadingIconPress.emit(ev)} tabindex="0" role="button">{this.leadingIcon}</i>
           }
           <input
             id="my-text-field"
@@ -190,7 +180,7 @@ export class TextField {
             onChange={(ev: any) => this.change.emit(ev)}
           />
           {this.trailingIcon &&
-            <i onClick={()=>this.handleTrailingIconClick()} class="materials-trailing-icon material-icons mdc-text-field__icon" tabindex="0" role="button">{this.trailingIcon}</i>
+            <i onClick={(ev: any) => this.trailingIconPress.emit(ev)} class="materials-trailing-icon material-icons mdc-text-field__icon" tabindex="0" role="button">{this.trailingIcon}</i>
           }
           {this.outlined ?
             <div class="mdc-notched-outline" ref={notchedOutlineEl => this.notchedOutlineEl = notchedOutlineEl}>

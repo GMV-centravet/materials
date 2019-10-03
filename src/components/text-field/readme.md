@@ -33,10 +33,12 @@
 
 ## Events
 
-| Event    | Description | Type               |
-| -------- | ----------- | ------------------ |
-| `change` |             | `CustomEvent<any>` |
-| `input`  |             | `CustomEvent<any>` |
+| Event               | Description                             | Type               |
+| ------------------- | --------------------------------------- | ------------------ |
+| `change`            |                                         | `CustomEvent<any>` |
+| `input`             |                                         | `CustomEvent<any>` |
+| `leadingIconPress`  | Emitted when a leading icon is pressed  | `CustomEvent<any>` |
+| `trailingIconPress` | Emitted when a trailing icon is pressed | `CustomEvent<any>` |
 
 
 ## Methods
