@@ -95,10 +95,10 @@ export class TextField {
     } else {
       MDCLineRipple.attachTo(this.lineRippleEl);
     }
-    if (this.leadingIcon && this.leadingIconPress) {
+    if (this.leadingIcon && this.leadingIconPress && this.leadingIconTitle) {
       MDCTextFieldIcon.attachTo(this.host.shadowRoot.querySelector('.materials-leading-icon'));
     }
-    if (this.trailingIcon && this.trailingIconPress) {
+    if (this.trailingIcon && this.trailingIconPress && this.trailingIconTitle) {
       MDCTextFieldIcon.attachTo(this.host.shadowRoot.querySelector('.materials-trailing-icon'));
     }
   }
