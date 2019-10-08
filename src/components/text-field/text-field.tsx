@@ -54,6 +54,10 @@ export class TextField {
   // Helper
   @Prop() helperText: string;
   @Prop() persistent: boolean;
+  /** Add a title to the trailing icon */
+  @Prop() trailingIconTitle: string;
+  /** Add a title to the leading icon */
+  @Prop() leadingIconTitle: string;
 
   @Prop() customValidation: () => Promise<string>;
 
@@ -160,7 +164,7 @@ export class TextField {
       <Host class={{ 'materials-text-field--dense': this.dense }}>
         <div style={{ 'width': this.width ? (this.width + 'px') : '100%' }} class={this.getClasses()} ref={mdcTextField => this.textFieldEl = mdcTextField}>
           {this.leadingIcon &&
-            <i class="materials-leading-icon material-icons mdc-text-field__icon" onClick={(ev: any) => this.leadingIconPress.emit(ev)} tabindex="0" role="button">{this.leadingIcon}</i>
+            <i class="materials-leading-icon material-icons mdc-text-field__icon" title={this.leadingIconTitle} onClick={(ev: any) => this.leadingIconPress.emit(ev)} tabindex="0" role="button">{this.leadingIcon}</i>
           }
           <input
             id="my-text-field"
@@ -180,7 +184,7 @@ export class TextField {
             onChange={(ev: any) => this.change.emit(ev)}
           />
           {this.trailingIcon &&
-            <i onClick={(ev: any) => this.trailingIconPress.emit(ev)} class="materials-trailing-icon material-icons mdc-text-field__icon" tabindex="0" role="button">{this.trailingIcon}</i>
+            <i onClick={(ev: any) => this.trailingIconPress.emit(ev)} class="materials-trailing-icon material-icons mdc-text-field__icon" title={this.trailingIconTitle} tabindex="0" role="button">{this.trailingIcon}</i>
           }
           {this.outlined ?
             <div class="mdc-notched-outline" ref={notchedOutlineEl => this.notchedOutlineEl = notchedOutlineEl}>

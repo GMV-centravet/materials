@@ -787,6 +787,10 @@ export namespace Components {
     'isValid': () => Promise<boolean>;
     'label': string;
     'leadingIcon': string;
+    /**
+    * Add a title to the leading icon
+    */
+    'leadingIconTitle': string;
     'name': string;
     'outlined': boolean;
     'overflow': boolean;
@@ -795,6 +799,10 @@ export namespace Components {
     'readonly': boolean;
     'required': boolean;
     'trailingIcon': string;
+    /**
+    * Add a title to the trailing icon
+    */
+    'trailingIconTitle': string;
     'type': string;
     'value': any;
     'width': number;
@@ -2023,10 +2031,20 @@ declare namespace LocalJSX {
     'hideNativeClear'?: boolean;
     'label'?: string;
     'leadingIcon'?: string;
+    /**
+    * Add a title to the leading icon
+    */
+    'leadingIconTitle'?: string;
     'name'?: string;
     'onChange'?: (event: CustomEvent<any>) => void;
     'onInput'?: (event: CustomEvent<any>) => void;
+    /**
+    * Emitted when a leading icon is pressed
+    */
     'onLeadingIconPress'?: (event: CustomEvent<any>) => void;
+    /**
+    * Emitted when a trailing icon is pressed
+    */
     'onTrailingIconPress'?: (event: CustomEvent<any>) => void;
     'outlined'?: boolean;
     'overflow'?: boolean;
@@ -2035,6 +2053,10 @@ declare namespace LocalJSX {
     'readonly'?: boolean;
     'required'?: boolean;
     'trailingIcon'?: string;
+    /**
+    * Add a title to the trailing icon
+    */
+    'trailingIconTitle'?: string;
     'type'?: string;
     'value'?: any;
     'width'?: number;
