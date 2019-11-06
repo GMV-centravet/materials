@@ -150,7 +150,7 @@ export class Dialog {
             </section>
             {this.actions ?
               <footer class="mdc-dialog__actions">
-                {this.actions.map(a => <button type="button" class="mdc-button mdc-dialog__button" title={a.title ? a.title : a.label} onClick={() => { if (a.action) a.action() }} data-mdc-dialog-action={a.role === 'accept' || a.role === 'close' ? a.role : null}>{a.label}</button>)}
+                {this.actions.map(a => <button type="button" class="mdc-button mdc-dialog__button" title={a.title ? a.title : a.label} onClick={() => { if (a.action) a.action() }} disabled={a.role === 'accept' && this.disableAcceptButton} data-mdc-dialog-action={a.role === 'accept' || a.role === 'close' ? a.role : null}>{a.label}</button>)}
               </footer>
               :
               <footer class="mdc-dialog__actions">
