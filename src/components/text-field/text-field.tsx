@@ -51,6 +51,7 @@ export class TextField {
   @Prop({ mutable: true, reflectToAttr: true }) value: any;
   @Prop() width: number;
   @Prop() overflow: boolean;
+  @Prop() maxlength: number;
   // Helper
   @Prop() helperText: string;
   @Prop() persistent: boolean;
@@ -176,6 +177,7 @@ export class TextField {
             required={this.required}
             readonly={this.readonly}
             name={this.name}
+            maxlength={this.maxlength}
             ref={el => this.inputEl = el}
             onInput={(ev: any) => {
               this.value = ev.target.value;
